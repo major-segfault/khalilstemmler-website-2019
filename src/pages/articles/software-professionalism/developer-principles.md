@@ -117,7 +117,7 @@ A lot of companies talk about _Agile Software Development_ and say they practice
 
 ### <a  class="anchor" name="Agile"></a>Agile requires fundamental software design skills
 
-If you’re not familiar with Agile, it’s an alternative approach to developing software that fosters **iterative** improvements to code and detests a fully-fledged **up-front design**. The contrasting uproach is **Waterfall** where you define everything upfront and stick to the script.
+If you’re not familiar with Agile, it’s an alternative approach to developing software that fosters **iterative** improvements to code and detests a fully-fledged **up-front design**. The contrasting approach is **Waterfall** where you define everything upfront and stick to the script.
 
 The main reason why **Agile** is such an attractive approach is because the iteration cycles are smaller. 
 
