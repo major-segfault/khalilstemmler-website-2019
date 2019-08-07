@@ -1,10 +1,9 @@
 
 import React from 'react'
-import { Link } from 'gatsby'
 import "../styles/ResourceItem.sass"
 
 const ResourceItem = ({ name, description, image, url, contentType }) => (
-  <Link to={url} className="resource-item">
+  <a href={url} className="resource-item">
     <div className="resource-item--image-container">
       <img src={image} />
     </div>
@@ -13,7 +12,7 @@ const ResourceItem = ({ name, description, image, url, contentType }) => (
       <span>{contentType}</span>
       <p>{description}</p>
     </div>
-  </Link>
+  </a>
 )
 
 export default ResourceItem;

@@ -1,18 +1,17 @@
 
 import React from 'react'
 import ResourceCard from './ResourceCard'
-import solidGreen from '../../../images/resources/solid/solid-green.png'
+import bookLogo from '../../../images/book/book-logo.png'
 
 const SolidBookResourceCard = () => (
   <ResourceCard
-    image={solidGreen}
-    smallTitle={`🚨 I'm writing a book! 📗`}
-    title={`Introduction to software architecture 
-    & design principles with Node.js and TypeScript`}
-    buttonText={"Get the free ebook"}
+    image={bookLogo}
+    smallTitle={`My book on Node.js / TypeScript software design and architecture just pre-launched 📕 (%33 off)!`}
+    title={`SOLID: The Software Design & Architecture Handbook`}
+    buttonText={"Presale $24.99"}
     onButtonClick={() => {
       if (typeof window !== undefined) {
-        window.location.href = '/resources/solid-nodejs-architecture'
+        window.location.href = 'https://solidbook.io'
       }
     }}
   >

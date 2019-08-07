@@ -79,8 +79,6 @@ class Article extends React.Component {
   }
 
   componentDidMount () {
-    // initCarbonAd();
-    initBuySellAd();
     this.mountAnchors();
   }
 
@@ -130,12 +128,9 @@ class Article extends React.Component {
 
         <hr/>
         <br/>
-        <h3>Sponsor</h3>
-        <p>I hope this article was useful to you! Consider checking out my sponsors. I can continue to write quality articles for free because of them.</p>
-        <BuySellAd/>
 
         <h3>Discussion</h3>
-        <p>Thoughts? Share the article if you think it'll be useful to someone + join the discussion about this post on Twitter! </p>
+        <p>Thanks for reading! If you found this article useful, could you do me a solid and share it on Twitter? I appreciate the encouragement.</p>
         <ShareButtons
           url={fullUrl}
           title={title}
@@ -158,7 +153,7 @@ class Article extends React.Component {
           url={this.getUniquePageIdentifier()}
         /> */}
         <a href="/resources/solid-nodejs-architecture">
-          <img src="/img/resources/solid-book/insert-3.png"/>
+          <img src="/img/resources/solid-book/book-banner.png"/>
         </a>
         <hr/>
         <h2>You may also enjoy...</h2>

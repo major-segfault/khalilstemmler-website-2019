@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Layout from "../components/shared/layout"
-import solidBook from '../images/resources/solid/solid-cover.png'
+import solidBook from '../images/book/book-logo.png'
 import nameConstructStructureBook from '../images/resources/name-construct-structure/book-banner.png'
 import { ResourceItem } from '../components/resources';
 import { SmallSubscribeForm } from '../components/subscribe'
@@ -9,15 +9,10 @@ import { SmallSubscribeForm } from '../components/subscribe'
 const resourceItems = [
   { 
     name: 'SOLID', 
-    description: `An introduction 
-      to software 
-      architecture
-      & design principles 
-      with Node.js & 
-      TypeScript.`,
-    url: '/resources/solid-nodejs-architecture',
+    description: `The Software Design & Architecture Handbook`,
+    url: 'https://solidbook.io',
     img: solidBook,
-    contentType: 'Free Ebook'
+    contentType: 'Available for presale'
   },
   {
     name: 'Name, Construct & Structure', 

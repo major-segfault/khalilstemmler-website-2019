@@ -7,7 +7,7 @@ import { createTwitterShareURL, createEditOnGitHubURL } from '../../../../utils/
 const ArticleMeta = ({ date, title, readingTime, isUpdatedTime, editAndShare, url, slug }) => (
   <div className="date-posted">
     <div>
-      {isUpdatedTime ? 'Updated ' : ''}{moment(date).format('MMM Do, YYYY')} / {readingTime.text} 
+      {isUpdatedTime ? 'Updated ' : ''}{moment(date).format('MMM Do, YYYY')} / {readingTime ? readingTime.text : ''} 
       {editAndShare ? (
         <>
           {` / `}<a href={createTwitterShareURL(title, url)} target="_blank">Share</a>

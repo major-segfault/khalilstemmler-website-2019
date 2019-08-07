@@ -191,7 +191,7 @@ Look! The port fits the adapter ❤️.
 --- 
 
 <a href="/resources/solid-nodejs-architecture">
-  <img src="/img/resources/solid-book/insert-2.png"/>
+  <img src="/img/resources/solid-book/book-banner.png"/>
 </a>
 
 Hopefully we're starting to see how this can make our code more  **testable** and **flexible**.

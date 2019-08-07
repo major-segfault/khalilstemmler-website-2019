@@ -151,7 +151,7 @@ Also, check out that **nice auto-completion** and all the methods we now have av
 When we **extend** an `abstract` class, if the abstract class had any _abstract methods_ on it, we would need to implement those in the subclass. 
 
 <a href="/resources/solid-nodejs-architecture">
-  <img src="/img/resources/solid-book/insert-2.png"/>
+  <img src="/img/resources/solid-book/book-banner.png"/>
 </a>
 
 Observe that we've implemented it in this `CreateUserController`. If you'll recall in the `BaseController`, it had a single `abstract method`:

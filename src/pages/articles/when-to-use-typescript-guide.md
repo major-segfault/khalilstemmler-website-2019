@@ -170,7 +170,7 @@ In Paul Graham's famous article, [The Python Paradox](http://www.paulgraham.com/
 Overall, in this case, use whatever you're most comfortable with: types or no types. You can always refactor towards a better design once you know you've built something people actually want.
 
 <a href="/resources/solid-nodejs-architecture">
-  <img src="/img/resources/solid-book/insert-2.png"/>
+  <img src="/img/resources/solid-book/book-banner.png"/>
 </a>
 
 ## Working on Teams
