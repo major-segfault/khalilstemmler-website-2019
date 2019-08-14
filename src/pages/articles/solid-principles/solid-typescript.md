@@ -12,10 +12,10 @@ tags:
 category: Software Design
 image: /img/blog/solid/solid.png
 published: true
-anchormessage: This article is part of the upcoming SOLID book. <a href="/resources/solid-nodejs-architecture">Get it, free</a>.
+anchormessage: This article is part of the upcoming SOLID book. <a href="/resources/solid-nodejs-architecture">Get the book</a>.
 ---
 
-*From the upcoming free ebook, [SOLID - An introduction to software architecture and design principles with Node.js and TypeScript](/resources/solid-nodejs-architecture).*
+*From the ebook, [SOLID - An introduction to software architecture and design principles with Node.js and TypeScript](/resources/solid-nodejs-architecture).*
 
 Writing code can be like pouring concrete.
 

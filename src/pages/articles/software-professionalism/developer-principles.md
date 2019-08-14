@@ -12,7 +12,7 @@ tags:
 category: Web Development
 image: /img/blog/developer-principles/principles.jpeg
 published: true
-anchormessage: This article is part of the upcoming SOLID book. <a href="/resources/solid-nodejs-architecture">Get it, free</a>.
+anchormessage: This article is part of the upcoming SOLID book. <a href="/resources/solid-nodejs-architecture">Get the book</a>.
 ---
 
 I came across an article recently from CNBC titled **[Tech's ultimate success: Software developers are now more valuable to companies than money](https://www.cnbc.com/2018/09/06/companies-worry-more-about-access-to-software-developers-than-capital.html)**. They summarized a few really important details that I think are relevant to us today.

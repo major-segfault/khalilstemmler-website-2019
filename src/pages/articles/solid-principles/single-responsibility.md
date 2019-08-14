@@ -12,7 +12,7 @@ tags:
 category: Software Design
 image: /img/blog/solid/solid.png
 published: true
-anchormessage: This article is part of the upcoming SOLID book. <a href="/resources/solid-nodejs-architecture">Get it, free</a>.
+anchormessage: This article is part of the upcoming SOLID book. <a href="/resources/solid-nodejs-architecture">Get the book</a>.
 ---
 
 > Is domain knowledge needed for the Single Responsibility Principle?
