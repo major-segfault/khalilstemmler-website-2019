@@ -9,7 +9,7 @@ import { SmallSubscribeForm } from '../components/subscribe'
 const resourceItems = [
   { 
     name: 'SOLID', 
-    description: `The Software Design & Architecture Handbook`,
+    description: `The Software Design & Architecture (with TypeScript / Node.js) Handbook`,
     url: 'https://solidbook.io',
     img: solidBook,
     contentType: 'Available for presale'
