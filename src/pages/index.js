@@ -17,14 +17,15 @@ const IndexPage = ({ title, description }) => (
     <div className="home">
       <Hero/>
       <br/>
-      <SubscribeForm/>
-      <br/>
       <RecentArticles/>
       <SolidBookResourceCard/>
       <br/>
       <hr/>
       <br/>
       <RecentWikiEdits/>
+      <br/>
+      <SubscribeForm/>
+      <br/>
       <a href="/resources/solid-nodejs-architecture">
         <img src="/img/resources/solid-book/book-banner.png"/>
       </a>
