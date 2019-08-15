@@ -37,8 +37,7 @@ export class Comments extends React.Component {
           name: '',
           comments: this.state
             .comments
-            .concat(comment)
-            .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)),
+            .concat(comment),
           commentText: ''
         });
 
@@ -112,7 +111,11 @@ export class Comments extends React.Component {
           loading={false}
           disabled={!this.isFormReady()}
         />
-        {comments.map((c, i) => <Comment {...c} key={i}/>)}
+        {comments
+          .sort((a, b) => {
+            return new Date(b.createdAt) - new Date(a.createdAt)
+          })
+          .map((c, i) => <Comment {...c} key={i}/>)}
       </div>
     )
   }
