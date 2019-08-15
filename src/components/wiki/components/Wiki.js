@@ -8,6 +8,7 @@ import { Feedback } from '../../../components/feedback'
 import { SubscribeForm } from '../../../components/subscribe'
 import "../styles/Wiki.sass"
 import { HorizonalAd } from '../../shared/ads';
+import { Comments } from '../../comments';
 
 class Wiki extends React.Component {
   constructor (props) {
@@ -36,6 +37,8 @@ class Wiki extends React.Component {
         <div className="wiki-content">
           <HTMLContent content={html}/>
         </div>
+        <Comments/>
+        <br/>
         <SubscribeForm/>
         <br/>
         <a href="/resources/solid-nodejs-architecture">
