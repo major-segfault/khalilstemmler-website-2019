@@ -46,7 +46,7 @@ If we were to create Wal-Mart's online systems tomorrow, the entire problem doma
 
 One of the first few things we learn in software development is decomposition, breaking things to smaller modules. So we decompose the entire domain (Wal-Mart as a company) into subdomains.
 
-But how do we identify what are subdomains should be?
+But how do we identify the subdomains?
 
 **Conway's law**.
 
