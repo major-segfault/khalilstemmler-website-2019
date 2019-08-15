@@ -42,23 +42,25 @@ class Editor extends React.Component {
     const { text } = this.props;
     return (
       <div className="editor">
-        <ReactQuill 
-          placeholder={this.props.placeholder}
-          ref={(el) => { this.reactQuillRef = el }}
-          value={text}
-          onChange={this.handleChange} 
-          formats={[
-            'header',
-            'bold', 'italic', 'underline', 'strike', 'blockquote',
-            'list', 'bullet', 'indent',
-            'link', 'image',
-            'code-block'
-          ]}
-          modules={{
-            // syntax: true,
-            toolbar: ['bold', 'italic', 'underline', 'link', 'code-block', 'list']
-          }}
-        />
+        {typeof window !== 'undefined' ? (
+          <ReactQuill 
+            placeholder={this.props.placeholder}
+            ref={(el) => { this.reactQuillRef = el }}
+            value={text}
+            onChange={this.handleChange} 
+            formats={[
+              'header',
+              'bold', 'italic', 'underline', 'strike', 'blockquote',
+              'list', 'bullet', 'indent',
+              'link', 'image',
+              'code-block'
+            ]}
+            modules={{
+              // syntax: true,
+              toolbar: ['bold', 'italic', 'underline', 'link', 'code-block', 'list']
+            }}
+          />
+        ) : ''}
       </div>
     )
   }
