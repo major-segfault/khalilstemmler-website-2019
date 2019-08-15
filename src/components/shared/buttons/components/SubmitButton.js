@@ -7,8 +7,10 @@ const COLOR = {
   GREEN: 'green'
 }
 
-const SubmitButton = ({ text, icon, onClick, loading, color }) => (
-  <div className={`submit-button ${color ? color : ''}`} onClick={onClick}>
+const SubmitButton = ({ text, icon, onClick, loading, color, disabled }) => (
+  <div 
+    className={`submit-button ${color ? color : ''} ${disabled ? 'disabled' : ''}`} 
+    onClick={onClick}>
     {loading ? <ClipLoader color={"#53a7d8"} loading={true} /> : text}
   </div>
 )
@@ -19,5 +21,6 @@ SubmitButton.propTypes = {
   text: PropTypes.string.isRequired,
   icon: PropTypes.string,
   onClick: PropTypes.func.isRequired,
-  color: PropTypes.string
+  color: PropTypes.string,
+  disabled: PropTypes.bool
 }

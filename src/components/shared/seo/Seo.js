@@ -153,6 +153,7 @@ class SEO extends React.Component {
         .concat(this.getKeywords())
         .concat(meta)}
       >
+        <link rel="stylesheet" href="//cdn.quilljs.com/1.2.6/quill.snow.css"></link>
         <link rel="stylesheet" 
           href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" 

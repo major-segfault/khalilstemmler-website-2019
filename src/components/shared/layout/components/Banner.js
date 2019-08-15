@@ -5,7 +5,7 @@ import closeButton from '../../../../images/icons/close.svg'
 import "../styles/banner.sass"
 
 const messages = [
-  <marquee direction="right" className="message">No special messages at the moment. Just have a good day and stay hydrated!</marquee>,
+  <marquee direction="left" className="message">No special messages at the moment. Just have a good day and stay hydrated!</marquee>,
   // <marquee direction="right" className="message">want to see a cool trick I can do? check out <Link to="/music/">my music</Link>.</marquee>,
   <div className="message">what the hell</div>
 ]

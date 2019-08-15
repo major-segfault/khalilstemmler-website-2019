@@ -17,8 +17,7 @@ import { ShareButtons } from '../../share-buttons';
 import ArticleAnchors from './ArticleAnchors';
 import { getCategoryIconAndBanner } from '../../../../utils/blog';
 import { HorizonalAd } from '../../ads';
-import BuySellAd, { initBuySellAd } from '../../ads/components/BuySellAd';
-import { initCarbonAd } from '../../ads/components/CarbonAd';
+import { Comments } from '../../../comments';
 
 class Article extends React.Component {
   constructor (props) {
@@ -130,11 +129,14 @@ class Article extends React.Component {
         <br/>
 
         <h3>Discussion</h3>
-        <p>Thanks for reading! If you found this article useful, could you do me a solid and share it on Twitter? I appreciate the encouragement.</p>
+        <p>Thanks for reading! If you found this article useful, could you do me a solid and share it on Twitter?</p>
         <ShareButtons
           url={fullUrl}
           title={title}
         />
+        <br/>
+
+        <Comments/>
         <br/>
 
         <h3>Stay in touch!</h3>
