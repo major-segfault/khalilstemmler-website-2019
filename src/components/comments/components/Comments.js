@@ -84,11 +84,37 @@ export class Comments extends React.Component {
     })
   }
 
+  sortComments (a, b) {
+    return new Date(b.createdAt) - new Date(a.createdAt)
+  }
+
+  isReply (comment) {
+    return !!comment.parentCommentId === true;
+  }
+
+  presentComments () {
+    let { comments } = this.state;
+    const replies = comments.filter((c) => this.isReply(c));
+    
+    comments = comments
+      .filter((c) => !this.isReply(c))
+      .map((c) => {
+        const commentReplies = replies.filter((r) => r.parentCommentId === c.id);
+        if (commentReplies.length !== 0) {
+          c.replies = commentReplies.sort(this.sortComments);
+        };
+        return c;
+      })
+
+    return comments
+      .sort(this.sortComments)
+  }
+
   render () {
-    const { comments, commentText } = this.state;
+    const comments = this.presentComments();
+    const { commentText } = this.state;
     const numComments = comments.length;
     const hasComments = numComments !== 0;
-    console.log(numComments);
 
     return (
       <div className="comments-container">
@@ -96,6 +122,7 @@ export class Comments extends React.Component {
         {!hasComments ? <p>Be the first to leave a comment</p> : ''}
         <TextInput
           placeholder="Name"
+          value={this.state.name}
           onChange={(e) => this.updateFormField('name', e)}
         />
         <Editor 
@@ -111,11 +138,7 @@ export class Comments extends React.Component {
           loading={false}
           disabled={!this.isFormReady()}
         />
-        {comments
-          .sort((a, b) => {
-            return new Date(b.createdAt) - new Date(a.createdAt)
-          })
-          .map((c, i) => <Comment {...c} key={i}/>)}
+        {comments.map((c, i) => <Comment {...c} key={i}/>)}
       </div>
     )
   }
