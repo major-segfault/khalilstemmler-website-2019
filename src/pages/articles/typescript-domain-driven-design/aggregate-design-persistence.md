@@ -2,7 +2,7 @@
 templateKey: article
 title: "How to Design & Persist Aggregates - Domain-Driven Design w/ TypeScript"
 date: '2019-07-24T10:04:10-05:00'
-updated: '2019-07-24T10:04:10-05:00'
+updated: '2019-08-16T10:04:10-05:00'
 description: >-
   In this article, you'll learn how identify the aggregate root and encapsulate a boundary around related entities. You'll also learn how to structure and persist aggregates using the Sequelize ORM on White Label, the open-source Vinyl Trading app. 
 tags:
@@ -362,14 +362,69 @@ export interface VinylDTO {
 }
 ```
 
-That realization might really force us ensure we include the entire `Artist` and `Album` entities inside the aggregate boundary for `Vinyl` because it might make it easier for us to build API response DTOs.
+That realization might really force us ensure we include the entire `Artist` and `Album` entities inside the aggregate boundary for `Vinyl` because it _might make it easier_ for us to build API response DTOs.
 
 That gives us another goal in aggregate design:
 
 - Provide enough info to enforce model invariants within a boundary
 - Execute use cases
 - Ensure decent database performance
-- **Provide enough info to transform a Domain Entity to a DTO**
+- (optional) **Provide enough info to transform a Domain Entity to a DTO**
+
+The reason why this is an **optional** goal stems from the CQS (Command-Query Segregation) Principle.
+
+### Command-Query Segregation
+
+CQS says that any operation is either a `COMMAND` or a `QUERY`. 
+
+So if a function performs a `COMMAND`, it has no return value (`void`), like so:
+
+```typescript
+// Valid
+function createVinyl (data): void {
+  ... // create and save
+}
+
+// Valid
+function updateVinyl (vinylId: string, data): void {
+  ... // update
+}
+
+// Invalid
+function updateVinyl (vinylId: string, data): Vinyl {
+  ... // update
+}
+```
+
+When we make changes to our aggregates (`UPDATE`, `DELETE`, `CREATE`), we're performing `COMMAND`s.
+
+In this scenario, we _need to have a complete aggregate_ pulled into memory in order to enforce any invariant rules before approving the `COMMAND` or rejecting it because some business rule isn't being satisfied.
+
+OK. Makes sense. 
+
+But queries are different. `QUERIES` simply **return a value** but also produce **absolutely no side-effects**.
+
+```typescript
+// Valid
+function getVinylById (vinylId: string): Vinyl {
+  // returns vinyl
+}
+
+// Invalid
+function getVinylById (vinylId: string): Vinyl {
+  const vinyl = this.vinylRepo.getVinyl(vinylId);
+
+  await updateVinyl(vinyl) // bad, side-effect of a QUERY
+  // returns vinyl
+  return vinyl;
+}
+```
+
+So in the context of DTOs, adding additional info to our aggregate for the sake of having them available for our DTOs has potential to hurt performance, don't do it.
+
+DTOs can have a tight requirement to fulfill a user inferface, so instead of filling up an aggregate with all that info, just retrieve the data you need, directly from the repository/repositories to create the DTO.
+
+---
 
 Hopefully you're understanding that aggregate design takes a little bit of work. 
 
