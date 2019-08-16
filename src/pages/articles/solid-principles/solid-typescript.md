@@ -2,7 +2,7 @@
 templateKey: article
 title: "SOLID Principles: The Software Developer's Framework to Robust & Maintainable Code [with Examples]"
 date: '2019-05-18T10:04:10-05:00'
-updated: '2019-05-18T10:04:10-05:00'
+updated: '2019-07-16T10:04:10-05:00'
 description: >-
   The SOLID principles are a set of software design principles that teach us how we can structure our functions and classes to be as robust, maintainable and flexible as possible.
 tags:
@@ -86,6 +86,7 @@ If you ask me, the primary benefits of becoming well acquainted with the SOLID p
 - write code where classes **narrowly** do what they were intended to do
 - write code that can be adjusted and extended quickly
 - write code that can be adjusted and extended quickly without producing bugs
+- write code that separates the _policy_ (rules) from the _details_ (implementation)
 - write code that allows for implementations to be swapped out (think swapping out Email APIs, ORMs or web server frameworks)
 
 So let's go through em!

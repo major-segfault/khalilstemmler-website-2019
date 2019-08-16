@@ -146,7 +146,7 @@ const removeUserHandler = async (userId) => {
   try {
     const user = await UserModel.getUser(userId);
     await UserModel.removeUser(userId);
-    await EmailService.send(userId, message);
+    await EmailService.send(user.email, message);
     await NotificationService.push(userId, message);
     return true;
   } catch (e) {
@@ -176,9 +176,50 @@ If tomorrow, my manager were to tell me:
 
 I would know exactly where to add that code because there's <u>one place to change side effects of removing a user</u>. Furthermore, the only _reason_ it would need to change is if we change the requirements of what happens after removing a user.
 
-#### Improving it with Domain Events
+#### Improving it with Domain Events and the Observer Pattern
 
-Using Domain Events, we could actually dispatch a `UserRemoved` Domain Event and subscribe to that event from the `Email` and `Notification` <u>subdomains</u>. This would remove the need for us to handle both _the actual removal of the user_ and the _side effects_ of doing so from the same class. [^2]
+Using Domain Events, we could actually dispatch a `UserRemoved` Domain Event from the `Users` subdomain and **subscribe** to that event from the `Email` (and the same thing from the `Notification` <u>subdomains</u>). 
+
+```typescript
+
+/**
+ * modules/email/subscriptions/AfterUserRemoved
+ * This class resides within the Email subdomain (/modules/email)
+ */
+
+class AfterUserRemoved implements IHandle<UserRemoved> {
+  private emailService: IEmailService;
+
+  constructor (emailService: IEmailService) {
+    this.emailService = emailService;
+  }
+
+  private subscribeToDomainEvents (): void {
+    DomainEvents.register(this.onUserRemoved.bind(this), UserRemoved.name)
+  }
+
+ /**
+  * @desc onUserRemoved, a handler for the UserRemoved domain event gets called
+  * when the UserRemoved event is dispatched from the Users subdomain.
+  * This is an example of the Observer pattern.
+  * It's also how we can prevent 'God'-classes that know about everything and
+  * quickly become unmaintainable.
+  */
+
+  private async onUserRemoved (event: UserRemoved): Promise<any> {
+    const { userId, email } = event.user;
+    const message = 'Your account has been deleted';
+
+    try {
+      await this.emailService.send(email, message);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+}
+```
+
+This would remove the need for us to handle both _the actual removal of the user_ and the _side effects_ of doing so from the same class. [^2] The **Observer pattern** is especially helpful here when there may be several side effects (against a particular domain event) across architectural boundaries.
 
 --- 
 
