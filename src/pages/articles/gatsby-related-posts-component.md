@@ -38,11 +38,11 @@ Each `Article` has one `Category` and can have many `Tags`.
 
 If you _haven't already_ figured out how to set up `tags` and `category`s, check out this [cool guide on how to do that](https://www.gatsbyjs.org/docs/adding-tags-and-categories-to-blog-posts/).
 
-What I want to do, is look at the **Categories** and **Tags** of all of my other articles and compute a **similarity score** with the _current article_ to determine which articles are most similar to it.
+What I want to do is look at the **Categories** and **Tags** of all of my other articles and compute a **similarity score** with the _current article_ to determine which articles are most similar to it.
 
-# Get Articles From a Graphql query
+## Get Articles From a Graphql query
 
-I've build a little `SimilarArticles.js` file that exposes a query (1.) of the same name. 
+I've put together a `SimilarArticles.js` file that exposes a query (1.) of the same name. 
 
 The query returns **every single article on my site**, pulling in all the attributes I need from the article (or as I've included in my template-url, `blog-post`) markdown files to render an article, including the `Category` and `Tags`.
 
@@ -129,13 +129,13 @@ export default (props) => (
 
 After I get all of my queries, I marshall them all (2.) into actual articles. 
 
-The Graphql responses is a little bit nested and since I do this kind of thing in my project often, I wrote a utility function to strip articles from a query.
+The Graphql responses are a little bit nested. Since I query articles often, I wrote a utility function to strip articles from a query.
 
-# Rank articles with the SimilarArticlesFactory
+## Rank articles with the SimilarArticlesFactory
 
 At (3.), things get fun.
 
-I pass in both all of the `articles`, and also the `currentArticleSlug` of THIS article.
+I pass in all of the `articles` in addition to the `currentArticleSlug` of THIS article.
 
 From what gets returned, I'm able to call `setMaxArticles(num: number)`, `setCategories(category: string)`, and  `setTags(tags: string[])` before calling `getArticles()`.
 
