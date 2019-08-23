@@ -100,7 +100,7 @@ Much of what makes frameworks so popular is that there is a pre-established way 
 
 ## Protecting the Domain Layer
 
-In order to do DDD well, we need to keep the [SOLID principles](/articles/solid-principles/introduction-to-solid/) in mind, organize a central domain layer at the core of our [Layered Architecture](https://herbertograca.com/2017/08/03/layered-architecture/), and implement interface adapters to persistence, web and external technologies. We don't want these things to sully our domain model.
+In order to do DDD well, we need to keep the [SOLID principles](/articles/solid-principles/solid-typescript/) in mind, organize a central domain layer at the core of our [Layered Architecture](https://herbertograca.com/2017/08/03/layered-architecture/), and implement interface adapters to persistence, web and external technologies. We don't want these things to sully our domain model.
 
 We want to keep them at a distance so that we can isolate our domain and keep our unit tests fast.
 
@@ -168,7 +168,7 @@ const nick = { firstName: 'Nick', lastName: 'Cave' }
 JSON.stringify(khalil) === JSON.stringify(nick) // false
 ```
 
-### [Aggregate](articles/typescript-domain-driven-design/aggregate-design-persistence/)
+### [Aggregate](/articles/typescript-domain-driven-design/aggregate-design-persistence/)
 
 These are a collection of entities are that bound together by an aggregate root. The aggregate root is the thing that we refer to for lookups. No members from within the aggregate boundary can be referred to directly from anything external to the aggregate. This is how the aggregate maintains consistency. 
 
@@ -182,7 +182,7 @@ This is where we locate domain logic that doesn't belong to any one object conce
 
 ### [Repository](/articles/typescript-domain-driven-design/repository-dto-mapper/)
 
-We use repositories in order to retrieve domain objects from persistence technologies. Using software design principles like the [Liskov Subsitution Principle](/articles/solid-principles/introduction-to-solid/) and a layered architecture, we can design this in a way so that we can easily make architecture decisions to switch between an in-memory repository for testing, a MySQL implementation for today, and a MongoDB based implementation 2 years from now.
+We use repositories in order to retrieve domain objects from persistence technologies. Using software design principles like the [Liskov Subsitution Principle](/articles/solid-principles/solid-typescript/) and a layered architecture, we can design this in a way so that we can easily make architecture decisions to switch between an in-memory repository for testing, a MySQL implementation for today, and a MongoDB based implementation 2 years from now.
 
 ### Factory
 
