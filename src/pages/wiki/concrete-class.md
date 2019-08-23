@@ -145,7 +145,7 @@ const babyWolf = new Wolf('red', HunterSkillLevel.Novice);
 
 ## Depending on concrete classes
 
-This is not normally desirable (see [Dependency Inversion](/wiki/dependency-inversion) and the [Open-Closed Principle](/articles/solid-principles/introduction-to-solid/)). We usually want to rely on interfaces or abstract classes; some form of abstraction. When we rely directly on concrete classes, our code can suffer some unfortunate design constraints.
+This is not normally desirable (see [Dependency Inversion](/wiki/dependency-inversion) and the [Open-Closed Principle](/articles/solid-principles/solid-typescript/)). We usually want to rely on interfaces or abstract classes; some form of abstraction. When we rely directly on concrete classes, our code can suffer some unfortunate design constraints.
 
 ### Negative effect of depending on concrete classes: Implementation lock-in
 

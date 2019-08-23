@@ -129,8 +129,8 @@ Any logic that performs operations on external resources (like using the  Google
 
 Two related software design principles assist in bringing up this metric.
 
-- [Single Responsibility Principle](/articles/solid-principles/introduction-to-solid/) 
-- [Screaming Architecture / Packaging By Component](/blank?todo=package-by-component)
+- [Single Responsibility Principle](/articles/solid-principles/solid-typescript/) 
+- [Screaming Architecture / Packaging By Component](/resources/names-construct-structure/)
 
 ### Lack of duplication
 

@@ -33,7 +33,7 @@ It means that when we need to include a class as a dependency, we should try to 
 
 <hr/>
 
-This is the essence of Dependency Inversion, the D in the [SOLID design principles](/articles/solid-principles/introduction-to-solid/). 
+This is the essence of Dependency Inversion, the D in the [SOLID design principles](/articles/solid-principles/solid-typescript/). 
 
 When we refer to the abstractions rather than the concrete classes, the flow of dependencies gets **inverted**. This is desired when we design software because the resulting dependency flow is **much safer** and allows for us to mock classes we're not interested in testing atm.
 
@@ -61,7 +61,7 @@ If we were to flip this around and look at the flow of dependencies, you'll noti
 From this example, when we refer to "high-level" classes, <code class="language-text">Application</code> is a good example, since it's only responsible for spinning classes up and starting the application. When we refer to low-level classes, <code class="language-text">ConcreteService</code> and <code class="language-text">ServiceFactoryImpl</code> classes, which are classes that actually implement all the work, are good examples.
 </p>
 
-This is good! Clearly, it's much better for the majority of our code to depend on abstractions, because we can always extend them (as per [The Open Closed Principle](/articles/solid-principles/introduction-to-solid/)) with another implementation. 
+This is good! Clearly, it's much better for the majority of our code to depend on abstractions, because we can always extend them (as per [The Open Closed Principle](/articles/solid-principles/solid-typescript/)) with another implementation. 
 
 ## Depending on Concrete Classes
 
@@ -75,7 +75,7 @@ That's a partial lie, we can always _change_ concrete classes after they've been
 
 <hr/>
 
-The [Interface Segregation Principle](/articles/solid-principles/introduction-to-solid/) is about creating interfaces or abstract classes for the concrete classes in order to separate what a class should do vs. what it does. Meanwhile, the L in SOLID, the [Liskov Subsitution Principle](/articles/solid-principles/introduction-to-solid/) allows us to swap out one subclass for another safely.
+The [Interface Segregation Principle](/articles/solid-principles/solid-typescript/) is about creating interfaces or abstract classes for the concrete classes in order to separate what a class should do vs. what it does. Meanwhile, the L in SOLID, the [Liskov Subsitution Principle](/articles/solid-principles/solid-typescript/) allows us to swap out one subclass for another safely.
 
 
 ## Uncle Bob's rules

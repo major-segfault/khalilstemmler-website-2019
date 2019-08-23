@@ -31,5 +31,5 @@ Thereforer, in order to do YAGNI well, developers first need to know how to:
 - write code that's testable
 - run automated tests
 
-Learning the [SOLID principles](/articles/solid-principles/introduction-to-solid/) and how to refactor are a good start on how to be successful with YAGNI.
+Learning the [SOLID principles](/articles/solid-principles/solid-typescript/) and how to refactor are a good start on how to be successful with YAGNI.
 
