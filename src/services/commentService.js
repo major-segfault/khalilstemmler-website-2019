@@ -38,7 +38,7 @@ class CommentService {
         const commentFromAPIResponse = comments.find(
           (comment) => comment.id === submitted.id)
 
-        if (commentFromAPIResponse.approved === true) {
+        if (!!commentFromAPIResponse === false || commentFromAPIResponse.approved === true) {
           return false;
         } else {
           return true; // keep in list
