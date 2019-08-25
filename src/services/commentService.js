@@ -34,6 +34,7 @@ class CommentService {
 
       // Remove any saved comments that have been approved
       let submittedComments = this.getSubmitttedCommentsFromLocalStorage();
+
       submittedComments = submittedComments.filter((submitted) => {
         const commentFromAPIResponse = comments.find(
           (comment) => comment.id === submitted.id)

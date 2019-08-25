@@ -11,7 +11,7 @@ const Comment = (props) => (
       <div className="comment-time">{moment(props.createdAt).fromNow()}</div>
     </section>
     <p dangerouslySetInnerHTML={{__html: props.comment}}/>
-    {/* {!props.approved ? <div className="approval">Awaiting approval</div> : ''} */}
+    {!props.approved ? <div className="approval">Awaiting approval</div> : ''}
     {props.replies && props.replies.length !== 0 
       ? props.replies.map((r, i) => <Comment {...r} key={i}/>)
       : ''}
