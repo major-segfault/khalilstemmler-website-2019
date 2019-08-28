@@ -90,7 +90,7 @@ class SEO extends React.Component {
 
   getTitle () {
     const { siteMetadata, title } = this.props;
-    return title || siteMetadata.title;
+    return `${title || siteMetadata.title} | Khalil Stemmler`;
   }
 
   getTemplateTitle () {
@@ -127,7 +127,7 @@ class SEO extends React.Component {
           lang: 'en'
         }}
         title={title}
-        titleTemplate={exactTitle ? null : `%s | ${templateTitle}`}
+        // titleTemplate={exactTitle ? null : `%s`}
         link={[
           { rel: 'canonical', href: url }
         ]}
