@@ -83,6 +83,7 @@ class Layout extends React.Component {
             breadcrumbs={seo.breadcrumbs}
             slug={seo.slug}
             cardSize={seo.cardSize}
+            exactTitle={seo.exactTitle}
           />
           {isExitModalActive ? <ExitModal/> : '' }
            

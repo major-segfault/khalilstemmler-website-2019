@@ -126,7 +126,7 @@ class SEO extends React.Component {
         htmlAttributes={{
           lang: 'en'
         }}
-        title={title}
+        title={exactTitle ? this.props.title : title}
         // titleTemplate={exactTitle ? null : `%s`}
         link={[
           { rel: 'canonical', href: url }
