@@ -52,6 +52,16 @@ bugsnagClient.use(bugsnagReact, React)
 // wrap your entire app tree in the ErrorBoundary provided
 const ErrorBoundary = bugsnagClient.getPlugin('react')
 
+function showQuizAnswer (id) {
+  try {
+    document.getElementById(id).style.display = 'block';
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+window.showQuizAnswer = showQuizAnswer;
+
 exports.wrapRootElement = ({ element }) => (
   <ErrorBoundary>
     {element}

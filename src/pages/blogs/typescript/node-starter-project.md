@@ -1,6 +1,6 @@
 ---
 templateKey: blog-post
-title: "BYOC (Bring Your Own Compiler) - Getting Started with TypeScript + Node.js"
+title: "How to Setup a TypeScript + Node.js Project"
 date: '2019-08-29T10:04:10-05:00'
 updated: '2019-08-291T10:04:10-05:00'
 description: >-
