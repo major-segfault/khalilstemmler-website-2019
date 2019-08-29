@@ -5,3 +5,4 @@
 /blog/categories/:category /articles/categories/:category
 /ncs                /resources/names-construct-structure
 /resources/solid-nodejs-architecture https://solidbook.io
+/cqs-article        /articles/oop-design-principles/command-query-segregation/
