@@ -52,3 +52,40 @@ white-label
   .jest.config.js
 ```
 └
+
+
+<div class="filename">app.js</div>
+
+```typescript
+import express from 'express'
+import bodyParser from 'body-parser'
+import cors from 'cors'
+import { commentRepo } from './repos';
+import { stripTrailingSlash } from './utils';
+const morgan = require('morgan')
+const helmet = require('helmet')
+const compression = require('compression')
+const rateLimit = require('express-rate-limit')
+
+const isProduction = process.env.KS_IS_PROD !== 'false'
+
+const origin = {
+  // TODO: Uncomment
+  // origin: isProduction ? 'https://khalilstemmler.com' : '*',
+  origin: isProduction ? '*' : '*',
+}
+
+const app = express()
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cors(origin))
+app.use(compression())
+app.use(helmet())
+app.use(morgan('combined'))
+
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 5, // 5 requests,
+})
+```

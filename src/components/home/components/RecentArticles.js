@@ -10,7 +10,9 @@ const RecentArticles = ({ articles }) => (
   <ArticlesContainer
     titleText="recent articles"
     subTitleComponent={(
-      <Link className="navigation-link" to="/articles">view all <img src={arrowForward}/></Link>
+      <Link 
+        className="navigation-link" 
+        to="/articles">view all <img src={arrowForward}/></Link>
     )}
     articles={articles}
   />
@@ -50,6 +52,38 @@ export default () => (
             }
           }
         }
+
+        blogs: allMarkdownRemark(
+          sort: { order: DESC, fields: [frontmatter___date] }
+          filter: {
+            frontmatter: {
+              templateKey: { eq: "blog-post" }
+              published: { eq: true }
+              displayInArticles: { eq: true }
+            }
+          }
+          limit: 1000
+        ) {
+          edges {
+            node {
+              fields {
+                slug
+                readingTime {
+                  text
+                }
+              }
+              frontmatter {
+                title
+                date
+                updated
+                description
+                tags
+                category
+                image
+              }
+            }
+          }
+        }
     
         posts: allMarkdownRemark(
           sort: { order: DESC, fields: [frontmatter___date] }
@@ -85,7 +119,11 @@ export default () => (
     render={data => {
       return (
         <RecentArticles
-          articles={getPostsFromQuery(data.posts)}
+          articles={getPostsFromQuery(data.posts)
+            .concat(getPostsFromQuery(data.blogs))
+            .sort((a, b) => {
+              return new Date(b.date) - new Date(a.date)
+            })}
         />
       )
     }}

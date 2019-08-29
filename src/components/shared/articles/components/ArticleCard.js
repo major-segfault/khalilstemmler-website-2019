@@ -19,6 +19,7 @@ const ArticleCard = (props) => {
     image,
     slug,
     date,
+    updated,
     category,
     description,
     tags,

@@ -12,7 +12,7 @@ tags:
 category: Software Professionalism
 image: /img/blog/professionalism/dominant.png
 published: true
-anchormessage: This article is part of the upcoming SOLID book. <a href="/resources/solid-nodejs-architecture">Get the book</a>.
+anchormessage: This article is part of Solid Book - The Software Design & Architecture Handbook. <a href="/resources/solid-nodejs-architecture">Get the book</a>.
 ---
 
 If you ask a software consultant for advice on the **best** approach to anything, such as:

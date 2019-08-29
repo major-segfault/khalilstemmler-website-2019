@@ -61,7 +61,7 @@ export class Articles extends React.Component {
     return getPostsFromQuery(this.props.posts)
       .concat(getPostsFromQuery(this.props.blogs))
       .sort((a, b) => {
-        return new Date(b.updated) - new Date(a.updated)
+        return new Date(b.date) - new Date(a.date)
       });
   }
 

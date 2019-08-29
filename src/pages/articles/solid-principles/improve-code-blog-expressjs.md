@@ -1,0 +1,178 @@
+---
+templateKey: article
+title: "Refactoring a Blog Commenting System | Applying SOLID Principles to TypeScript"
+date: '2019-08-28T10:04:10-05:00'
+updated: '2019-08-28T10:04:10-05:00'
+description: >-
+  In this article, we take some hastily written Node.js code for a blog commenting system and improve it by applying the SOLID principles.
+tags:
+  - SOLID
+  - Express.js
+  - Refactoring
+category: Software Design
+image: /img/blog/solid/solid.png
+published: false
+anchormessage: This article is part of Solid Book - The Software Design & Architecture Handbook. <a href="/resources/solid-nodejs-architecture">Get the book</a>.
+---
+
+<div class="solid-book-cta course-cta">
+  <div class="solid-book-logo-container">
+    <img src="/img/resources/solid-book/book-logo.png"/>
+  </div>
+  <p>This article is part of Solid Book - The Software Design & Architecture Handbook w/ TypeScript + Node.js. <a href="https://solidbook.io">Check it out</a> if you like this post.</p>
+</div>
+
+Any code I don't care about the quality of, I call _throwaway code_. Throwaway code manifests when:
+
+- We're exploring new technology and testing something out.
+- We're more focused on speed of development and deployment > quality.
+- The code isn't expected to live a long lifetime.
+
+In these scenarios, I might let my inner barbarian out 🦍.
+
+But the moment we write code intended **to solve a _real_ problem or address a _real_ need for a business**, we should pay <u>close attention to quality</u>. 
+
+In fact, it's a good idea to practice writing quality code for even the throwaway stuff. You never know when something that you thought was _throwaway_ code will turn into **production code**.
+
+---
+
+## Introduction
+
+Recently, I **deployed my own comment system** on this blog using Express.js, TypeScript, Heroku, and MySQL based on [Tania Rascia's guide](https://www.taniarascia.com/add-comments-to-static-site/).
+
+_Try it out. Leave a comment at the bottom of this post. Be nice, please?_
+
+The [Use Cases](/articles/enterprise-typescript-nodejs/application-layer-use-cases/) that I wanted the general `Public` to be able to fulfill were to:
+
+- `Post` a comment => /api/comments
+- `GET` all the comments for a blog post => /api/comments?url=\<slug\>
+
+So I quickly threw together an Express app and hooked up the API calls. 
+
+### The Express server
+
+Here's the main `app.ts` file. It has two functions `getComments` and `postComment`
+
+<div class="filename">app.ts</div>
+
+```typescript
+import express from 'express'
+import bodyParser from 'body-parser'
+import cors from 'cors'
+import { commentRepo } from './repos';
+import { stripTrailingSlash } from './utils';
+
+const app = express()
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
+const getComments = async (req, res) => {
+  const url = stripTrailingSlash(req.query.url);
+  
+  if (!!url === false || url.length < 2) {
+    return res.status(500).json({ message: "not a valid request" })
+  }
+  
+  try {
+    const comments = await commentRepo.getComments(url);
+    return res.status(201).json({ comments: comments ? comments : [] });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: 'Error', error: err.toString() })
+  }
+}
+
+const postComment = async (req, res) => {
+  try {
+    const { name, id, url, comment } = req.body;
+
+    if (name.length < 2 || name.length >= 100) {
+      return res.status(400).json({ message: 'Name needs to be within 2 and 100 chars' })
+    }
+
+    if (comment.length < 2 || comment.length >= 3000) {
+      return res.status(400).json({ message: 'Comment needs to be less than 3000' })
+    }
+
+    if (!!id === false) {
+      return res.status(400).json({ message: 'Id needs to be provided' })
+    }
+
+    if (!!url === false) {
+      return res.status(400).json({ message: 'Url needs to be provided' })
+    }
+
+    await commentRepo.saveComment({ name, id, url, comment });
+
+    return res.status(200).json({ message: 'Comment posted' });
+  } catch (err) {
+    return res.status(500).json({ message: 'Error', error: err.toString() })
+  }
+}
+
+app.get('/comments', getComments);
+app.post('/comments', postComment);
+
+app.listen(process.env.PORT || 9021, () => {
+  console.log(`Server listening on 9021`)
+})
+
+```
+
+
+
+<div class="filename">commentsRepo.ts</div>
+
+```typescript
+import { Comment } from '../models/Comment';
+import { CommentMap } from '../mappers/CommentMap';
+
+export interface ICommentRepo {
+  getComments (url: string): Promise<Comment[]>;
+  saveComment (comment: Comment): Promise<any>;
+  approveComment (commentId: string): Promise<any>;
+  declineComment (commentId: string): Promise<any>;
+}
+
+export class CommentRepo implements ICommentRepo {
+  private conn: any;
+
+  constructor (conn: any) {
+    this.conn = conn;
+  }
+
+  getComments (url: string): Promise<Comment[]> {
+    const query = `SELECT * FROM comments WHERE url = ?;`;
+    return new Promise((resolve, reject) => {
+      this.conn.query(query, [url], (err, result) => {
+        if (err) return reject(err);
+        return resolve(result.map((r) => CommentMap.toDomain(r)));
+      })
+    })
+  }
+
+  saveComment (comment: Comment): Promise<any> {
+    const query = `INSERT INTO comments 
+    (id, name, comment, created_at, url, approved) 
+    VALUES
+    (?, ?, ?, ?, ?, ?)`;
+
+    const values = [
+      comment.id, 
+      comment.name, 
+      comment.comment, 
+      new Date(),
+      comment.url,
+      false
+    ]
+
+    return new Promise((resolve, reject) => {
+      this.conn.query(query, values, (err, result) => {
+        if (err) return reject(err);
+        return resolve();
+      })
+    })
+  }
+}
+```

@@ -162,7 +162,7 @@ class Article extends React.Component {
         <p>A few more related articles</p>
         <SimilarArticles category={category} tags={tags} currentArticleSlug={slug}/>
 
-        <HorizonalAd/>
+        {/* <HorizonalAd/> */}
       </section>
     )
   }

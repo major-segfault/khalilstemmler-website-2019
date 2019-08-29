@@ -173,7 +173,6 @@
    background: #272822;
     /* font-family: 'Roboto Mono', 'Roboto', sans-serif; */
     font-weight: normal;
-    margin-right: .3rem;
  }
  
  /* Inline code */
@@ -185,6 +184,7 @@
   background: #7de77b;
   color: green;
   text-shadow: none;
+  margin-right: 0.25rem;
  }
  
  .token.comment,

@@ -12,8 +12,15 @@ tags:
 category: Software Design
 image: /img/blog/solid/solid.png
 published: true
-anchormessage: This article is part of the upcoming SOLID book. <a href="/resources/solid-nodejs-architecture">Get the book</a>.
+anchormessage: This article is part of Solid Book - The Software Design & Architecture Handbook. <a href="/resources/solid-nodejs-architecture">Get the book</a>.
 ---
+
+<div class="solid-book-cta course-cta">
+  <div class="solid-book-logo-container">
+    <img src="/img/resources/solid-book/book-logo.png"/>
+  </div>
+  <p>This article is part of Solid Book - The Software Design & Architecture Handbook w/ TypeScript + Node.js. <a href="https://solidbook.io">Check it out</a> if you like this post.</p>
+</div>
 
 > Is domain knowledge needed for the Single Responsibility Principle?
 
