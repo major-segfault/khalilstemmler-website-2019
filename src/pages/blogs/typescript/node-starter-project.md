@@ -1,6 +1,6 @@
 ---
 templateKey: blog-post
-title: "Setting up a Basic TypeScript Project (with Hot-reloading & Production Scripts) | 2019"
+title: "Getting Started with TypeScript + Node.js (Starter project w/ Hot-reloading & Production Scripts) | 2019"
 date: '2019-08-29T10:04:10-05:00'
 updated: '2019-08-291T10:04:10-05:00'
 description: >-
