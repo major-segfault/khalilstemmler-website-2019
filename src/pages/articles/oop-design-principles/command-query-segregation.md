@@ -27,7 +27,9 @@ Heisenberg's discovery in particle physics was the <u>uncertainty principle</u>.
 
 **HeisenBUG** takes after the uncertainty principle, referring to scenarios where it's incredibly hard to find a bug. It specifically refers to scenarios where the bug seems to disappear or act differently when we make attempts to take a closer look at it.
 
-In programming, coding in unexpected **side-effects** are largely the cause of such bugs.
+In programming, unexpected **side-effects** are largely the cause of such bugs.
+
+> If asking a question _changes the answer_, we're likely to run into problems.
 
 --- 
 
@@ -37,11 +39,113 @@ Command-Query Segregation (CQS) is a design principle (while not strictly object
 
 > a _method_ is either a `COMMAND` that performs an action OR a `QUERY` that returns data to the caller, but never both.
 
+In simpler terms, "asking a question shouldn't change the answer".
+
 ### _Why does this matter?_
 
-#### Drawbacks of violating the principle
+The idea is to **separate the code paths** for operations that _change the system_ from those that simply _request_ data from the system.
 
-When we write methods that both **change** the state of the application and **retrieve** data, it becomes <u>really hard to reason about application state</u> and the <u>responsibility of methods</u> becomes fuzzy.
+By enforcing this segregation, the code becomes simpler to understand. _Is this changing something, or just fetching something_? When a method does _both_ (**changes** the state of the application _and_ **retrieves** data), it becomes a lot harder to understand it's **true purpose**. 
+
+This can lead to <u>really hard to reason about</u> application state.
+
+---
+
+## A messy Job Recommendations API Design
+
+Imagine we were building a **Job Recommendations Service**.
+
+Assume we have two API routes:
+
+```
+GET /jobs         - Returns jobs for me to view
+GET /jobs/:jobId  - Returns a particular job
+```
+
+Consider if everytime I did a `GET` to `/jobs/:jobId`, it **changed the state of the system** by changing what comes back when I do `GET` to `/jobs`.
+
+Eventually, as I view more jobs with `/jobs/:jobId`, I'll see more relevant jobs in my calls to `/jobs`.
+
+In theory, that's one way to build out job recommendations in our system.
+
+But this type of design makes the `/jobs` API _incredibly inconsistent_. 
+
+Consider how hard it would be to test and validate it's working properly.
+
+Also, consider the actors in this system are as follows:
+
+- `JobSeekers`: Job seekers are people who are actually looking for jobs
+- `Recruiters`: Recruiters work for companies and try to get job seekers to apply to jobs
+- `Employers`: Employers are the people who post the jobs
+- `Public`: Anonymous users can also view jobs on the job board without an account
+
+Assume that every actor was able to use the `/jobs/:jobId` API call to retrieve a posting.
+
+Should the system change for every actor that fetches a job posting with `/jobs/:jobId`?
+
+Of course not, `JobSeekers` are probably the only group that this should apply against. 
+
+This **feels really complex** because several user groups are reliant on the same resource, but we're trying to apply side-effects for **one of them in particular**.
+
+You can be sure that using a design like this, there would be a dirty `if` statement in there somewhere:
+
+<div class="filename">getJobByJobId.ts</div>
+
+```typescript
+interface Request {
+  userId?: string;
+  jobId: JobId;
+}
+
+class GetJobByJobIdUseCase implements UseCase<Request, Promise<Job>> {
+  ...
+  execute (request: Request): Promise<Job> {
+    const { userId, jobId } = request;
+    
+    if (!!userId) {
+      const user = await this.userRepo.findById(userId);
+
+      const isJobSeeker = !!user.roles.find((r) => r === 'JobSeeker');
+      if (isJobSeeker) {
+        // dirty, log job view
+      }
+    }
+
+    const job = await this.jobRepo.getJobByJobId(jobId);
+    ...
+  }
+}
+```
+
+### A better design
+
+Let's be explicit about the `COMMANDS`, `QUERIES`, what changes the system, and what retrieves data.
+
+We can improve the design by **extracting** the side-effect into a `COMMAND`-like POST call to **log the job view** separately from retrieving it.
+
+```
+GET /jobs                 - Returns all jobs 
+GET /jobs/:jobId          - Returns a particular job
+POST /jobs/:jobId/view    - 🔥 Logs a job view 
+```
+
+This tremendously simplifies the code paths for both **logging a job view** and **retrieving a particular job**.
+
+We can improve the design even further by extracting the functionality to see recommended jobs from within it's own `/jobs/recommendations` API.
+
+```
+GET /jobs                     - Returns all jobs 
+GET /jobs/:jobId              - Returns a particular job
+POST /jobs/:jobId/view        - Logs a job view
+GET /jobs/recommendations     - 🔥Returns my personal job recommendations 
+                                  (used by JobSeekers only)
+```
+
+Usage of this API from the UI would mean that everytime we perform a `GetJobById` `QUERY`, we accompany that with a `LogJobView` `COMMAND`.
+
+This way, we have two **separate code paths**: one for _changing the system_ and for _pulling data out of the system_. We can rest safely knowing that if we change anything with regards to `QUERY`-ing, it won't break anything in regards to how we execute `COMMAND`s, and vice-versa.
+
+## Violation of the principle at the code level
 
 Consider you wrote the following `postComment` method in a **Comment Moderation System**. 
 
@@ -100,7 +204,7 @@ So then...
 ### What's wrong with this code?
 
 - While the `CommentRepo` method is deceptively named `postComment`, it's not only responsible for posting the comment, but also for retrieving the comment that was posted. Developers reading the method signature might get confused as to the **single responsibility** of this method. `QUERY` capability should be delegated to a new method, perhaps `getComment(commentId: string)`.
-- There's an issue in not generating the id for the `Comment` from within the [domain layer](/articles/enterprise-typescript-nodejs/clean-nodejs-architecture/), but leaving it up to the persistence layer (Sequelize) as shown here. That can lead to blantant violation of the principle _in order to know_ the identifier of the [Entity](/articles/typescript-domain-driven-design/entities/) just saved to the database. That poor design forces calling code executing a `COMMAND` to not _only_ know if the `COMMAND` succeeded or failed, but also forces the `COMMAND` to return the value if successful.
+- There's an issue in not generating the id for the `Comment` from within the [domain layer](/articles/enterprise-typescript-nodejs/clean-nodejs-architecture/), but leaving it up to the persistence layer (Sequelize) as shown here. That can lead to blatant violation of the principle _in order to know_ the identifier of the [Entity](/articles/typescript-domain-driven-design/entities/) just saved to the database. That poor design forces calling code executing a `COMMAND` to not _only_ know if the `COMMAND` succeeded or failed, but also forces the `COMMAND` to return the value if successful.
 
 ### Fixing it
 
@@ -258,18 +362,6 @@ If you're doing [Domain-Driven Design](/articles/domain-driven-design-intro/), i
 ### Performing Writes in CQRS
 
 ![Command Query Responsibility Segregation | Writes](/img/blog/design-principles/cqrs-writes.svg)
-
-## Another example: Logging `Job` views
-
-One use case that challenges this principle is: what if we wanted to log everytime someone accessed a resource? Perhaps in a **Job Board** subdomain, if someone viewed a Job, we might want to save that `JobViewedEvent`.
-
-Wouldn't that be a side-effect of a `QUERY`?
-
-**Principles exist to guide us**, but they can always be broken. I think the best advice is to master the principles so you know what you're doing if you choose to break them.
-
-For a use case like this, we can segregate the **side-effect** from the `GetJobById` use case by adding an extra `LogJobView` `COMMAND` use case. 
-
-That would mean that from the UI Layer, everytime we perform a `GetJobById` `QUERY`, we accompany that with a `LogJobView` `COMMAND`.
 
 ## Summary
 
