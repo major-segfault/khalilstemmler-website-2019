@@ -2,7 +2,7 @@
 templateKey: article
 title: "Functional Error Handling with Express.js and DDD | Enterprise Node.js + TypeScript"
 date: '2019-08-14T10:04:10-05:00'
-updated: '2019-08-14T10:04:10-05:00'
+updated: '2019-08-30T10:04:10-05:00'
 description: >-
   How to expressively represent (database, validation and unexpected) errors as domain concepts using functional programming concepts and how to hook those errors up to our Express.js base controller. 
 tags:
