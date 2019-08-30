@@ -247,17 +247,17 @@ Using the same `READ` model as a `WRITE` model can be **expensive** as we've exp
 
 It makes more sense to enable the `READ` models to be used for all `QUERIES` and the `WRITE` model to be used for the `COMMAND`s.
 
-This separation into **two different types of models** is an architectural pattern called **Command Query _Response_ Segregation** (CQRS).
+This separation into **two different types of models** is an architectural pattern called **Command Query _Responsibility_ Segregation** (CQRS).
 
 If you're doing [Domain-Driven Design](/articles/domain-driven-design-intro/), it will likely be hard for you to avoid it.
 
 ### Performing Reads in CQRS
 
-![Command Query Response Segregation | Reads](/img/blog/design-principles/cqrs-reads.svg)
+![Command Query Responsibility Segregation | Reads](/img/blog/design-principles/cqrs-reads.svg)
 
 ### Performing Writes in CQRS
 
-![Command Query Response Segregation | Writes](/img/blog/design-principles/cqrs-writes.svg)
+![Command Query Responsibility Segregation | Writes](/img/blog/design-principles/cqrs-writes.svg)
 
 ## Another example: Logging `Job` views
 
