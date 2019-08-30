@@ -60,7 +60,12 @@ export abstract class BaseController {
     this.req = req;
     this.res = res;
 
-    this.executeImpl();
+    try {
+      await this.executeImpl();
+    } catch (err) {
+      console.log(`[BaseController]: Error caught by controller`);
+      console.log(err);
+    }
   }
 
   protected jsonResponse (code: number, message: string) {
