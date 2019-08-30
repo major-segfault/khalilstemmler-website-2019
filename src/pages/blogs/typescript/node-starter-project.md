@@ -4,7 +4,7 @@ title: "How to Setup a TypeScript + Node.js Project"
 date: '2019-08-29T10:04:10-05:00'
 updated: '2019-08-291T10:04:10-05:00'
 description: >-
-  In this guide, we walk through the process of creating a TypeScript project from scratch with hot-reloading, and scripts for building, development, and production environments. 
+  In this guide, we walk through the process of creating a TypeScript project from scratch with cold-reloading, and scripts for building, development, and production environments. 
 tags:
   - Guides
   - TypeScript
@@ -229,9 +229,9 @@ console.log('Hello world!');
 
 ## Useful configurations & scripts
 
-### Hot reloading
+### Cold reloading
 
-Hot reloading is nice for local development. In order to do this, we'll need to rely on a couple more packages: `ts-node` for running TypeScript code directly without having to wait for it be compiled, and `nodemon`, to watch for changes to our code and automatically restart when a file is changed.
+Cold reloading is nice for local development. In order to do this, we'll need to rely on a couple more packages: `ts-node` for running TypeScript code directly without having to wait for it be compiled, and `nodemon`, to watch for changes to our code and automatically restart when a file is changed.
 
 ```bash
 npm install --save-dev ts-node nodemon
@@ -296,7 +296,7 @@ A reminder that you can view [the entire source code](https://github.com/stemmle
 
 ### `npm run start:dev`
 
-Starts the application in development using `nodemon` and `ts-node` to do hot reloading.
+Starts the application in development using `nodemon` and `ts-node` to do cold reloading.
 
 ### `npm run build`
 
