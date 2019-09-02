@@ -269,10 +269,10 @@ npm install --save-dev rimraf
 And then, add this to your `package.json`.
 
 ```json
-"build": "rimraf ./dist && tsc",
+"build": "rimraf ./build && tsc",
 ```
 
-Now, when we run `npm run build`, `rimraf` will remove our old `dist` folder before the TypeScript compiler emits new code to `dist`.
+Now, when we run `npm run build`, `rimraf` will remove our old `build` folder before the TypeScript compiler emits new code to `dist`.
 
 ### Production startup script
 

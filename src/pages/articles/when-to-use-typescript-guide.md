@@ -152,7 +152,6 @@ In that case, I'd say that if you don't have Unit Tests, the next best thing you
 
 However, compile time checking is **not a subsitute** for having unit tests. The good thing is that unit tests can be written in any language- so the argument for TypeScript here is irrelevant. What's important is that tests are written and we are confident about our code.
 
-
 ## Startups
 
 Definitely use whatever helps you be most productive. 
@@ -168,10 +167,6 @@ Depending on how early you are, the most important thing for you to do is to be 
 In Paul Graham's famous article, [The Python Paradox](http://www.paulgraham.com/pypar.html), his main point is that startup engineers should just use the technology that maximizes their productivity.
 
 Overall, in this case, use whatever you're most comfortable with: types or no types. You can always refactor towards a better design once you know you've built something people actually want.
-
-<a href="/resources/solid-nodejs-architecture">
-  <img src="/img/resources/solid-book/book-banner.png"/>
-</a>
 
 ## Working on Teams
 
@@ -285,6 +280,7 @@ abstract class AudioDevice {
   abstract handlePlayCurrentAudioTrack () : void;
 }
 ```
+
 **Immediate improvements**
 
 - We know the class is abstract **right away**. We needed to sniff around in the JavaScript example.
