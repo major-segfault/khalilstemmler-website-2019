@@ -746,7 +746,7 @@ src
       └ domain                       # Domain models (entities, value objects)
         └ Email.ts                   # Email (value object)
         └ Password.ts                # Password (value object)
-        └ User.ts                    # User (aggregate / entity_             
+        └ User.ts                    # User (aggregate / entity)             
       └ infra                        # Infrastructure layer concerns (webservers, caches, etc)
         └ http
           └ routes
