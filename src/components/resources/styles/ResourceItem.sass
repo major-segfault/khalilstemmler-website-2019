@@ -9,15 +9,14 @@
 
   .resource-item--image-container
     margin-right: 1rem;
-    min-width: 130px;
-
-    @media (max-width: $mobile-breakpoint-small)
-      min-width: 85px;
-
     img 
       max-height: 170px;
       border-radius: 3px;
       max-width: 105px;
+
+      @media (max-width: $mobile-breakpoint-medium)
+        max-width: 30vw;
+        padding-right: 1rem;
 
   h2
     margin-bottom: 0rem;
