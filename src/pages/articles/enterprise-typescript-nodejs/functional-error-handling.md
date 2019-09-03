@@ -676,6 +676,92 @@ Because the result of the use case is of the `Either` type, it forces the caller
 
 By using a `switch` statement on the `constructor`, we can get direct access to the `type` of error before  mapping it to the correct Express.js HTTP response code.
 
+### Composing the controller with the use case
+
+In order to use this controller in our app, we need to create it and then export it so that it can be used up by the main Express.js app.
+
+<div class="filename">modules/users/useCases/createUser/index.ts</div>
+
+```typescript
+import { CreateUserUseCase } from './CreateUserUseCase'
+import { CreateUserController } from './CreateUserController';
+import { userRepo } from 'modules/users'; // repo instance exported from module
+
+// Create the CreateUserUseCase by injecting a UserRepo instance
+const createUserCase = new CreateUserUseCase(userRepo);
+
+// Create the CreateUserController by injecting the CreateUserUseCase
+const createUserController = new CreateUserController(createUserCase);
+
+// Export both from this module
+export {
+  createUserCase,
+  createUserController
+}
+```
+
+### Connecting a controller instance to a route handler
+
+<div class="filename">modules/users/infra/http/routes/index.ts</div>
+
+```typescript
+import * as express from 'express'
+
+// Grab the instance of the CreateUserController from the useCases
+import { createUserController } from '../../../useCases/createUser'
+
+const userRouter = express.Router();
+
+userRouter.post('/', 
+  // Hook the controller instance up to a POST call
+  (req, res) => createUserController.execute(req, res)
+)
+
+export { userRouter } // Export the router so the main app can use it
+```
+
+And then we can hook this up to the main Express.js app instance with:
+
+<div class="filename">app/index.ts</div>
+
+```typescript
+import * as express from 'express'
+import { userRouter } from 'modules/users/infra/http/routes'
+
+const app = express();
+
+... // Other handlers
+
+app.use('/users', userRouter);
+
+app.listen(8000, () => console.log('Express app started!'))
+```
+
+In conclusion, our project structure could look a little something like this:
+
+```bash
+src
+  └ modules
+    └ users                          # 'Users' subdomain
+      └ domain                       # Domain models (entities, value objects)
+        └ Email.ts                   # Email (value object)
+        └ Password.ts                # Password (value object)
+        └ User.ts                    # User (aggregate / entity_             
+      └ infra                        # Infrastructure layer concerns (webservers, caches, etc)
+        └ http
+          └ routes
+            └ index.ts               # Export a user router
+        └ repos                      
+          └ UserRepo.ts              # Facade to the sequelize user models
+      └ useCases                     # All of the application layer features
+        └ createUser                 # Feature/Use Case #1 - Create a user 
+          └ CreateUserUseCase.ts     # Use Case (also known as application service)
+          └ CreateUserController.ts  # Create user controller
+          └ CreateUserErrors.ts      # Any use case-specific errors
+          └ index.ts                 # Export controller (required) and use case (optional) from this module
+
+```
+
 ## Domain-Driven Design for the win
 
 This is exactly the type of thinking that we do when we're working on [Domain-Driven](/courses/domain-driven-design-typescript) projects. Errors are a part of the [Domain layer](/articles/enterprise-typescript-nodejs/clean-nodejs-architecture/) in our **clean/layered architecture** and this is an excellent way to start representing them accordingly.
