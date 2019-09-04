@@ -15,7 +15,7 @@ tags:
   - The Birthday Party
 category: Web Design
 published: true
-image: null
+image: /img/banner/blog-banner.png
 displayInArticles: false
 ---
 
