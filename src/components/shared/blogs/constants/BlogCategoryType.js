@@ -5,6 +5,9 @@ import typeScriptBanner from '../../../../images/blogs/banners/typescript-blog-b
 import dddIcon from '../../../../images/blogs/icons/ddd.svg';
 import dddBanner from '../../../../images/blogs/banners/ddd-blog-banner.png';
 
+import mysteryIcon from '../../../../images/icons/mystery-icon.svg'
+import mysteryBanner from '../../../../images/blogs/banners/misc-banner.png';
+
 export const BlogCategoryType = {
   'TypeScript': {
     icon: typeScriptIcon,
@@ -13,5 +16,9 @@ export const BlogCategoryType = {
   'Domain-Driven Design': {
     icon: dddIcon,
     banner: dddBanner
+  },
+  Fallback: {
+    icon: mysteryIcon,
+    banner: mysteryBanner
   }
 }

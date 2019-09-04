@@ -127,6 +127,8 @@ module.exports = {
       },
     },
     `gatsby-transformer-json`,
+    "gatsby-remark-embed-youtube",
+    "gatsby-remark-responsive-iframe",
     {
       resolve: `gatsby-source-filesystem`,
       options: {
