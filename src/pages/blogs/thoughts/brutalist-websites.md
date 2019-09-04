@@ -1,8 +1,8 @@
 ---
 templateKey: blog-post
 title: "Brutalist Web Design"
-date: '2019-09-03T10:04:10-05:00'
-updated: '2019-09-031T10:04:10-05:00'
+date: '2019-09-04T10:04:10-05:00'
+updated: '2019-09-041T10:04:10-05:00'
 description: >-
   The term brutalism is often associated with Brutalist Architecture, however it can apply to other forms of construction and art, such as web design and music.
 tags:
@@ -11,6 +11,8 @@ tags:
   - Brantford
   - Toronto
   - The Pop Group
+  - Sonic Youth
+  - The Birthday Party
 category: Web Design
 published: true
 image: null
@@ -159,6 +161,14 @@ Now take a song like _"Snowgirl"_, off of The Pop Group's debut album, [Y](https
 The album has had a lasting impact, with artists such as the [Sonic Youth](https://en.wikipedia.org/wiki/Sonic_Youth) and [Nick Cave](https://en.wikipedia.org/wiki/Nick_Cave) citing the album as an influence on their work.
 
 <iframe width="100%" height="350px" src="https://www.youtube.com/embed/BUC2GmzJpGY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p class="caption">Nick Cave would go on to create "The Birthday Party", one of the most influential post-punk bands of the 70s and early 80s.</p>
+
+Watch Sonic Youth perform _"The Burning Spear"_ live below. Guitarist, Thurson Moore wedges a drumstick inbetween the fret and strings of his guitar and uses another drumstick to get some novel sounds out of the instrument.
+
+<iframe width="100%" height="350px" src="https://www.youtube.com/embed/c1YVPanmh0Q?start=16" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p class="caption">Sonic Youth performing "The Burning Spear", the first SY song ever written.</p>
 
 The Pop Group might not be where discordant music started, but for what I spend most of my time listening to, it very well might as well be.
 
