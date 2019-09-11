@@ -251,6 +251,13 @@ You see what we just did? By changing all of the **references from concrete clas
 
 Maybe you're not as excited about this as I am. Let me show you why this is so great.
 
+<div class="solid-book-cta course-cta">
+  <div class="solid-book-logo-container">
+    <img src="/img/resources/solid-book/book-logo.png"/>
+  </div>
+  <p>If you like this article so far, you might like my book, "Solid - The Software Architecture & Design Handbook w/ TypeScript + Node.js". You'll learn how to write testable, flexible, and maintainable code using principles I think all professional people in software should know about. <a href="https://solidbook.io">Check it out</a>.</p>
+</div>
+
 Remember when I said that we wanted to be able to run tests on the `UserController` without having to pass in a `UserRepo`, solely because it would make the tests slow(`UserRepo` needs a db connection to run)?
 
 Well now, we <u>can write a `MockUserRepo`</u> which implements `IUserRepo`, all the methods on the interface, and instead of using a db connection, uses an array of `User[]`s (much quicker! ⚡).
