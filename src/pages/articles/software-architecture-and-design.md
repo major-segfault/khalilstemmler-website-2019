@@ -60,11 +60,70 @@ _And if it doesn't, you know what we can do with it, right?_ 🚮😏
 
 Whether it be a clock, a note taking app, or even the code that runs on the Java Virtual Machine in your washing machine, the goal is to **satisfy users' needs**.
 
-I think we can all agree upon that. Now let's think a little more qualitatively. 
+I think we can all agree upon that. 
 
-There are two experiences that matter here. Your users' experience and your own developer experience.
+In order to do that, we have two main challenges:
 
-What was the was the experience like for <u>you</u>, as a developer, _in order to_ produce something that satisfied our users' needs? At what cost did it take for you **to produce** something to satisfy those needs? At what cost will it take for you to <u>continually satisfy those needs</u>?
+- Meet technical expectations (speed, reliability, scalability, etc).
+- Design the system in a way where it's possible to continually do this (utilizing the minimum amount of human resources necessary).
+
+## Software quality goals
+
+Metrics like **speed**, **reliability**, **availability**, **scalability**, are _software quality_ goals. 
+
+If a software system possessed all of those capabilities, it just might be asymptotically _perfect_. 
+
+<p class="special-quote">Here's the <a href="https://en.wikipedia.org/wiki/List_of_system_quality_attributes">entire list</a> of software quality attributes.</p>
+
+But achieving all of these metrics to a very high degree is both very hard, and also probably not necessary. As we'll explore, the <u>most important thing aspect about architecture</u> is to **identify what's most important**, and which metrics **satisfy the needs of our users**.
+
+<p class="special-quote"><b>An AI-Improved Home Movies example</b>: Consider a machine-learning application that used AI to improve the pixel quality of your home videos. Users might be OK with it taking 2 hours to complete (<b>- speed</b>), as long as it <b>reliably</b> produces something (<b>+ reliability</b>). However, users might <u>not be OK</u> with it taking long (<b>- speed</b>) AND jobs occassionally failing 1 hour and 15 minutes in, though (<b>- reliability</b>).</p>
+
+## What is architecture?
+
+Ralph Johnson, co-author of Design Patterns: Elements of Reusable Object-Oriented Software, very abstractly said that:
+
+> "Architecture is about the important stuff. Whatever that is.”
+
+And knowing what's important is the first step towards designing software, or at least it should be because he also said that:
+
+> [Architecture is] the decisions you wish you could get right early in a project
+
+Architecture is the **high-level framework**, foundation or skeleton of the software system. It's a choice made early on about the foundation of the system. That choice has the effect to greatly influence the quality of the code, ease of development, deployment, maintainance, and continued work on the system.
+
+### Is architecture the same thing as software design?
+
+Fundementally, yes. Although most people think **software design** and **software architecture** are different. 
+
+The divide comes from a notion that **architecture** is _only_ the high-level details and **software design** is _only_ the low-level details. 
+
+While a developer without knowledge of the high-level details _may be able to work on a low-level feature_ in a system, the opposite isn't true.
+
+An architect of a system will need to understand fully how their high-level design decisions will influence the low-level details.
+
+
+ like implementing a new feature work on fine-grained features within a large application might be able to be productive without knowing the high-level design decisions, an **expert developer** that designs  a system will never design a system without respect for the eventual details that need to get filled in.
+
+## Why does architecture matter?
+
+Architecture is about identifying the elements that are most important to the **success or failure** our system, and designing the system in a way that it accomodates and protects those key elements.
+
+For Netflix, it's their **microservice architecture** which enables them to handle **availability**.
+
+For Google or Salesforce, important elements might be using [domain-driven design](/articles/domain-driven-design-intro/) in order to manage domain logic **complexity**.
+
+Failure to acknowledge and design a system to accomodate around what might make it fail, has potential to _do just that_.
+
+
+## What's the goal of architecture?
+
+To produce a design that that keeps the required human resources required to continually build upon and maintain the system, minimal.
+
+
+
+
+
+
 
 ### Qualifying the process of developing something that solves users' needs
 
@@ -88,11 +147,7 @@ We can ask ourselves the same questions:
 
 ## Which system quality metrics are important? 
 
-There's this entire list of software quality metrics like **speed**, **reliability**, **availability**, **scalability**, etc. If a system possessed all of those capabilities, it just might be asymptotically _perfect_. But, is that an important thing to strive for in order to **satisfy the needs of our users**? How many of these really matter?
 
-Here's an example:
-
-<p class="special-quote"><b>AI-Improved Home Movies</b>: "Consider a machine-learning application that used AI to improve the pixel quality of your home videos. Users might be OK with it taking 2 hours to complete (<b>- speed</b>), as long as it <b>reliably</b> produces something (<b>+ reliability</b>). However, users might <u>not be OK</u> with it taking long AND jobs occassionally failing 1 hour and 15 minutes in, though."</p>
 
 ## 🧱🖼️
 
@@ -360,3 +415,44 @@ Ask yourself, “If someone else wrote my intro, what are the most captivating q
 <!-- 
 Also, skyscrape this article: 
  -->
+
+
+---- NEW OUTLINE
+
+
+
+Points I'm trying to make:
+
+1. The goal of software is to meet people's needs. In order to do that, we have two main challenges:
+
+- meet the technical expectations (who sets this? -users do, stakeholders do, etc)
+- Design the system in a way where it's possible to continually do this.
+
+4. Architecture is about identifying what's important, and then continuing to protect those important elements of the system throughout it's life, knowing that failure to protect those aspects of the system, could very well contribute to it's failure.
+
+3. Why does architecture matter? 
+- It matters because failure to design a good architecture creates software systems that become a lot harder and expensive to continue to improve and add features to in the future.
+  - if you know you'll get a lot of high-volume traffic, how do you handle that?
+  - if you know you need to serve large files like tv shows and movies, how would you architect your system?
+  - if you know the primary challenge will be trying to represent the complexity of the domain, how would you approach that?
+  - if you know you'll need to handle over 2000 concurrent connections consistently, how would you handle that?
+
+2. Glossary. Understand what architecture is. Understand what software design is. Understand why people confuse them. Understand what software design patterns are. Understand what software design principles are. There isn't really any difference between the ideas of software architecture and software design other than a connotation of the layers of design.
+
+
+3. The highest-level layer is the skeleton and the most expensive to change because it carries along with it, an entire methodology for how code within it should be organized.
+  - it's very important because changing the high-level policy / methodology means (potentially) restructuring nearly all or the majority of your code. 
+
+4. Explore some of the different architectures and their methodologies.
+  - again, draw home why switching methologies can be challenging and why "its important to get things right the first time" in order to continually improve a project.
+
+5. Architecture is taking a best guess for the future. Delaying decisions on the low-level details until we really have to make them.
+
+6. Separating the policy from the detail is saying  what should happen, but not spending the upfront time to dive  into details. To  enable that, we need a plug-in architecture.
+
+7. OOP is the best tool for architects to 
+
+
+References:
+- https://martinfowler.com/architecture/
+- https://matthiasnoback.nl
