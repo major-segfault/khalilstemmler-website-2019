@@ -99,9 +99,13 @@ Get the point? **Role** matters.
 
 A Use Case will be either a **command** or a **query**.
 
+There's an entire object-oriented design principle dedicated to this phenomenon called [CQS (Command-Query Segregation)](/articles/oop-design-principles/command-query-segregation/). When you follow it, it helps to make application side-effects easier to reason about  and aids in reducing bugs and improving readability.
+
 For example, in our Vinyl-Trading app, ["White Label"](https://github.com/stemmlerjs/white-label), an example of a particular **command** is to **add vinyl to our wishlist**. That might appear in our code as a class called `AddVinylToWishlist`.
 
 An example of a **query** would be to **get our wishlist**, which might appear as `GetWishlist`.
+
+<p class="special-quote">In <b>Command-Query Segregation</b>, COMMANDS perform changes to the system <b>but return no value</b>, and QUERIES pull data out of the system, <b>but produce no side effects</b>.</p>
 
 #### 3. Use cases belong to a particular **subdomain**
 
@@ -123,7 +127,7 @@ In addition to the trading aspect (`Trading`), the enterprise also has to accoun
 
 This is the essence of [Conway's Law](/wiki/conways-law/) which states:
 
-> "Organizations that design systems are constrained to produce designs. Those designs are copies of the communication structures of these organizations."
+> "Organizations that design systems, are constrained to produce designs that are copies of the communication structures of these organizations."
 
 Conway's law actually helps answer a lot of questions like:
 
