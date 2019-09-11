@@ -34,7 +34,8 @@ In this article, we're going to learn about:
 - Components & software composition
 - How not to hook up components
 - How and why to inject dependencies using Dependency Injection
-- How
+- How to apply Dependency Inversion and write testable code
+- Considerations using Inversion of Control containers
 
 ## Terminology
 
