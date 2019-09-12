@@ -129,7 +129,7 @@ class Article extends React.Component {
         <br/>
 
         <h3>Discussion</h3>
-        <p>Thanks for reading! Share this article if you found it useful.</p>
+        <p>Liked this? Sing it loud and proud 👨‍🎤.</p>
         <ShareButtons
           url={fullUrl}
           title={title}
