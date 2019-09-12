@@ -8,7 +8,7 @@ description: >-
 tags: 
   - Single Responsibility Principle
   - SOLID
-category: Software Design Principles
+category: Software Design
 image: /img/clean-grid.jpeg
 published: false
 ---

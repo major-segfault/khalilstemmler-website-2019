@@ -8,7 +8,7 @@ tags:
   - JavaScript
 category: Code Challenges
 image: /img/cc-0s.png
-published: true
+published: false
 ---
 # Given a non-negative number, find the longest sequence of 0s surrounded by 1s in the binary representation of that number
 

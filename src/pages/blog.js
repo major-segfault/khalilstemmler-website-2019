@@ -26,7 +26,7 @@ class Blogs extends React.Component {
         }}
       >
         <BlogsContainer
-          titleText="All blogs"
+          titleText=""
           blogs={posts}
         />
       </Layout>

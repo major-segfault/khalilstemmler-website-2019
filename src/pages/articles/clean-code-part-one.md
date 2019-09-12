@@ -8,7 +8,7 @@ description: >-
 tags: 
   - Professionalism
   - Books
-category: Software Design Principles
+category: Software Design
 image: /img/clean-grid.jpeg
 published: false
 ---

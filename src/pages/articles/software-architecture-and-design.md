@@ -9,7 +9,7 @@ tags:
   - Architecture
   - Software Design
   - SOLID
-category: Software Design Principles
+category: Software Design
 image: /img/blog/software-architecture-design/software-architecture-design.png
 published: false
 ---

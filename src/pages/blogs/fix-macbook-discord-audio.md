@@ -1,5 +1,5 @@
 ---
-templateKey: article
+templateKey: blog-post
 title: "Fix Macbook Audio Not Working on Discord"
 date: '2018-11-25T00:05:27-04:00'
 description: >-

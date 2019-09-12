@@ -6,7 +6,7 @@ import "../styles/ArticlesContainer.sass"
 
 const ArticlesContainer = ({ articles, titleText, subTitleComponent }) => (
   <div className="articles-container">
-    <h2 className="light-header">{titleText}</h2>
+    { titleText ? <h3 className="light-header">{titleText}</h3> : ''}
     { subTitleComponent ? subTitleComponent : ''}
     <br/>
     <br/>

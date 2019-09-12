@@ -9,7 +9,7 @@ tags:
   - Dependency Inversion
   - Inversion of Control
   - IoC Containers
-category: Software Design Principles
+category: Software Design
 image: /img/blog/di-container/dependency-injection-inversion-explained.png
 published: true
 ---

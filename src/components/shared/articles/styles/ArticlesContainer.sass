@@ -1,6 +1,7 @@
 .articles-container
-  h2 
+  h3
     margin-bottom: 0;
+    margin-top: 2rem;
     
   .articles
     display: flex;
@@ -15,3 +16,6 @@
     
     .article-card:nth-child(odd) 
       margin-right: 2%;
+
+      @media (max-width: 550px)
+        margin: 0;

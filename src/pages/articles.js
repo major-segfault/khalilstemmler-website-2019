@@ -12,10 +12,16 @@ import {
 } from '../utils/blog'
 import { PageType } from '../components/shared/seo/PageType';
 import { kebabCase } from 'lodash'
+import ArticlesFilter from '../components/shared/articles/components/ArticlesFilter';
+import ArticlesCategoriesSelection from '../components/shared/articles/components/ArticleCategoriesSelection';
 
 export class Articles extends React.Component {
   constructor (props) {
     super(props);
+
+    this.state = {
+      filterText: '',
+    }
 
     this.isCategoryPage = this.isCategoryPage.bind(this);
     this.getActivePageContext = this.getActivePageContext.bind(this);
@@ -53,7 +59,33 @@ export class Articles extends React.Component {
         return `Showing ${articles.length} article(s) about "${this.getActivePageContext()}"`
       }
     } else {
-      return 'All articles';
+      return "";
+    }
+  }
+
+  getArticles () {
+    return this.filterArticles(
+      this.getArticlesFromProps()
+    )  
+  }
+
+  isFilterActive () {
+    return this.state.filterText !== "";
+  }
+
+  filterArticles (articles) {
+    if (this.isFilterActive()) {
+      let filterText = this.state.filterText.toLowerCase();
+      return articles.filter((a) => {
+        const inDescription = a.description.toLowerCase().indexOf(filterText) !== -1;
+        const inSlug = a.slug.toLowerCase().indexOf(filterText) !== -1;
+        const inCategory = a.category.toLowerCase().indexOf(filterText) !== -1;;
+        const inTitle = a.title.toLowerCase().indexOf(filterText) !== -1;;
+        const inTags = a.tags.filter((t) => t.toLowerCase().indexOf(filterText) !== -1).length !== 0;
+        return inDescription || inSlug || inCategory || inTitle || inTags;
+      })
+    } else {
+      return articles;
     }
   }
 
@@ -140,9 +172,13 @@ export class Articles extends React.Component {
       return PageType.REGULAR;
     }
   }
+  
+  onFilterTextChanged (text) {
+    this.setState({ ...this.state, filterText: text })
+  }
 
   render () {
-    const articles = this.getArticlesFromProps();
+    const articles = this.getArticles();
     const categories = getCategoriesFromQuery(this.props.categories);
     const tags = getTagsFromQuery(this.props.tags);
 
@@ -156,7 +192,22 @@ export class Articles extends React.Component {
           pageType: this.getPageType(),
           breadcrumbs: this.getBreadcrumbs()
         }}
-        component={<ArticlesNavigation categories={categories} tags={tags}/> }>
+        component={(
+          <ArticlesNavigation 
+            categories={categories} 
+            tags={tags}
+          /> 
+        )}>
+
+          <ArticlesCategoriesSelection
+            categories={categories} 
+          />
+
+          <ArticlesFilter
+            count={articles.length}
+            filterText={this.state.filterText}
+            onChange={(text) => this.onFilterTextChanged(text)}
+          />
 
           <ArticlesContainer
             titleText={this.getArticlePageTitle()}

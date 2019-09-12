@@ -1,11 +1,19 @@
+
+$categories-breakpoint: 850px;
+
 .categories
   min-width: 200px;
   margin-bottom: 1.5rem;
 
+  @media (max-width: $categories-breakpoint)
+    display: none;
+
   .categories--parent-category
     font-size: 1.2rem;
     margin-bottom: 0.75rem;
-    
+
+  .categories--tags-container
+
   a 
     text-decoration: none;
     display: block;
