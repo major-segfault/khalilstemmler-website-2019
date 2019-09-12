@@ -23,16 +23,16 @@ published: true
 
 One of the first things we learn in programming is to decompose large problems into smaller parts. That divide-and-conquer approach can help us to assign tasks to others, reduce anxiety by focusing on one thing at a time, and improve modularity of our designs.
 
-There comes a time when things are ready to be hooked up. 
+But there comes a time when things are ready to be hooked up. 
 
 > That's where most developers go about things the wrong way.
 
-Most developers that haven't yet learned about the [solid principles](/articles/solid-principles/solid-typescript/), and proceed to tightly couple modules and classes that shouldn't be coupled, resulting in coupled code that's **hard to change** and **untestable**.
+Most developers that haven't yet learned about the [solid principles](/articles/solid-principles/solid-typescript/) or software composition, and proceed to write tightly couple modules and classes that shouldn't be coupled, resulting in code that's **hard to change** and **hard to test**.
 
 In this article, we're going to learn about:
 
 - Components & software composition
-- How not to hook up components
+- How NOT to hook up components
 - How and why to inject dependencies using Dependency Injection
 - How to apply Dependency Inversion and write testable code
 - Considerations using Inversion of Control containers
@@ -43,13 +43,15 @@ Let's make sure that we understand the terminology on wiring up dependencies bef
 
 ### Components
 
-I'm going to use the term **component** a lot. The term component might strike a chord with React.js or Angular developers, but it can be used beyond the scope of web, Angular, or React components. 
+I'm going to use the term **component** a lot. That term might strike a chord with React.js or Angular developers, but it can be used beyond the scope of web, Angular, or React. 
 
-A component is simply a **part of an application**. It's any clump or group of software that's intended to be a part of a larger system.
+A component is simply a **part of an application**. It's any group of software that's intended to be a part of a larger system.
 
-The idea is to break a _large application_  up into several modular components that can be developed independently and assembled.
+The idea is to break a _large application_  up into several modular components that can be independently developed and assembled.
 
-The more you learn about software, the more you realize that good software design is **all about composition and decomposition** of components.
+The more you learn about software, the more you realize that good software design is **all about composition** of components.
+
+Failure to get this right leads to _clumpy_ code that can't be tested.
 
 ### Dependency Injection
 
@@ -84,7 +86,7 @@ import { UserRepo } from '../repos' // Bad
 
 /**
  * @class UserController
- * @desc Responsible for handling to API requests for the
+ * @desc Responsible for handling API requests for the
  * /user route.
  **/
 
@@ -106,7 +108,7 @@ In the example, we connected a `UserRepo` directly to a `UserController` by <u>r
 
 This isn't ideal. When we do that, we create a **source code dependency**. 
 
-<p class="special-quote"><b>Source code dependency</b>: When the current component (class, module, etc) relies on at least one other component <u>in order to be compiled/created</u>. Source code depdendencies should be limited.</p>
+<p class="special-quote"><b>Source code dependency</b>: When the current component (class, module, etc) relies on at least one other component <u>in order to be compiled</u>. Source code depdendencies should be limited.</p>
 
 The problem is that everytime that we want to spin up a `UserController`, we need to make sure that the `UserRepo` is also <u>within reach</u> so that the code can compile. 
 
@@ -114,7 +116,9 @@ The problem is that everytime that we want to spin up a `UserController`, we nee
 
 <p class="caption">The UserController class depends directly on the UserRepo class.</p>
 
-_When might you want to spin up an isolated `UserController`?_ During testing.
+_When might you want to spin up an isolated `UserController`?_ 
+
+During testing.
 
 <p class="special-quote">It's a common practice during testing to <i>mock</i> or <i>fake</i> dependencies of the <b>current module under test</b> in order to isolate and test different behaviors.</p>
 
@@ -137,7 +141,7 @@ import { UserRepo } from '../repos' // Still bad
 
 /**
  * @class UserController
- * @desc Responsible for handling to API requests for the
+ * @desc Responsible for handling API requests for the
  * /user route.
  **/
 
@@ -155,7 +159,7 @@ class UserController {
 }
 ```
 
-Even though we're using dependency injection, but there's still a problem.
+Even though we're using dependency injection, there's still a problem.
 
 `UserController` still relies on `UserRepo` _directly_.
 
@@ -163,7 +167,9 @@ Even though we're using dependency injection, but there's still a problem.
 
 <p class="caption">This dependency relationship still holds true.</p>
 
-And still, if we wanted to mock out our `UserRepo` that connects to a real SQL database, for a mock in-memory repo, it's not currently possible.
+Even still, if we wanted to mock out our `UserRepo` that connects to a real SQL database for a mock **in-memory repository**, it's not currently possible.
+
+`UserController` needs a `UserRepo`, specifically.
 
 <div class="filename">controllers/userRepo.spec.ts</div>
 
@@ -185,7 +191,7 @@ Introducing the **Dependency _Inversion_ Principle**!
 
 Dependency Inversion is a technique that allows us to **decouple** components from one another. Check this out.
 
-What direction does **flow of dependencies** go in right now? 
+What direction does the **flow of dependencies** go in right now? 
 
 <img style="width: 100%;" src="/img/blog/di-container/before-dependency-inversion.svg">
 
@@ -216,7 +222,7 @@ class UserRepo implements IUserRepo { // Not exported
 }
 ```
 
-And update the controller to refer to the `IUserRepo` everywhere instead.
+And update the controller to refer to the `IUserRepo` interface _instead_ of the `UserRepo` concrete class.
 
 <div class="filename">controllers/userController.ts</div>
 
@@ -225,7 +231,7 @@ import { IUserRepo } from '../repos' // Good!
 
 /**
  * @class UserController
- * @desc Responsible for handling to API requests for the
+ * @desc Responsible for handling API requests for the
  * /user route.
  **/
 
@@ -247,7 +253,9 @@ _Now_ look at direction of the flow of dependencies.
 
 <img style="width: 100%;" src="/img/blog/di-container/after-dependency-inversion.svg">
 
-You see what we just did? By changing all of the **references from concrete classes to interfaces**, we've just **flipped the dependency graph**.
+You see what we just did? By changing all of the **references from concrete classes to interfaces**, we've just **flipped the dependency graph** and created an _architectural boundary_ inbetween the two components.
+
+<p class="special-quote"><b>Design principle</b>: Program against interfaces, not implementations.</p>
 
 Maybe you're not as excited about this as I am. Let me show you why this is so great.
 
@@ -255,16 +263,14 @@ Maybe you're not as excited about this as I am. Let me show you why this is so g
   <div class="solid-book-logo-container">
     <img src="/img/resources/solid-book/book-logo.png"/>
   </div>
-  <p>If you like this article so far, you might like my book, "Solid - The Software Architecture & Design Handbook w/ TypeScript + Node.js". You'll learn how to write testable, flexible, and maintainable code using principles I think all professional people in software should know about. <a href="https://solidbook.io">Check it out</a>.</p>
+  <p>And if you like this article so far, you might like my book, "Solid - The Software Architecture & Design Handbook w/ TypeScript + Node.js". You'll learn how to write testable, flexible, and maintainable code using principles (like this one) that I think all professional people in software should know about. <a href="https://solidbook.io">Check it out</a>.</p>
 </div>
 
 Remember when I said that we wanted to be able to run tests on the `UserController` without having to pass in a `UserRepo`, solely because it would make the tests slow(`UserRepo` needs a db connection to run)?
 
-Well now, we <u>can write a `MockUserRepo`</u> which implements `IUserRepo`, all the methods on the interface, and instead of using a db connection, uses an array of `User[]`s (much quicker! ⚡).
+Well, now we <u>can write a `MockUserRepo`</u> which implements `IUserRepo` and all the methods on the interface, and instead of using a class that relies on a slow db connection, use a class that contains an internal array of `User[]`s (much quicker! ⚡).
 
 That's what we'll pass that into the `UserController` instead.
-
-<p class="special-quote"><b>Design principle</b>: Program against interfaces, not implementations.</p>
 
 ### Using a `MockUserRepo` to mock out our `UserController`
 
