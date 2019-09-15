@@ -368,3 +368,24 @@ a.anchor
   position: relative;
   top: -100px;
   visibility: hidden;
+
+
+.expandable-section
+  display: flex;
+
+.expandable-section-button
+  cursor: pointer;
+  border: 3px #7ce77b solid;
+  border-radius: 100%;
+  background: #7ce77b5c;
+  color: #1ca51b;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  margin-left: 1rem;
+
+.expandable-section-content
+  display: none;
+
+  &.visible 
+    display: block !important;

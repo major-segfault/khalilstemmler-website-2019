@@ -67,3 +67,20 @@ exports.wrapRootElement = ({ element }) => (
     {element}
   </ErrorBoundary>
 );
+
+
+function toggleExpandableSection(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    const isVisible = el.classList.contains('visible');
+
+    if (isVisible) {
+      el.classList.remove('visible');
+    } else {
+      el.classList.add('visible');
+    }
+  }
+  
+}
+
+window.toggleExpandableSection = toggleExpandableSection;
