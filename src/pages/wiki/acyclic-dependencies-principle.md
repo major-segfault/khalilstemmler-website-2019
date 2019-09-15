@@ -55,3 +55,7 @@ For example, given the following generic application architecture, notice that a
 That's how you follow the **dependency rule**.
 
 <img style="width: 100%;" src="/img/blog/ddd-frontend/component-volatility.svg"/>
+
+---
+
+Reference: https://blog.cleancoder.com/

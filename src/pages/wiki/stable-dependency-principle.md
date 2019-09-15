@@ -1,5 +1,5 @@
 ---
-name: Stable Dependency Principle
+name: Stable Dependency Principle (SDP)
 templateKey: wiki
 published: true
 wikicategory: Component Principles
@@ -43,3 +43,8 @@ But it's important to know when a component is volatile and ensure that we <u>do
 
 - Front ends. Architecturally, front-end applications are very volatile compared to backend. The styles, layout, html, css, etc are constantly being changed. Browser testing tools Cypress.io or Selenium rely on the styles and layout of the view. Because the view is so volatile, those tests constantly need to be rewritten.
 - Classes with no clear [single responsibility](/articles/solid-principles/single-responsibility/).
+
+
+---
+
+Reference: https://blog.cleancoder.com/
