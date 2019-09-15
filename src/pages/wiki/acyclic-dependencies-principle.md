@@ -2,14 +2,14 @@
 name: Acyclic Dependency Principle (ADP)
 templateKey: wiki
 published: true
-wikicategory: Package Principles
+wikicategory: Component Principles
 wikitags: 
   - Dependency Inversion
 prerequisites: null
 date: '2019-09-15T00:05:26-04:00'
 updated: '2019-09-15T00:11:26-04:00'
 image: /img/wiki/package-principles/bad-cycle.svg
-plaindescription: One of several package design principles that states that the "dependency graph of components should have no cycles"
+plaindescription: One of several component design principles that states that the "dependency graph of components should have no cycles"
 ---
 
 In the header image, component A relies on component B which relies on component C.
