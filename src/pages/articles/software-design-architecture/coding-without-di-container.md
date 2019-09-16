@@ -345,7 +345,7 @@ We just need to hook it up.
   <img src="/img/banner/ncs-banner.png"/>
 </a>
 
-## Step 2: Hook up the dependencies
+## Step 2: Create and export features from module
 
 Recall that the folder structure looks like this.
 
@@ -373,7 +373,7 @@ The first thing to create is the `CreateAuthorUseCase`.
 
 But `CreateAuthorUseCase` relies on some dependencies (`IUserRepo` and `IAuthorRepo`).
 
-<div class="filename">author/useCases/index.ts</div>
+<div class="filename">author/useCases/createAuthor/index.ts</div>
 
 ```typescript
 import { CreateAuthorUseCase } from './CreateAuthorUseCase';
@@ -382,13 +382,13 @@ const createAuthorUseCase = new CreateAuthorUseCase() /* An argument
 for 'userRepo' and 'authorRepo' was not provided. */
 ```
 
-My rule of thumb is this:
+My **style guide** for exporting dependencies is this:
 
-- Always use `index.ts` to export what needs to be used by others, from your module.
+- Always use `index.ts` to export what needs to be used by others from your module.
 - Always use lowercase names to signal that an exported dependency is an instance, not a class.
-- Only <u>export</u> dependencies from the direct parent folder. Only `users/repos/index.ts` is allowed to export `UserRepo`, because it resides as `users/repos/UserRepo`. `users/index.ts` (or anywhere else) is not allowed.
+- Only <u>export</u> dependencies from the direct parent folder. Only `users/repos/index.ts` is allowed to export `UserRepo`, because it resides as `users/repos/UserRepo.ts`. `users/index.ts` (or anywhere else) is not allowed.
 
-Over in the `users` module, I would have exported an instance of a `IUserRepo` as `userRepo` like this:
+Over in the `users` module, I would have exported an instance of an `IUserRepo` as `userRepo` like this:
 
 <div class="filename">modules/users/repos/index.ts</div>
 
@@ -403,7 +403,59 @@ export {
 }
 ```
 
-And then I would have imported it directly from 
+And then I would have imported it into the `authors/useCases/index.ts` which is generally a **great experience** using Visual Studio Code's intellisense.
+
+<div style="width:100%;height:0;padding-bottom:49%;position:relative;"><iframe src="https://giphy.com/embed/lS1SkwJC9gyTwk0pOh" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/lS1SkwJC9gyTwk0pOh"></a></p>
+
+<p class="caption">Using Intellisense to automatically trace dependencies by name.</p>
+
+Nice. Now that the use case is created, I need to inject _that_ into my controller.
+
+Once that's done, I'll export them both from this module.
+
+<div class="filename">author/useCases/createAuthor/index.ts</div>
+
+```typescript
+import { CreateAuthorUseCase } from "./CreateAuthorUseCase";
+import { userRepo } from "modules/users/repos";
+import { authorRepo } from "../../repos";
+import { CreateAuthorController } from "./CreateAuthorController";
+
+const createAuthorUseCase = new CreateAuthorUseCase(
+  userRepo, authorRepo
+)
+
+// Inject the use case into the controller to create it
+const createAuthorController = new CreateAuthorController(
+  createAuthorUseCase
+)
+
+export {
+  // Export instances as lowercase to signify they're instances
+  createAuthorUseCase,
+  createAuthorController
+}
+```
+
+## Using the Use Case Features
+
+Now, if I want to use the `CreateAuthorUseCase`, all I have to do is start typing `createAuthor...` and I'll be shown both the `CreateAuthorUseCase` in addition to the `CreateAuthorUseCaseController` instances.
+
+```typescript
+import { 
+  createAuthorUseCaseController 
+} from './modules/author/useCases/createAuthor`
+
+...
+
+const authorRouter = express.Router();
+
+authorRouter.post('/',
+  (req, res) => createAuthorUseCaseController.execute(req, res)
+)
+
+...
+```
 
 ## Benefits of not using a DI container
 
@@ -419,11 +471,13 @@ This is exactly the type of thing that [Eric Elliot](https://leanpub.com/composi
 
 ### Less circular dependencies
 
-Not using a DI container makes it very hard for you to introduce circular dependencies.
+Not using a DI container makes it very hard for you to introduce circular dependencies because you have a better understanding of what is being exported and imported, and in what order. You're forced to compose software components together.
+
+This is how stuff stays testable.
 
 ### Less decorator noise 
 
-Decorators are framework/library details that makes it's way into your application level code. That's not very clean.
+Decorators are low-level details that makes it's way into your application level code. I'd argue that that's not very clean.
 
 ## Disadvantages
 
@@ -445,6 +499,6 @@ Frameworks are successful here because they <u>reduce the total surface area of 
 
 But if the team is small, disciplined, and the experience level is similar, I think that it can work.
 
+### Everyone needs to follow the style guide
 
-
-
+This is what works for me! Like any project style guide, other developers working within the codebase need to adopt it.
