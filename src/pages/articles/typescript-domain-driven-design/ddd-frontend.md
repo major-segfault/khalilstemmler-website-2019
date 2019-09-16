@@ -52,7 +52,7 @@ Applications built around DDD organize logic into different categories. Some exa
   <p>These are the categories of business logic.</p>
   <ul>
     <li>Presentation logic: Logic that's concerned with how we present something to the user.</li>
-    <li>Data access logic: Infrastructure logic concerned with the peripherals involved in persisting and retrieving data from storage.</li>
+    <li>Data access / adapter logic: Logic concerned with access an infrastructure laywer concern like caches, databases, front-ends, etc.</li>
     <li>Application layer logic / use case: Application specific logic. In an enterprise with several different applications (think Google's Docs, Sheets, Maps, etc), each application has it's own set of use cases and policy that governs those use cases.</li>
     <li>Domain layer logic: Core business that doesn't quite fit within the confines of a single entity.</li>
     <li>Validation logic: Logic that ensures that objects are valid.</li>
