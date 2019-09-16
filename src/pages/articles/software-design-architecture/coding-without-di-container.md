@@ -15,17 +15,17 @@ published: false
 
 I get a lot of emails about which DI container to use. InversifyJS? Awilix?
 
-Angular and NestJS use their own inversion of control containers, so why aren't you?
+"Angular and NestJS use their own inversion of control containers, so why aren't you?"
 
 Because I really haven't needed to yet. 
 
-I've been waiting for the moment where my dependencies get out of hand, so that I could honestly and sincerely see the need to utilize a DI container.
+I've been waiting for the moment where my dependencies got out of hand, so that I could honestly and sincerely see the need to utilize a DI container.
 
 But I **haven't** gotten there yet.
 
-I should also add in that my primary codebase is over 150K lines of code and has been alive and running for about 3 years now.
+I should also add in that my primary codebase is over 150K lines of code and has been alive and actively developed on top of for about 3 years now.
 
-I attribute my
+Although, before I learned about the Clean Architecture and [how to organize logic]() into layers
 
 ## Prerequisites:
 
