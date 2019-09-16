@@ -48,7 +48,7 @@ In this article, we'll learn about the following:
 
 Robert Martin wrote about _Clean Architecture_ in his book of the same name. Although a bit of a challenging read (took me 2 really good reads), it's amazing. It teaches you about how to organize and group code into components, and then how to organize an application that connects those components to things like databases, APIs, web servers and other external things that we need to power applications.
 
-A really simplified version of what the clean architecture might look like this:
+A really simplified version of what the clean architecture might look like:
 
 ![Simplified Clean Architecture](/img/blog/clean-architecture/group.svg)
 
