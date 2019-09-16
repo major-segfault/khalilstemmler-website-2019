@@ -1,8 +1,8 @@
 ---
 templateKey: article
 title: "Your Node.js Backend Is Anemic: And That Might Be OK"
-date: '2019-04-16T10:04:10-05:00'
-updated: '2019-04-16T10:04:10-05:00'
+date: '2019-09-16T10:04:10-05:00'
+updated: '2019-09-16T10:04:10-05:00'
 description: >-
   Like anything in software, every tool and pattern has it's place and purpose. A Node.js backend with riddled dependencies and expensive tests might not be the worst thing.
 tags:

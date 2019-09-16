@@ -132,7 +132,7 @@ What about caching?
 
 Oh, and how do make use of cool external services like Stripe for billing or Pusher for real-time chat? We need to write adapters for those so that our inner layers can use them. 
 
-That's right. This layer is all about defining the **adapters** to the outside world. Simply usage for the inner layers by encapsulating the complexity of [persisting an aggregate to a database](/articles/typescript-domain-driven-design/repository-dto-mapper/) by creating a **Repository** class to do that.
+That's right. This layer is all about defining the **adapters** to the outside world. Simplify usage for the inner layers by encapsulating the complexity of [persisting an aggregate to a database](/articles/typescript-domain-driven-design/repository-dto-mapper/) by creating a **Repository** class to do that.
 
 Here are several common things to do at this layer:
 
