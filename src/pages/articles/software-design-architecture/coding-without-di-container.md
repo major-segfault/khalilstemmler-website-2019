@@ -10,7 +10,7 @@ tags:
   - Inversion of control
 category: Software Design
 image: /img/blog/di-container/no-di-container.png
-published: false
+published: true
 ---
 
 I get a lot of emails about which DI container to use. InversifyJS? Awilix?
