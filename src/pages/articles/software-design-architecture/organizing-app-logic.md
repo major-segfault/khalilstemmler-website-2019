@@ -234,7 +234,7 @@ userOrError.isSuccess // true
 
 That's what we use [Value Objects](/articles/typescript-value-object/) for. We can encapsulate the validation rule with a **Value Object** for `userEmail`.
 
-If we change the props for `User` to be this:
+If we change the type of `userEmail` to be strictly-typed instead of _string-ly_ typed like this:
 
 ```typescript
 interface UserProps {
@@ -242,7 +242,7 @@ interface UserProps {
 }
 ```
 
-Then we create a `UserEmail` value object.
+And then create a `UserEmail` value object...
 
 ```typescript
 import { TextUtil } from '../utils'
