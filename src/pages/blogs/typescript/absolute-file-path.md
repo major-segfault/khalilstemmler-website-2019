@@ -9,7 +9,7 @@ tags:
   - TypeScript
   - Absolute File Paths
 category: TypeScript
-published: true
+published: false
 image: /img/blog/templates/banners/typescript-blog-banner.png
 displayInArticles: true
 ---
