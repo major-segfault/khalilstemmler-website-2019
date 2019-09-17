@@ -187,7 +187,7 @@ A more common and simple example is deploying an **Admin** panel. You might need
 
 ## 4. Domain Service logic
 
-> Core business that doesn't quite fit within the confines of a single entity.
+> Core business logic that doesn't quite fit within the confines of a single entity.
 
 Now we're in the **domain layer**. And [Domain-Driven Design](/articles/domain-driven-design-intro/) is the best way to approach creating a rich domain model.
 
