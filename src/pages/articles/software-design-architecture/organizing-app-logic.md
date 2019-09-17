@@ -232,7 +232,7 @@ const userOrError: Result<User> = User.create({ userEmail: 'diddle' });
 userOrError.isSuccess // true
 ```
 
-That's what we use [Value Objects](/articles/typescript-value-object/) for. We can encapsulate the validation object with a **Value Object** for `userEmail`.
+That's what we use [Value Objects](/articles/typescript-value-object/) for. We can encapsulate the validation rule with a **Value Object** for `userEmail`.
 
 If we change the props for `User` to be this:
 
