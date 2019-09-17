@@ -3,7 +3,7 @@ templateKey: article
 title: Dependency Injection & Inversion Explained | Node.js w/ TypeScript
 date: '2019-09-11T00:05:26-04:00'
 description: >-
-  Dependency Injection and Depdency Inversion are two related but commonly misused terms in software development. In this article, we explore both types of DI and how you can use it to write testable code.
+  Dependency Injection and Depedency Inversion are two related but commonly misused terms in software development. In this article, we explore both types of DI and how you can use it to write testable code.
 tags:
   - Dependency Injection
   - Dependency Inversion
