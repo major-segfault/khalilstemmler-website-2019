@@ -564,11 +564,11 @@ class CreateUserUseCase implements UseCase<Request, Promise<Response>> {
 
       // More errors we know about can be expressed this way
       if (usernameTaken) {
-        return left(CreateUserError.UsernameTakenError.call(username));
+        return left(CreateUserError.UsernameTakenError.create(username));
       }
   
       if (accountCreated) {
-        return left(CreateUserError.EmailInvalidError.call(email));
+        return left(CreateUserError.EmailInvalidError.create(email));
       }
 
       // Success resultt
