@@ -37,6 +37,7 @@
     "gatsby-transformer-sharp": "^2.1.13",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
+    "node-mailjet": "^3.3.1",
     "node-sass": "^4.12.0",
     "npm-api": "^0.4.12",
     "prismjs": "^1.16.0",
@@ -90,6 +91,7 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "devDependencies": {
+    "@types/node-mailjet": "^3.3.0",
     "node-id3": "^0.1.7"
   }
 }

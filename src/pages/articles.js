@@ -224,9 +224,12 @@ export default () => (
     query={graphql`
       query Articles {
         categories: allMarkdownRemark(
-          filter: { frontmatter: { 
-            templateKey: { eq: "article" },
-            published: { eq: true }  } }
+          filter: { 
+            frontmatter: { 
+              templateKey: { eq: "article" },
+              published: { eq: true }  
+            } 
+          }
           limit: 1000
         ) {
           edges {
