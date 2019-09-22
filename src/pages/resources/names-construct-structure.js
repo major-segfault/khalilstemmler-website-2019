@@ -13,6 +13,7 @@ import { TextInput } from '../../components/shared/text-input';
 import { SubmitButton } from '../../components/shared/buttons';
 import { validateEmail } from '../../utils/validateEmail';
 import { MailChimpAPIService, EmailAudienceTags } from '../../services/mailchimpAPIService';
+import { contactService } from '../../services/contactService';
 
 const pageTitle = 'Names, Construct & Structure: Organizing readable code';
 const description = 'An approach to organizing large codebases to be readable and brain-friendly'
@@ -61,12 +62,12 @@ class NamesConstructStructure extends React.Component {
       this.updateSubscriptionStatus(true, false)
       setTimeout( async () => {
         try {
-          await addToMailchimp(email, {
-            FNAME: firstName,
-            LNAME: lastName,
-            SOURCEID: isGetMoreResourcedChecked ? 'ncs-book-and-newsletter' : 'ncs-book'
-          });
-          MailChimpAPIService.tagContact(email, EmailAudienceTags.NCS_BOOK_LEAD);
+          await contactService.createOrUpdateContact(
+            email, 
+            isGetMoreResourcedChecked ? 'ncs-book-and-newsletter' : 'ncs-book',
+            { firstName, lastName }
+          )
+
           this.updateSubscriptionStatus(true, true);
           // go to best content
           this.props.navigate('/best?prev=ncs-book-subscription');

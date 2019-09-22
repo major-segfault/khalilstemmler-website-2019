@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import "../styles/SmallSubscribeForm.sass"
-import addToMailchimp from "stemmlerjs-gatsby-plugin-mailchimp";
 import mysteryIcon from '../../../images/icons/mystery-icon.svg'
 import { SubmitButton } from '../../shared/buttons';
 import { detectEnterPress } from '../../../utils/enterPress';
 import { validateEmail } from '../../../utils/validateEmail';
 import prose from '../../../assets/prose'
+import { contactService } from '../../../services/contactService';
 
 class SmallSubscribeForm extends React.Component {
   constructor (props) {
@@ -40,11 +40,7 @@ class SmallSubscribeForm extends React.Component {
   submitForm = async () => {
     const { email } = this.state;
     if (email !== "" && email !== undefined && validateEmail(email)) {
-      await addToMailchimp(email, {
-        FNAME: '',
-        LNAME: '',
-        SOURCEID: 'subscribe-form'
-      });
+      await contactService.createOrUpdateContact(email, 'subscribe-form');
       // alert(`Good stuff! I'll let you know when I have something good for you. Cheers, pal.`)
       this.setState({ ...this.state, submitted: true })
     } else {

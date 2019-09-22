@@ -3,25 +3,13 @@ import axios from 'axios'
 import uuid from 'uuid';
 import sanitizeHtml from 'sanitize-html'
 import { stripTrailingSlash } from '../utils/stripTrailingSlash'
+import { appUtils } from '../utils/appUtils';
 
 class CommentService {
 
-  getAPIUrl () {
-    if (this.isDevelopment()) {
-      return 'http://localhost:9021'
-    } else {
-      return 'https://khalil-stemmler-backend.herokuapp.com'
-    }
-  }
-
-  isDevelopment () {
-    return window.location.href.indexOf('http://localhost') === 0;
-  }
-
-
-
   async getComments (url) {
-    const apiUrl = this.getAPIUrl();
+    const apiUrl = appUtils.getAPIUrl();
+
     try {
       const response = await axios({
         method: 'GET',
@@ -72,7 +60,7 @@ class CommentService {
   } 
 
   async submitComment (commentObject) {
-    const apiUrl = this.getAPIUrl();
+    const apiUrl = appUtils.getAPIUrl();
 
     try {
       await axios({

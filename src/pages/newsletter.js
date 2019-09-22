@@ -1,6 +1,5 @@
 import React from 'react'
 import Layout from "../components/shared/layout"
-import withMailchimpHOC, { MAILCHIMP_SEGMENTS } from '../hocs/withMailchimpHOC';
 import { SmallSubscribeForm } from '../components/subscribe';
 
 class NewsletterPage extends React.Component {

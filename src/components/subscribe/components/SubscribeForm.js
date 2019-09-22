@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import addToMailchimp from "stemmlerjs-gatsby-plugin-mailchimp";
 import { detectEnterPress } from '../../../utils/enterPress'
 import { validateEmail } from '../../../utils/validateEmail'
 import { SubmitButton } from '../../shared/buttons'
 import { withToastManager } from 'react-toast-notifications';
 import "../styles/SubscribeForm.sass"
 import prose from '../../../assets/prose'
+import { contactService } from '../../../services/contactService';
 
 const SUBSCRIPTION_FLAG = 'khalil-stemmler-newsletter-subscription'
 
@@ -70,11 +70,7 @@ class SubscribeForm extends React.Component {
       const { email } = this.state;
       this.changeFormSubmissionStatus(true, false, false)
       try {
-        await addToMailchimp(email, {
-          FNAME: '',
-          LNAME: '',
-          SOURCEID: 'subscribe-form'
-        });
+        await contactService.createOrUpdateContact(email, 'subscribe-form')
 
         this.changeFormSubmissionStatus(false, true, false);
         this.setLocalStorageSubscribed();

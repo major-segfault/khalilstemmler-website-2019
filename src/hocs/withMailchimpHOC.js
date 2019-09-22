@@ -1,8 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
-import addToMailchimp from "stemmlerjs-gatsby-plugin-mailchimp";
 import { detectEnterPress } from '../utils/enterPress';
 import { validateEmail } from '../utils/validateEmail';
+import { contactService } from "../services/contactService";
 
 export const MAILCHIMP_SEGMENTS = {
   subscribeForm: 'subscribe-form',
@@ -38,14 +37,10 @@ const withMailchimpHOC = Component => {
       })
     }
   
-    submitForm = async (segmentName) => {
+    submitForm = async (sourceId) => {
       const { email, firstName, lastName } = this.state;
       if (email !== "" && email !== undefined && validateEmail(email)) {
-        await addToMailchimp(email, {
-          FNAME: firstName,
-          LNAME: lastName,
-          SOURCEID: segmentName
-        });
+        await contactService.createOrUpdateContact(email, sourceId, { firstName, lastName })
         // alert(`Good stuff! I'll let you know when I have something good for you. Cheers, pal.`)
         this.setState({ ...this.state, submitted: true })
       } else {
