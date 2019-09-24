@@ -232,6 +232,29 @@ Sometimes, in presentation-heavy applications like games or applications with ca
 
 I'll dive deeper into that in **"Good examples of using DDD concepts in the front-end"**, so keep reading.
 
+### Screaming architecture / package by module and subdomain
+
+With respect to the way that I organize code on the front-end, I'll still implement what's called **packaging by module**, which means that we organize code based on the subdomains.
+
+If these are the level subdomains: `Trading`, `Users`, `Shipping`, `Billing`.
+
+Then, in a React-Redux project, my folder structure for the `Trading` subdomain might look like:
+
+```
+src
+  modules 
+    ...
+    trading             # Trading module
+      components/         # All components for trading subdomain
+      models/             # All models in trading subdomain
+      pages/              # All pages in trading subdomain
+      redux/              # All the redux for the trading subdomain
+      services/           # All services that interact with trading API
+      styles/             # All styles for trading components
+      index.ts
+  ...
+```
+
 ### Value Objects and validation logic
 
 In Domain-Driven Design, **value objects** are responsible for validation logic.

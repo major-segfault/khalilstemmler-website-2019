@@ -328,7 +328,7 @@ test ("Should 200 with an empty array of users", async () => {
 
 Not only does this decoupling make your code _testable_, but it improves the following characteristics of your code:
 
-- Testability: We can substitute expensive to infrastructure components for mock ones during testing.
+- Testability: We can substitute expensive to infrastructure components for mock ones during testing. 
 - Substitutability: If we program against an interface, we enable a **plugin architecture** adhering to the [Liskov Substitution Principle](/articles/solid-principles/solid-typescript/), which makes it incredibly easy for us to swap out valid plugins, and program against code that doesn't yet exist. Because the interface defines the _shape_ of the dependency, all we need to do to substitute the current dependency is create a new one that adheres to the contract defined by the interface. See [this article](/articles/enterprise-typescript-nodejs/clean-nodejs-architecture/) to dive deeper on that.
 - Flexibility: Adhering to the [Open Closed Principle](/articles/solid-principles/solid-typescript/), a system should be open for extension but closed for modification. That  means if we want to extend the system, we need only create a new plugin in order to extend the current behavior.
 - Delegation: **Inversion of Control** is the phenomenon we observe when we delegate behavior to be implemented by someone else, but provide the hooks/plugins/callbacks to do so. We design the current component to _invert_ control to another one. Lots of web frameworks are built on this principle.
