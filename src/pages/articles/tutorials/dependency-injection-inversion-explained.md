@@ -324,6 +324,15 @@ test ("Should 200 with an empty array of users", async () => {
 
 **Congrats. You (more or less) just learned how write testable code!**. 
 
+### The primary wins of DI
+
+Not only does this decoupling make your code _testable_, but it improves the following characteristics of your code:
+
+- Testability: We can substitute expensive to infrastructure components for mock ones during testing.
+- Substitutability: If we program against an interface, we enable a **plugin architecture** adhering to the [Liskov Substitution Principle](/articles/solid-principles/solid-typescript/), which makes it incredibly easy for us to swap out valid plugins, and program against code that doesn't yet exist. Because the interface defines the _shape_ of the dependency, all we need to do to substitute the current dependency is create a new one that adheres to the contract defined by the interface. See [this article](/articles/enterprise-typescript-nodejs/clean-nodejs-architecture/) to dive deeper on that.
+- Flexibility: Adhering to the [Open Closed Principle](/articles/solid-principles/solid-typescript/), a system should be open for extension but closed for modification. That  means if we want to extend the system, we need only create a new plugin in order to extend the current behavior.
+- Delegation: **Inversion of Control** is the phenomenon we observe when we delegate behavior to be implemented by someone else, but provide the hooks/plugins/callbacks to do so. We design the current component to _invert_ control to another one. Lots of web frameworks are built on this principle.
+
 ### Inversion of Control & IoC Containers
 
 Applications get much larger than just two components. 
@@ -348,7 +357,7 @@ Personally, I'm not a huge fan of them and the additional **infrastructure-speci
 
 If you're like me and you're not into _container life_, I have <u>my own style guide for injecting dependencies</u> that I talk about in [solidbook.io](https://solidbook.io). I'm also working on some video content, so stay tuned!
 
-<p class="special-quote"><b>Inversion of Control</b>: Traditional control flow for a program is when the program only does what we tell it to do (today). Inversion of control flow happens when we develop frameworks or enable a <b>plugin architecture</b> with areas of code that can be hooked into. In these areas, we <i>might not know (today)</i> how we want it to be used, or we wish to enable developers to add additional functionality. That means that every <b>lifecycle hook in React.js or Angular</b> is a good example of Inversion of Control in practice. IoC is also often explained by the "Hollywood Design Principle": <i>Don't call us, we'll call you</i>.</p>
+<p class="special-quote"><b>Inversion of Control</b>: Traditional control flow for a program is when the program only does what we tell it to do (today). Inversion of control flow happens when we develop frameworks or only refer to <b>plugin architecture</b> with areas of code that can be hooked into. In these areas, we <i>might not know (today)</i> how we want it to be used, or we wish to enable developers to add additional functionality. That means that every <b>lifecycle hook in React.js or Angular</b> is a good example of Inversion of Control in practice. IoC is also often explained by the "Hollywood Design Principle": <i>Don't call us, we'll call you</i>.</p>
 
 
 
