@@ -6,10 +6,12 @@ wikicategory: Domain-Driven Design
 wikitags: null
 prerequisites: null
 date: '2019-04-09T00:05:26-04:00'
-updated: '2019-04-09T00:11:26-04:00'
+updated: '2019-09-24T00:11:26-04:00'
 image: /img/wiki/anemic/anemic.svg
 plaindescription: When the classes that describe the model and the classes that perform operations on the model are separate. The services contain all the domain logic while the the domain objects themselves contain practically none.
 ---
+
+Wikipedia says an **Anemic Domain Model** "is the use of a software domain model where the domain objects contain little or no business logic (validations, calculations, business rules etc.)".
 
 A lot of projects start out like this if you're not familiar with domain modeling. 
 
