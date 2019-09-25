@@ -89,27 +89,31 @@ That means it's more likely that we'll scrap the entire front end for a new one 
 
 The factors at play here are **stability** and **volatility**.
 
+### Stability
+
 In Uncle Bob's _Clean Architecture_, he wrote about the [Stable Dependency Principle](/wiki/stable-dependency-principle/).
 
 He said that,
 
-> "Components dependencies should be in the direction of stability"
+> "Components' dependencies should be in the direction of stability"
 
 To visualize that, if we were to look at the [clean architecture]() that he talks about, we'd notice that it's the **domain layer** that holds the highest level of **stability** AND **policy**.
 
 <img class="centered-image" style="width: 50%;" src="/img/wiki/package-principles/stability.svg">
 
-<p class="caption">Clean architecture showing that stability goes towards the domain layer</p>.
+<p class="caption">Clean architecture showing that stability goes towards the domain layer</p>
 
 Why is that? Why does the **domain layer** hold the highest level of policy and stability?
 
-The reason is that the **domain layer** contains the domain modeling code that most closely describes how your business actually works in the real world. 
+That's because the **domain layer** contains the domain modeling code that most closely describes how your business _actually works_ in the real world. 
 
-Since it's very unlikely that your business will drastically change, that means it's very unlikely that we will need to make drastic changes to the domain layer code.
+Since it's very unlikely that your business will drastically change, that means that the code that best describes your business is _also unlikely_ to need change.
 
 That's what makes the **domain layer** quite stable.
 
-And stable components are components that we can rely on, so it makes sense to enable the unstable (volatile) components to depend on the stable ones, but never rely on an unstable one... like a front-end. 
+And stable components are components that we can rely on. Therefore, it makes sense to organize the unstable (volatile) components to depend on the stable ones, but never make a stable component rely on something unstable. Like a back-end relying on a front-end. 
+
+<p class="special-quote"><b>An examplary blunder:</b> <a href="https://softwareontheroad.com/reversing-tinder-api-with-nodejs/?utm_source=reddit-webdev&utm_medium=group_post">Here's one</a>. It's titled, "Exploiting Tinder to get paid features for free". The "TL;DR? Too much on client side" - via <a href="https://www.reddit.com/r/javascript/comments/d8rbcv/exploiting_tinder_to_get_paid_features_for_free/f1ch6b7/">Reddit</a>.</p>
 
 <p class="special-quote"><b>Opinion</b>: I think the reason why new developers usually end up working in front-end development jobs straight out of school is because technical managers are aware that the front-end is volatile, and if it were mucked up by a new hire, the business would still be OK. There's a lot more at risk for backend development because it's so critical.</p>
 
@@ -127,11 +131,13 @@ And if we looked at it as a graph, it would form a [Directed Acyclic Graph - DAG
 
 In fact, when we do this, we're satisfying the [Open-Closed Principle](/articles/solid-principles/solid-typescript/) _architecturally_.
 
-OCP says that components should be open for extension, but closed for modification. 
+OCP says that:
+
+> Components should be open for extension, but closed for modification 
 
 If your boss told you to change the color of the background on the client app, is that going to break the backend?
 
-No, because architecturally, our system is open for extension but closed for abstraction. 
+No, because architecturally, our system is open for extension (via the front-end, we can change the UI we build on top of it) but closed for modification. 
 
 This is what we're doing when we **put all the high-level policy in the backend** and ensure that the front-end contains no high-level policy.
 
@@ -179,9 +185,13 @@ There's no shortage of approaches to handle this.
 - Change detection: Angular Zones, Vue's `Object.defineProperty(), React reconcilliation, etc
 - React to data changes: Observables, hooks, one-way data flow, etc
 
-These early architectural decisions that have a **profound impact** on the quality and ease of development for the remainder of the project's lifespan. 
+These early architectural decisions have a **profound impact** on the quality and ease of development for the remainder of the project's lifespan. 
 
-I think it would be correct to say that _this_ is as far as **high-level policy** goes on the front-end, and the code we write within the framework of choice are the **low-level** details.
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">&quot;In my opinion, the most challenging part of front-end development is choosing the stack and ensuring that everyone writes code that adheres to the architectural contours of the decided stack.&quot; - <a href="https://t.co/dHWnW3dsu3">https://t.co/dHWnW3dsu3</a> <a href="https://twitter.com/hashtag/react?src=hash&amp;ref_src=twsrc%5Etfw">#react</a> <a href="https://twitter.com/hashtag/angular?src=hash&amp;ref_src=twsrc%5Etfw">#angular</a> <a href="https://twitter.com/hashtag/VueJS?src=hash&amp;ref_src=twsrc%5Etfw">#VueJS</a></p>&mdash; Khalil Stemmler🔥 (@stemmlerjs) <a href="https://twitter.com/stemmlerjs/status/1176606328875298820?ref_src=twsrc%5Etfw">September 24, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<br/>
+
+I think it would be correct to say that _this_ is as far as **high-level policy** goes on the front-end. The stack we choose. And the code we write within the framework of choice are the **low-level** details.
 
 > When you choose a frontend architecture, that high-level decision influences _the way_ you write (low-level) code for the rest of the project.
 
