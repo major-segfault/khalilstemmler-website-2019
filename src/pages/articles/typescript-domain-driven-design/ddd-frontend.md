@@ -75,7 +75,7 @@ To avoid going down a rabbit hole on decentralized architectures, the most commo
 - Todo App (authenticate w/ backend, store data in db)
 - Social Networking Site (authenticate w/ backend, perform commands and queries against resources you have access to determined by the backend- _this_ is domain complexity)
 
-Even some P2P apps needs some centralization:
+Even some P2P apps need centralization:
 
 > Even in a _paid_ decentralized messaging system, the client needs to check the **centeralized** server to see if the acccount has sufficient credits.
 
