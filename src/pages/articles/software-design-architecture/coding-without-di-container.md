@@ -7,7 +7,7 @@ description: >-
 tags:
   - IOC Containers
   - Dependency Injection
-  - Inversion of control
+  - Inversion of Control
 category: Software Design
 image: /img/blog/di-container/no-di-container.png
 published: true
@@ -29,9 +29,9 @@ Although, before I learned about the Clean Architecture and [how to organize log
 
 ## Prerequisites:
 
-You must be _this high_ to ride this ride.
+You must be _this tall_ to ride this ride.
 
-Here's some stuff you should be familiar in with in order to join in on the conversation.
+Here's some stuff you should be familiar with in with in order to join in on the conversation.
 
 - Inversion of Control
 - [Dependency Inversion](/articles/tutorials/dependency-injection-inversion-explained/)
@@ -40,7 +40,9 @@ Here's some stuff you should be familiar in with in order to join in on the conv
 
 ## Building a blog
 
-Let's imagine we're building out a website that has a **blog** where you can sign up as a `author`, create `posts`, and write `comments` on `posts`. Also, regular `users` can `comment` on your `posts`.
+Let's imagine we're building out a website that has a **blog** where you can sign up as a `author`, create `posts`, and write `comments` on `posts`. 
+
+Also, assume other `users` can `comment` on your `posts` too.
 
 What's the first thing to do? Figure out the **actors and the [use cases](/articles/enterprise-typescript-nodejs/application-layer-use-cases/)** in order to **package by component**.
 
@@ -52,7 +54,7 @@ Front-end developers are already doing this with Angular and they might not even
 
 In it, he says that we should "organize our code around the Use Cases" of the application. Doing that will create a project where the names of the folders practically _scream_ the domain of the problem we're solving. He calls it "Screaming Architecture".
 
-The folder structure for a front-end app enabling people to trade vinyl. It might look like the following.
+Peep the folder structure for a front-end app enabling people to trade vinyl. It might look like this.
 
 ```bash
 src
@@ -62,7 +64,7 @@ src
         components/     # Dumb components
         containers      # Smart components
         pages/          # Pages
-        redux/          # Redux for analytics
+        redux/          # State management for this module
         services/       # API adapters
         styles/         # Styles
         index.ts        
@@ -80,11 +82,13 @@ src
 
 <p class="caption">Project structure of a Vinyl-Trading front-end app</p>
 
-For example, notice that `Admin` has an `analytics`, `dashboard` and `users` module? In Angular, you're forced to export modules and link everything up using those.
+Notice that `Admin` has an `analytics`, `dashboard` and `users` module? In Angular, you're forced to export modules and link everything up using those.
 
 Angular forces you to think about **cohesively packaging components together**.
 
-The word _component_ can also mean module in this case (some call it **Package by Module** instead of **Package by Component**).
+<p class="special-quote">
+The word <i>component</i> can also mean module in this case (some call it <b>Package by Module</b> instead of <b>Package by Component</b>).
+</p>
 
 That's what I do in backend development as well.
 

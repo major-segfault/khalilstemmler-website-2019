@@ -1,0 +1,46 @@
+---
+templateKey: article
+title: "Understanding Domains, Subdomains and Bounded Contexts - Domain-Driven Design w/ TypeScript"
+date: '2019-09-26T10:04:10-05:00'
+updated: '2019-09-26T10:04:10-05:00'
+description: >-
+  Your app doesn't have to be a big clump of code. Let's understand how we can logically separate our app into smaller pieces.
+tags:
+  - Subdomains
+  - Bounded Context
+category: Domain-Driven Design
+image: /img/blog/templates/banners/ddd-blog-banner.png
+published: true
+anchormessage: This article is part of the upcoming DDD + TypeScript course. <a href="/courses/domain-driven-design-typescript">Check it</a>.
+---
+
+<p class="course-cta">
+This is part of the <a href="/courses/domain-driven-design-typescript">Domain-Driven Design w/ TypeScript & Node.js</a> course. Check it out if you liked this post.
+</p>
+
+- Prerequisites:
+  - Read the several articles (intro, entities, value objects, aggregates, repos)
+  - Understand what subdomains are, and how they divide the application up
+  - Understand the Clean Architecture and how we separate concerns into layers
+  - Understand the Dependency Rule, which direction dependencies flow, and why we enforce that behaviour
+  - Familiar with how ORMs like Sequelize or TypeORM work
+  - (Optionally) where do domain objects get dispatched - http://localhost:8000/blogs/domain-driven-design/where-do-domain-events-get-dispatched/
+
+- Goal of the article:
+  - Explain what domain events can do
+  - Show the problem that we run into
+  - Explain the design principle that can address this (strive for loosely coupled)
+  - Introduce the Domain Event class
+  - Create a few domain events on the aggregate (link to article about this)
+
+- Need?
+  - A few examples. 
+
+<div class="special-quote solid-book-cta">
+  <a href="https://solidbook.io" class="solid-book-logo-container">
+    <img src="/img/resources/solid-book/book-logo.png"/>
+  </a>
+  <p>
+    <b>Design Principle</b>: "Strive for loosely coupled design against objects that interact". - via <a href="https://solidbook.io">solidbook.io</a>: The Software Architecture & Design Handbook
+  </p>
+</div>

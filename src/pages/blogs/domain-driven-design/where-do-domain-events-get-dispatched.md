@@ -9,6 +9,7 @@ tags:
   - DDD
   - Domain Entities
   - Software Design
+  - Domain Events
 category: Domain-Driven Design
 published: true
 image: /img/blog/templates/banners/ddd-blog-banner.png
@@ -56,9 +57,9 @@ This increased importance on [YAGNI](/wiki/yagni/), and only exposing operations
 
 Using getters and setters, not only do we get to specify exactly **what** is allowed to be accessed/changed, but we also get to specify _when_ it's allowed to be accessed/changed, and _what happens_ when it's accessed/changed. 
 
-> When _key_ properties are accessed or changed, it might make sense to create a Domain Event.
+> When _essential_ properties are accessed or changed, it might make sense to create a Domain Event.
 
-For example, if we were working on [White Label](https://github.com/stemmlerjs/white-label)'s feature that enables `Traders` to _accept_ or _decline_ `Offers`, we'd have to walk through the process of determining where Domain Logic should belong.
+For example, if we were working on [White Label](https://github.com/stemmlerjs/white-label)'s feature that enables `Traders` to _accept_ or _decline_ `Offers`, we'd have to walk through the process of [determining where Domain Logic should belong](/articles/software-design-architecture/organizing-app-logic/).
 
 Following that process, we'd discover that `acceptOffer()` and `declineOffer()` perform <u>mutations</u> to the `Offer` aggregate root itself. 
 
@@ -158,7 +159,7 @@ export class AcceptOfferUseCase implements UseCase<AcceptOfferDTO, Result<Offer>
 
 Because Domain Events are part of the domain, we'll always want to try to place Domain Events **as close to the entities/aggregate roots as possible**.
 
-If we can trust that the domain layer will always generate the appropriate domain events in those key scenarios, we can enable several applications (perhaps deployed in separate bounded contexts and propogated over the network using a message queue like RabbitMQ) to implement their _own_ varying [application layer logic](/articles/enterprise-typescript-nodejs/application-layer-use-cases/) to handle these events however they please.
+If we can trust that the domain layer will always generate the appropriate domain events in those key scenarios, we can enable several applications (perhaps deployed in separate bounded contexts and propagated over the network using a message queue like RabbitMQ) to implement their _own_ varying [application layer logic](/articles/enterprise-typescript-nodejs/application-layer-use-cases/) to handle these events however they please.
 
 For example, if our `Billing` subdomain were to subscribe to the `OfferAcceptedEvent`, we might want to fulfill the trade by facilitating the trade between the two parties and charging a 0.2% processing fee.
 
