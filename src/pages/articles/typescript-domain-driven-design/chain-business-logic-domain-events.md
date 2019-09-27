@@ -28,9 +28,9 @@ When we're working on backend logic, it's not uncommon to eventually find yourse
 
 > "When __ happens, then do ___". 
 
-> And "after this and then do that".
+> And "after this, do that".
 
-> Or, "after this, **and** that, and then this... _but only when_ _this_ has _that_".
+> Or, "after this, **and** that, and then this... _but <u>only</u> when_ _this_, do that".
 
 Just all kinds of noise, right?
 
