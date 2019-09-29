@@ -100,7 +100,7 @@ Now, check out the map. While I think the stack is good to see the bigger pictur
 
 Below is the map for software design and architecture.
 
-![](https://user-images.githubusercontent.com/6892666/65833558-9d679700-e29f-11e9-85cd-251e2a1f9ede.png)
+![](https://user-images.githubusercontent.com/6892666/65834464-42d33880-e2a9-11e9-86e2-ce6aa896b22e.png)
 
 ## Resources & Conclusion
 
