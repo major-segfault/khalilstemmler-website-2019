@@ -156,6 +156,12 @@ Here are my _favourite_ resources to learn software design and architecture.
 - Domain-Driven Design, by Eric Evans
 - Implementing Domain-Driven Design, by Vaughn Vernon
 
+#### Stage 9: Enterprise Patterns
+
+- Patterns of Enterprise Application Architecture, by Martin Fowler
+- Domain Driven Design, by Eric Evans
+- Implementing Domain-Driven Design, by Vaughn Vernon
+
 ## References
 
 - [Wikipedia: List of architectural styles and patterns](https://en.wikipedia.org/wiki/List_of_software_architecture_styles_and_patterns)
