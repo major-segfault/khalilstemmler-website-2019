@@ -28,7 +28,7 @@ These were some of **my own initial sentiments** when I first started with TypeS
 
 I certainly didn't see the benefit... up until I started experiencing some really annoying stuff. Things like builds not failing when they should, buggy code and typos finding their way into production code somehow started to get to me. In addition to that, as my project demands started to get more complex, I found it increasingly challenging to express my designs in a really clean object-oriented way.
 
-9 months later into using TypeScript, I've built new features in Angular apps for clients, I've begun compiling [Univjobs](https://univjobs.ca)'s React / Redux front-end with TypeScript, and I ported all of Univjobs' backend services to TypeScript from vanilla Node.js, refactoring mass amounts of code along the way.
+9 months later into using TypeScript, I've built new features in Angular apps for clients, I've begun compiling **Univjobs**'s React / Redux front-end with TypeScript, and I ported all of Univjobs' backend services to TypeScript from vanilla Node.js, refactoring mass amounts of code along the way.
 
 In this article, we'll take a look at some of the most common scenarios and identify when it might be vital to use TypeScript, and when we could probably do without it and stick to vanilla JS.
 

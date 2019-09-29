@@ -2,7 +2,7 @@
 templateKey: article
 title: "An Introduction to Domain-Driven Design - DDD w/ TypeScript"
 date: '2019-07-30T10:04:10-05:00'
-updated: '2019-07-30T10:04:10-05:00'
+updated: '2019-09-28T10:04:10-05:00'
 description: >-
   Domain-Driven Design is the approach to software development which enables us to translate complex problem domains into rich, expressive and evolving software. It's the way we design applications when the needs of our users are complex.
 tags:
@@ -36,7 +36,7 @@ I came across **Domain-Driven Design** when I realized I needed it the most.
 
 ## Quick history about my experience with DDD
 
-In 2017, I started working on an application called [Univjobs](https://univjobs.ca), a marketplace for Canadian students and recent-grads to find co-op jobs, gigs and entry-level jobs and internships.
+In 2017, I started working on an application called **Univjobs**, a marketplace for Canadian students and recent-grads to find co-op jobs, gigs and entry-level jobs and internships.
 
 The MVP was pretty simple. Students could sign up, create their profile and apply to jobs. Employers could sign up, post jobs, browse students and invite them to apply to the jobs they've posted.
 
@@ -80,7 +80,11 @@ There are huge payoffs in domain modeling. When our code lines up with the real 
 
 ### Prerequisite Knowledge
 
-Domain-Driven Design has a steep learning-curve. I won't lie about that. Domain-Driven Developers need to be comfortable with the following:
+You must at least _this tall_ to ride this ride.
+
+Jokes aside, Domain-Driven Design has a steep learning-curve. I won't lie about that. 
+
+Domain-Driven Developers need to be comfortable with the following:
 
 - Object-Oriented Programming Basics 
 - Object-Oriented Programming Design Principles (composition > inheritance, referring to abstractions, SOLID Principles)
@@ -89,6 +93,8 @@ Domain-Driven Design has a steep learning-curve. I won't lie about that. Domain-
 Object-Oriented Programming is not strictly necessary to be successful with Domain Driven Design, but it does go with the natural contours of the patterns Domain-Driven Design has established.
 
 To be able to move quickly, DDD does require some fundamental knowledge of software design patterns. It's a lot harder to do DDD well if we make a mess. That's why principles like YAGNI, KISS and DRY are even more important in order to iteratively improve a design.
+
+<p class="special-quote"><b>The software design roadmap</b>: Check out this <a href="/articles/software-design-architecture/full-stack-software-design/"> roadmap</a> I put together in order to figure out what you need to know in order to be most comfortable with Domain-Driven Design (which is right at the end of the roadmap).</p>
 
 > In order to go fast, we must go well.
 
@@ -100,9 +106,13 @@ Much of what makes frameworks so popular is that there is a pre-established way 
 
 ## Protecting the Domain Layer
 
-In order to do DDD well, we need to keep the [SOLID principles](/articles/solid-principles/solid-typescript/) in mind, organize a central domain layer at the core of our [Layered Architecture](https://herbertograca.com/2017/08/03/layered-architecture/), and implement interface adapters to persistence, web and external technologies. We don't want these things to sully our domain model.
+In order to do DDD well, we need to keep the [SOLID principles](/articles/solid-principles/solid-typescript/) in mind, organize a central [domain layer](/articles/enterprise-typescript-nodejs/clean-nodejs-architecture/) at the core of our [Layered Architecture](https://herbertograca.com/2017/08/03/layered-architecture/) and use a LOT of [dependency inversion & injection](/articles/tutorials/dependency-injection-inversion-explained/) in order to connect interface adapters to persistence, web and external technologies. 
 
-We want to keep them at a distance so that we can isolate our domain and keep our unit tests fast.
+We don't want these infrastructrual things to sully our clean, fast, and testable domain model.
+
+We want to keep frameworks, databases, caches, web servers, and anything else techy and not related to the domain model to a distance.
+
+<p class="special-quote">A large part of DDD is protecting the domain model by using a layered architecture. Check out <a href="/articles/software-design-architecture/organizing-app-logic/">this article</a> on what each layer is responsible for.</p>
 
 ![clean architecture](/img/blog/ddd-intro/clean.jpg)
 <div class="caption">"The Clean Architecture". From the golden Uncle Bob archives. Also known as a Layered Architecture, Ports & Adapters, Hexigonal, etc.</div>
@@ -190,7 +200,7 @@ We'll want to create domain objects in many different ways. We map to domain obj
 
 We might also want to create domain objects from templates using the [prototype pattern](https://www.geeksforgeeks.org/prototype-design-pattern/) or through the use of an [abstract factory](/wiki/abstract-factory).
 
-### Domain Events
+### [Domain Events](/articles/typescript-domain-driven-design/chain-business-logic-domain-events/)
 
 _The best part of Domain-Driven Design_.
 
@@ -282,13 +292,25 @@ _More in this series so far_..
 
 [Value Objects - DDD w/ TypeScript](/articles/typescript-value-object)
 
+[Using UUIDs instead of Auto-Incremented Primary Keys](/articles/auto-increment-or-uuid/)
+
 [REST-first design is Imperative, DDD is Declarative [Comparison] - DDD w/ TypeScript](/articles/typescript-domain-driven-design/ddd-vs-crud-design/)
+
+[Implementing DTOs, Mappers & the Repository Pattern using the Sequelize ORM [with Examples] - DDD w/ TypeScript](/articles/typescript-domain-driven-design/repository-dto-mapper/)
+
+[Intention Revealing Interfaces [w/ Examples] - Domain-Driven Design w/ TypeScript](/articles/typescript-domain-driven-design/intention-revealing-interfaces/)
 
 [How to Design & Persist Aggregates - Domain-Driven Design w/ TypeScript](/articles/typescript-domain-driven-design/aggregate-design-persistence/)
 
 [Handling Collections in Aggregates (0-to-Many, Many-to-Many) - Domain-Driven Design w/ TypeScript](/articles/typescript-domain-driven-design/one-to-many-performance/)
 
 [Challenges in Aggregate Design #1 - Domain-Driven Design w/ TypeScript](/articles/typescript-domain-driven-design/domain-modeling-1/)
+
+[Does DDD Belong on the Frontend? - Domain-Driven Design w/ TypeScript](/articles/typescript-domain-driven-design/ddd-frontend/)
+
+[Where Do Domain Events Get Created? | Domain Driven Design w/ TypeScript](/blogs/domain-driven-design/where-do-domain-events-get-dispatched/)
+
+[Decoupling Logic with Domain Events [Guide] - Domain-Driven Design w/ TypeScript](/articles/typescript-domain-driven-design/chain-business-logic-domain-events/)
 
 
 [^1]: _See [this article](/articles/enterprise-typescript-nodejs/when-crud-mvc-isnt-enough/) on how to know when MVC isn't enough_.

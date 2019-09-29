@@ -18,8 +18,6 @@ I found this UML cheat sheet [on the internet](https://yetanotherchris.dev/cheat
 
 It's pretty handy. I ended up printing it out and putting it up in my workspace. 
 
-I'm working on putting together a Full-stack developer training in order to ramp up new developers @ [Univjobs](https://univjobs.ca). 
-
 Reading select chapters from Uncle Bob's "[Clean Architecture](https://www.amazon.ca/gp/product/0134494164/ref=as_li_tl?ie=UTF8&tag=stemmlerjs09-20&camp=15121&creative=330641&linkCode=as2&creativeASIN=0134494164&linkId=32995f69d0747d8723d42ffdda296878)" is one of first items on the training. If you're in need of a refresher on your UML, this cheatsheet should come in handy for deciphering diagrams in the text.
 
 

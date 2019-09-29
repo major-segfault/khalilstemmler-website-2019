@@ -31,7 +31,7 @@ It'll always work the first time around. But the second iteration? The third? Na
 
 Software architecture and design, like DevOps or UX Design, is an entirely separate world within software of it's own. I didn't know much about software design past _the singleton pattern_ until **I horribly tanked a full-stack developer interview** at a promising startup. 
 
-That pivotal event set me down a path to learn as much as I could in this area of development- improving the quality of code I wrote on a daily basis, helping launch **Talkify**, refactoring [Univjobs](http://univjobs.ca) to [domain-driven design]() with [CQRS](/articles/oop-design-principles/command-query-segregation/), starting a [DDD course](/courses/domain-driven-design-typescript) and [writing a book on software design and architecture](https://solidbook.io).
+That pivotal event set me down a path to learn as much as I could in this area of development- improving the quality of code I wrote on a daily basis, helping launch **Talkify**, refactoring **Univjobs** to [domain-driven design]() with [CQRS](/articles/oop-design-principles/command-query-segregation/), starting a [DDD course](/courses/domain-driven-design-typescript) and [writing a book on software design and architecture](https://solidbook.io).
 
 <!-- If you're ready to take the **red pill** and improve the quality of your software, read on. -->
 

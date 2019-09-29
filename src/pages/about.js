@@ -26,7 +26,7 @@ const About = () => (
     <p>I'm Khalil, a software developer / designer and (occassional) musician living in Oakville, Canada. </p>
 
     <p>
-      In 2017, I co-founded <a href="https://univjobs.ca">Univjobs</a> and learned a lot about <u>making large Node.js codebases scale</u>. At some point 
+      In 2017, I co-founded <b>Univjobs</b> and learned a lot about <u>making large Node.js codebases scale</u>. At some point 
       during my work as a consultant and reading as many books on software as I could digest, 
       I came to realize that there were a lot of pitfalls I could have avoided if I knew 
       the patterns and principles to guide me. 
