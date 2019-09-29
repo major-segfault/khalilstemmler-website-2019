@@ -86,7 +86,7 @@ Before I show you the map, let me show you the _stack_.
 
 Similar to something like the [OSI Model](https://en.wikipedia.org/wiki/OSI_model), each layer builds on top of the foundation of the previous one.
 
-![](/img/blog/full-stack-software-design/software-design-and-architecture-model.png)
+![](https://user-images.githubusercontent.com/6892666/65833569-bb34fc00-e29f-11e9-8516-79cbd9f8f07b.png)
 
 <p class="caption">The software design and architecture stack shows all of the layers of software design, from the most high-level concepts to the most low-level details.</p>
 
@@ -100,7 +100,7 @@ Now, check out the map. While I think the stack is good to see the bigger pictur
 
 Below is the map for software design and architecture.
 
-![](/img/blog/full-stack-software-design/map.png)
+![](https://user-images.githubusercontent.com/6892666/65833558-9d679700-e29f-11e9-85cd-251e2a1f9ede.png)
 
 ## Resources & Conclusion
 
