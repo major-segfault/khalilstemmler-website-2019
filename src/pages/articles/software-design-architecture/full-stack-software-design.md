@@ -2,7 +2,7 @@
 templateKey: article
 title: "How to Learn Software Design and Architecture | The  Full-stack Software Design & Architecture Map"
 date: '2019-09-28T10:04:10-05:00'
-updated: '2019-09-28T10:04:10-05:00'
+updated: '2019-09-30T10:04:10-05:00'
 description: >-
   Software Design and Architecture is pretty much it's own field of study within the realm of computing, like DevOps or UX Design. Here's a map describing the breadth of software design and architecture, from clean code to microkernels.
 tags:
@@ -25,7 +25,7 @@ You ever think about what it took for some of the world's most talented develope
 
 It's crazy to me to consider the fact that Facebook was once an empty text file on someone's computer, and now it's this gargantuan company that has dipped it's toes into just about everything, and has personally impacted over [1.59 billion people](https://zephoria.com/top-15-valuable-facebook-statistics/) worldwide.
 
-As a junior, self-taught developer or even intermediate developer, the roadmap to continued growth towards actually learning how to design clean and scalable systems seems kind of daunting.  
+As a junior, self-taught developer or even intermediate developer, the roadmap to continued growth towards actually learning how to design _clean_ and _scalable_ systems seems kind of daunting.  
 
 For a lot of us, our projects die after one or two iterations because the code turns into an unmaintainable mess.
 
@@ -68,9 +68,9 @@ I fought with coming up with the best definition for a long time, and I'm prepar
 
 Software that doesn't serve the needs of it's users, simply isn't good software.
 
-And since the needs of our users change often, it's important to make sure that software **can be changed**.
+And since the needs of our users changes often, it's important to make sure that software **can was designed in order to be changed**.
 
-If software cannot be changed (easily), that also makes it bad software, because it will prevent us for satisfying the _current_ needs of our users.
+If software cannot be changed (easily), that <u>makes it bad software</u>, because it prevents us from satisfying the _current_ needs of our users.
 
 ---
 
@@ -100,7 +100,7 @@ Now, check out the map. While I think the stack is good to see the bigger pictur
 
 Below is the map for software design and architecture.
 
-![](https://user-images.githubusercontent.com/6892666/65834517-bb39f980-e2a9-11e9-8a75-0e1559c5ed56.png)
+![](https://user-images.githubusercontent.com/6892666/65896069-834eb700-e37a-11e9-95be-7ae2300d5d50.png)
 
 ## Resources & Conclusion
 
