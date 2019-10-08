@@ -14,10 +14,10 @@ const AboutTheResourceAuthor = ({ title }) => (
     </h2>
     <p className="author-work-title">
     JavaScript consultant & 
-    Co-founder @ Univjobs
+    Ex co-founder @ Univjobs
     </p>
     
-    <p className="author-details">Khalil is a software developer, designer and co-founder at Univjobs. He has 5+ years of experience 
+    <p className="author-details">Khalil is a software developer, designer and ex co-founder at Univjobs. He has 5+ years of experience 
 writing software with Java, JavaScript, Node.js and as of late: TypeScript. He writes about software development
 best practices with JavaScript & TypeScript and is especially passionate about Domain-Driven Design.</p>
   </div>
