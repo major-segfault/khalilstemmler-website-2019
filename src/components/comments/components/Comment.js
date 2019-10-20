@@ -13,7 +13,10 @@ const Comment = (props) => (
     <p dangerouslySetInnerHTML={{__html: props.comment}}/>
     {!props.approved ? <div className="approval">Awaiting approval</div> : ''}
     {props.replies && props.replies.length !== 0 
-      ? props.replies.map((r, i) => <Comment {...r} key={i}/>)
+      ? props
+        .replies
+        .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+        .map((r, i) => <Comment {...r} key={i}/>)
       : ''}
   </div>
 )
