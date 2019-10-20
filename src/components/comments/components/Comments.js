@@ -85,7 +85,7 @@ export class Comments extends React.Component {
   }
 
   sortComments (a, b) {
-    return new Date(b.createdAt) - new Date(a.createdAt)
+    return new Date(a.createdAt) - new Date(b.createdAt)
   }
 
   isReply (comment) {
