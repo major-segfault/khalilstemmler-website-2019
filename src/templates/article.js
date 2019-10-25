@@ -7,8 +7,8 @@ import { PageType } from '../components/shared/seo/PageType';
 import { TwittterCardSize } from '../components/shared/seo/CardSize';
 
 const BlogPost = (props) => {
-  const { markdownRemark } = props.data
-  const { fields, frontmatter, html } = markdownRemark;
+  const { post } = props.data
+  const { fields, frontmatter, html } = post;
   const { slug } = fields;
   const {
     title,
@@ -19,6 +19,10 @@ const BlogPost = (props) => {
     category,
     tags
   } = frontmatter;
+
+  const comments = props.data.comments.edges
+    .filter((c) => slug.indexOf(c.node.url) !== -1)
+    .map((c) => ({ ...c.node}));
 
   let seoTags = tags ? tags : [];
   seoTags = seoTags.concat(category);
@@ -42,6 +46,7 @@ const BlogPost = (props) => {
           {...fields}
           {...frontmatter}
           html={html}
+          comments={comments}
         />
         <ArticleSideContent/>
       </div>
@@ -72,7 +77,7 @@ export default BlogPost
 
 export const pageQuery = graphql`
   query ArticleByID($id: String!) {
-    markdownRemark(id: { eq: $id }) {
+    post: markdownRemark(id: { eq: $id }) {
       id
       html
       fields {
@@ -91,6 +96,13 @@ export const pageQuery = graphql`
         image
         category
         anchormessage
+      }
+    }
+    comments: allComment {
+      edges {
+        node {
+          ...CommentFields
+        }
       }
     }
   }

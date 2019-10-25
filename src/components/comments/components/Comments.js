@@ -1,4 +1,5 @@
 
+import PropTypes from 'prop-types'
 import React from 'react';
 import Editor from './Editor';
 import Comment from './Comment';
@@ -47,7 +48,7 @@ export class Comments extends React.Component {
     }
   }
 
-  async getComments () {
+  async getCommentsFromAPI () {
     try {
       const url = window.location.pathname;
       this.setState({ ...this.state, isFetchingComments: true });
@@ -59,7 +60,7 @@ export class Comments extends React.Component {
   }
 
   componentDidMount () {
-    this.getComments();
+    this.getCommentsFromAPI();
   }
 
   getRawTextLength (tags) {
@@ -92,8 +93,7 @@ export class Comments extends React.Component {
     return !!comment.parentCommentId === true;
   }
 
-  presentComments () {
-    let { comments } = this.state;
+  presentComments (comments) {
     const replies = comments.filter((c) => this.isReply(c));
     
     comments = comments
@@ -110,8 +110,22 @@ export class Comments extends React.Component {
       .sort(this.sortComments)
   }
 
+  getRealTimeComments () {
+    return this.presentComments(this.state.comments);
+  }
+
+  getPrerenderedComments () {
+    return this.presentComments(this.props.comments ? this.props.comments : []);
+  }
+
+  getComments () {
+    return typeof window === 'undefined' 
+      ? this.getPrerenderedComments() 
+      : this.getRealTimeComments();
+  }
+
   render () {
-    const comments = this.presentComments();
+    const comments = this.getComments();
     const { commentText } = this.state;
     const numComments = comments.length;
     const hasComments = numComments !== 0;
@@ -142,4 +156,15 @@ export class Comments extends React.Component {
       </div>
     )
   }
+}
+
+Comments.propTypes = {
+  comments: PropTypes.arrayOf(PropTypes.shape({
+    approved: PropTypes.bool.isRequired,
+    createdAt: PropTypes.string,
+    id: PropTypes.string,
+    name: PropTypes.string,
+    text: PropTypes.string,
+    url: PropTypes.string.isRequired
+  }))
 }

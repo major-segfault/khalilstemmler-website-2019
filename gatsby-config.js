@@ -11,6 +11,12 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-source-self-hosted-comments`,
+      options: {
+        url: 'https://khalil-stemmler-backend.herokuapp.com/comments/all/'
+      }
+    },
+    {
       resolve: `gatsby-plugin-sitemap`,
       options: {
         exclude: ["/resources/*", `/best`],

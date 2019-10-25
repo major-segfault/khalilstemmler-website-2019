@@ -10,7 +10,7 @@ const Comment = (props) => (
       <div className="comment-author">{props.name}</div>
       <div className="comment-time">{moment(props.createdAt).fromNow()}</div>
     </section>
-    <p dangerouslySetInnerHTML={{__html: props.comment}}/>
+    <p dangerouslySetInnerHTML={{__html: props.comment ? props.comment : props.text }}/>
     {!props.approved ? <div className="approval">Awaiting approval</div> : ''}
     {props.replies && props.replies.length !== 0 
       ? props

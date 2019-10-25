@@ -24,7 +24,19 @@ class Wiki extends React.Component {
 
   render () {
     const { props } = this;
-    const { name, plaindescription, html, image, updated, wikicategory, readingTime, wikitags, excerpt, slug } = props;
+    const { 
+      name, 
+      plaindescription, 
+      html, 
+      image, 
+      updated, 
+      wikicategory, 
+      readingTime, 
+      wikitags, 
+      excerpt, 
+      slug,
+      comments 
+    } = props;
     return (
       <div className="wiki">
         <h1 className="wiki-title">{name}</h1>
@@ -37,7 +49,7 @@ class Wiki extends React.Component {
         <div className="wiki-content">
           <HTMLContent content={html}/>
         </div>
-        <Comments/>
+        <Comments comments={comments}/>
         <br/>
         <SubscribeForm/>
         <br/>

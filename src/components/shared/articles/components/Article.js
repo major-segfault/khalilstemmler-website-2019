@@ -1,3 +1,4 @@
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import "../styles/Article.sass"
@@ -96,7 +97,18 @@ class Article extends React.Component {
   
   render () {
     const props = this.props;
-    const { title, html, date, category, readingTime, tags, description, slug, anchormessage } = props;
+    const { 
+      title, 
+      html, 
+      date, 
+      category, 
+      readingTime, 
+      tags, 
+      description, 
+      slug, 
+      anchormessage,
+      comments
+    } = props;
     const fullUrl = `https://khalilstemmler.com${slug}`;
     const anchors = this.hasAnchors() ? this.getAnchors() : [];
     const image = this.getImage();
@@ -136,7 +148,7 @@ class Article extends React.Component {
         />
         <br/>
 
-        <Comments/>
+        <Comments comments={comments}/>
         <br/>
 
         <h3>Stay in touch!</h3>
@@ -148,12 +160,6 @@ class Article extends React.Component {
         <p>View more in <Link to={`/articles/categories/${kebabCase(category)}`}>{category}</Link></p>
         
         <br/>
-        {/* <ReactDisqusComments
-          shortname="khalilstemmler-com"
-          identifier={this.getUniquePageIdentifier()}
-          title={title}
-          url={this.getUniquePageIdentifier()}
-        /> */}
         <a href="/resources/solid-nodejs-architecture">
           <img src="/img/resources/solid-book/book-banner.png"/>
         </a>
@@ -178,5 +184,6 @@ Article.propTypes = {
   category: PropTypes.string,
   description: PropTypes.string.isRequired,
   tags: PropTypes.arrayOf(PropTypes.string).isRequired,
-  html: PropTypes.string
+  html: PropTypes.string,
+  comments: PropTypes.arrayOf(PropTypes.any)
 }

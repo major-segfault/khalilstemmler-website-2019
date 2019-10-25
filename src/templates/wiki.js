@@ -6,8 +6,8 @@ import { Wiki } from '../components/wiki'
 import { PageType } from '../components/shared/seo/PageType';
 
 const WikiPost = (props) => {
-  const { markdownRemark } = props.data
-  const { fields, frontmatter, html, excerpt } = markdownRemark;
+  const { post } = props.data
+  const { fields, frontmatter, html, excerpt } = post;
   const { slug } = fields;
   const {
     name,
@@ -20,6 +20,10 @@ const WikiPost = (props) => {
  
   let seoTags = wikitags ? wikitags : [];
   seoTags = seoTags.concat(wikicategory);
+
+  const comments = props.data.comments.edges
+    .filter((c) => slug.indexOf(c.node.url) !== -1)
+    .map((c) => ({ ...c.node}));
   
   return (
     <Layout
@@ -38,6 +42,7 @@ const WikiPost = (props) => {
         {...fields}
         {...frontmatter}
         html={html}
+        comments={comments}
       />
     </Layout>
   )
@@ -47,7 +52,7 @@ export default WikiPost;
 
 export const wikiQuery = graphql`
   query WikiByID($id: String!) {
-    markdownRemark(id: { eq: $id }) {
+    post: markdownRemark(id: { eq: $id }) {
       id
       html
       excerpt(pruneLength: 160)
@@ -67,6 +72,14 @@ export const wikiQuery = graphql`
         wikicategory
         image
         plaindescription
+      }
+    }
+
+    comments: allComment {
+      edges {
+        node {
+          ...CommentFields
+        }
       }
     }
   }

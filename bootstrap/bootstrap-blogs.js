@@ -2,12 +2,14 @@ const path = require('path')
 const _ = require('lodash')
 const { createFilePath } = require('gatsby-source-filesystem')
 const getBlogsData = require('./blogs/getBlogsData')
+const axios = require('axios').default;
 
-module.exports.onCreateNode = (node, actions, getNode) => {
-  const { createNodeField } = actions
+module.exports.onCreateNode = async (node, actions, getNode) => {
+  const { createNodeField } = actions;
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
+    const value = createFilePath({ node, getNode });
+
     createNodeField({
       name: `slug`,
       node,
@@ -34,6 +36,7 @@ module.exports.createPages = async (actions, graphql) => {
         // additional data can be passed via context
         context: {
           id,
+          slug: edge.node.fields.slug
         },
       })
     })
