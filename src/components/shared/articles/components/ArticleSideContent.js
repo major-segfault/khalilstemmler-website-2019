@@ -6,21 +6,16 @@ import ArticleSideSubscribe from './ArticleSideSubscribe'
 import { CarbonAd } from '../../ads';
 
 const content = [
+  {
+    title: 'How to Learn Software Design and Architecture | The Full-stack Software Design & Architecture Map',
+    link: '/articles/software-design-architecture/full-stack-software-design/',
+    description: `Software Design and Architecture is pretty much it's own field of study within the realm of computing, like DevOps or UX Design. Here's a map describing the breadth of software design and architecture, from clean code to microkernels.`
+  },
   { 
     title: '[Series] Domain-Driven Design w/ TypeScript and Node.js',
     link: '/articles/categories/domain-driven-design/',
     description: `Learn how to use DDD and object-oriented programming 
     concepts to model complex Node.js backends.`
-  },
-  {
-    title: `[Article] SOLID Principles: The Software 
-    Developer’s Framework to Robust & 
-    Maintainable Code`,
-    link: '/articles/solid-principles/solid-typescript/',
-    description: `In software, change is inevitable. The more complex the software, 
-    the more it should be enabled to be changed. The SOLID principles 
-    are a set of principles all developers should know about in order 
-    to design robust, maintainable, and flexible software.`
   }
 ]
 
