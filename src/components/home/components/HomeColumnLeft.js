@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import ProfilePicture from "./ProfilePicture"
 import SocialLinks from './SocialLinks'
 import Currently from './Currently'
-import me from '../../../images/khalil.jpeg'
+import me from '../../../images/khalil-2.jpeg'
 import { SolidBookResourceCard } from '../../resources'
 import "../styles/Home.sass"
 

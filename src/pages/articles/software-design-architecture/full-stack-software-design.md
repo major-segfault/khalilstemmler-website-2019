@@ -362,17 +362,20 @@ If we simply use an ORM (object-relational mapper) like [Sequelize]() or [TypeOR
 
 If there's something I've learned so far in my journey going beyond MVC, it's that **there is a construct for everything**.
 
-For each of those things that MVC fails to address, there exist other **enterprise patterns** to solve them. For example:
+For each of those things that MVC fails to address, in [Domain-Driven Design specifically](/articles/domain-driven-design-intro/), there exist several **enterprise patterns** to solve them. For example:
 
 - **[Entities](https://khalilstemmler.com/articles/typescript-domain-driven-design/entities/)** describe models that have an identity.
 - **[Value Objects](https://khalilstemmler.com/articles/typescript-value-object/)** are models that have no identity, and can be used in order to encapsulate validation logic.
 - **[Domain Events](https://khalilstemmler.com/articles/typescript-domain-driven-design/chain-business-logic-domain-events/)** are events that signify some relevant business event occurring, and can be subscribed to from other components.
 
-Depending on the architectural style you've chosen, there are going to be a ton of other enterprise patterns for you to learn in order to implement that pattern to it's fullest potential. 
+Depending on the architectural style you've chosen, there are going to be _a ton_ of other enterprise patterns for you to learn in order to implement that pattern to it's fullest potential. 
 
 ### Learning resources
 
+These are just a few different learning resources mostly focused on Domain-Driven Design and Enteprise Application Architecture. But this is where there is the _most_ to learn, and where you can _dive the deepest_ in your learning, because it <u>builds ontop of everything we've learned thus far</u>.
+
 - Patterns of Enterprise Application Architecture, by Martin Fowler
+- Enterprise Integration Patterns, by Gregor Hohpe
 - Domain Driven Design, by Eric Evans
 - Implementing Domain-Driven Design, by Vaughn Vernon
 
