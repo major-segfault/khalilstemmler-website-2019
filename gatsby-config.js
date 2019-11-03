@@ -222,7 +222,7 @@ module.exports = {
       }
     },
     {
-      resolve: `self-hosted-comments-source`,
+      resolve: `gatsby-self-hosted-comments`,
       options: {
         url: 'https://khalil-stemmler-backend.herokuapp.com/comments/all/'
       }
