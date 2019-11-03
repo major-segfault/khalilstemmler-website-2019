@@ -24,12 +24,11 @@ class GetNotifiedModal extends React.Component {
   }
 
   submitEmail () {
-    console.log('submit')
+
   }
 
   render () {
     const { firstName, lastName, email, submitted } = this.props;
-    console.log(this.props);
     return (
       <Modal 
         isOpen={this.props.isOpen}

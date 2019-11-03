@@ -32,7 +32,6 @@ class SocialLinks extends React.Component {
         }
       }
     } catch (err) {
-      console.log(err);
     }
 
     setTimeout(() => this.loadWidgets(), 50)

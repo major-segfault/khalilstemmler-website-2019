@@ -19,7 +19,7 @@ export default {
     ),
     "description-expanded": (
       <span className="subhero-text">
-        I create <Link to="/courses">courses</Link>, <Link to="/resources">books</Link>, 
+        I create <Link to="/courses">courses</Link>, <Link to="/books">books</Link>, 
         and <Link to="/articles">articles</Link> for aspiring developers on <Link to="/articles/categories/enterprise-node-type-script/">Enterprise Node.js</Link>, <Link to="/articles/categories/domain-driven-design/">Domain-Driven Design</Link> and <Link to="/articles/solid-principles/solid-typescript/">writing testable, flexible JavaScript</Link>.
       </span>
     )

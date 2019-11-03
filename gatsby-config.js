@@ -16,6 +16,7 @@ module.exports = {
         url: 'https://khalil-stemmler-backend.herokuapp.com/comments/all/'
       }
     },
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {

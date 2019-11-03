@@ -32,7 +32,6 @@ export function initBuySellAd () {
       );
     }
   } catch (err) {
-    console.log(err);
   }
 }
 

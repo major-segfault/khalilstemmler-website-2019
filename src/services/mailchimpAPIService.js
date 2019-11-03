@@ -19,7 +19,6 @@ export const MailChimpAPIService = {
         }
       })
     } catch (err) {
-      console.log(err);
       bugsnag.bugsnagClient.notify(err);
     }
   }

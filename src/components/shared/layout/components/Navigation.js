@@ -1,11 +1,13 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
 import MobileNavigation from '../../mobile-navigation'
 import Banner from "./Banner"
 import "../styles/Navigation.sass"
 import icon from '../../../../images/icons/mystery-icon.svg'
+import NavLink from './NavLink'
+import booksImg from '../../../../images/nav/books.png';
+import newsletterImg from '../../../../images/nav/newsletter.png';
 
 class Navigation extends React.Component {
   constructor (props) {
@@ -98,11 +100,28 @@ class Navigation extends React.Component {
           </a>
     
           <div className="links">
-            <Link to="/courses">Courses</Link>
-            <Link to="/articles">Articles</Link>
-            <Link to="/resources">Resources</Link>
-            <Link to="/newsletter">Newsletter</Link>
-            <Link to="/wiki">Wiki</Link>
+            <NavLink to="/courses" displayValue="Courses"/>
+            <NavLink to="/articles" displayValue="Articles"/>
+            <NavLink 
+              to="/books" 
+              displayValue="Resources"
+              dropdownTitle="All resources"
+              dropdownLinks={[
+                { 
+                  icon: booksImg,
+                  to: '/books', 
+                  displayValue: 'Books', 
+                  description: "Things you read to get smart" 
+                },
+                {
+                  icon: newsletterImg,
+                  to: '/newsletter',
+                  displayValue: 'Newsletter',
+                  description: `Get notified when new content comes out`
+                }
+              ]}
+            />
+            <NavLink to="/wiki" displayValue="Wiki"/>
           </div>
         </div>
       </div> : ''}

@@ -34,7 +34,6 @@ class Article extends React.Component {
       try {
         document.querySelector('.article-anchors').remove()
       } catch (err) {
-        console.log(err);
       }
     }
   }
