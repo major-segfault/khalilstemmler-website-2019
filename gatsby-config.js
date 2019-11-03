@@ -10,12 +10,6 @@ module.exports = {
     repo: 'https://github.com/stemmlerjs/khalilstemmler-website-2019'
   },
   plugins: [
-    {
-      resolve: `gatsby-source-self-hosted-comments`,
-      options: {
-        url: 'https://khalil-stemmler-backend.herokuapp.com/comments/all/'
-      }
-    },
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-sitemap`,
@@ -225,6 +219,12 @@ module.exports = {
       options: {
         endpoint:
           "https://khalilstemmler.us17.list-manage.com/subscribe/post?u=6816d2889bed041b6e83840af&amp;id=44ae72b287"
+      }
+    },
+    {
+      resolve: `self-hosted-comments-source`,
+      options: {
+        url: 'https://khalil-stemmler-backend.herokuapp.com/comments/all/'
       }
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
