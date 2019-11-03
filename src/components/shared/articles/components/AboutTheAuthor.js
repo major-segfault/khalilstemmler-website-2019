@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import SocialLinks from '../../../home/components/SocialLinks'
 import "../styles/AboutTheAuthor.sass"
 
-const AboutTheAuthor = ({ name, about, image, description }) => (
+const AboutTheAuthor = ({ name, about, image, description, jobTitle }) => (
   <>
   <div className="about-the-author">
     <div className="about-the-author--image-container">
@@ -12,7 +12,7 @@ const AboutTheAuthor = ({ name, about, image, description }) => (
     <div className="about-the-author--content-container">
       <h3>About the author</h3>
       <div className="about-the-author--description">
-        <h4>{name}</h4>
+        <p>{name},<br/> {jobTitle}</p>
         <div>{description}</div>
       </div>
       <br/>
