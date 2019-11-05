@@ -189,7 +189,7 @@ Finally, my favourite band of all time, before Nick Cave went Americana, he was 
 
 Unless you're specifically passionate about **architecture** and aesthetic, it's easy to never notice any of the craftsmanship on the structures that we move between everyday. Although, if you take a walk around the UofT campus in Toronto, you'll have a hard time not noticing the [John P. Robarts Research Library](https://www.google.com/search?q=john+P.+Robarts+Research+Library&source=lnms&tbm=isch&sa=X&ved=0ahUKEwi0x8HiqbfkAhVFaq0KHZmjAecQ_AUIEygC&biw=1186&bih=811).
 
-With respect to **web design**, the best design is **invisible**. The principle states that good design is not something the average user look at and says “wow, that’s a great design!” Good design is something that is easy to use, read and interact with. [^4]
+With respect to **web design**, the best design is **invisible**. The principle states that good design is not something the average user looks at and says “wow, that’s a great design!” Good design is something that is easy to use, read and interact with. [^4]
 
 Brutalist websites built with HTML, CSS, and JavaScript don't aim to mask, sweeten, lighten or smoothen the borders on the rough and ugly edges. Instead, they draw attention to them. That's what makes them interesting and memorable.
 
