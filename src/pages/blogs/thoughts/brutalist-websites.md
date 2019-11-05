@@ -1,8 +1,8 @@
 ---
 templateKey: blog-post
 title: "Brutalist Web Design"
-date: '2019-09-04T10:04:10-05:00'
-updated: '2019-09-041T10:04:10-05:00'
+date: '2019-11-05T10:04:10-05:00'
+updated: '2019-11-051T10:04:10-05:00'
 description: >-
   The term brutalism is often associated with Brutalist Architecture, however it can apply to other forms of construction and art, such as web design and music.
 tags:
@@ -19,7 +19,7 @@ image: /img/banner/blog-banner.png
 displayInArticles: false
 ---
 
-Readers of [khalilstemmler.com](https://khalilstemmler.com) either **love** or _hate_ the design of the site. I coded it myself with slight inspiration from **brutalist web design**. Like most brutalist work, it can be very polarizing.
+Readers of [khalilstemmler.com](https://khalilstemmler.com) either **love** or _hate_ the design of the site. When I was designing the site, I knew that I wanted to draw a little bit of inspiration from **brutalist web design**. The challenge is that most brutalist work can be very polarizing.
 
 ## What is brutalism?
 
@@ -53,7 +53,7 @@ Last one, City Hall in my hometown, [Brantford, Ontario](https://en.wikipedia.or
 
 <p class="caption">City Hall in Brantford, Ontario <a href="http://www.ontarioarchitecture.com/Brutalist.htm">ontarioarchitecture.com</a></p>
 
-Although most brutalist buildings are made from **raw concrete**, with respect to brutalist websites, we're more interested in the term _raw_. [^1] 
+Most brutalist buildings are made from **raw concrete**, so it's interesting to see how _raw-ness_ applies to the web. [^1] 
 
 ## What is brutalist web design?
 
