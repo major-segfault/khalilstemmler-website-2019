@@ -50,6 +50,7 @@ export default () => (
         ) {
           edges {
             node {
+              excerpt
               fields {
                 slug
                 readingTime {

@@ -18,6 +18,7 @@ const BlogCard = (props) => {
           date={props.date} 
           readingTime={props.readingTime}
         />
+        <p>{props.excerpt}</p>
       </div>
     </div>
   )

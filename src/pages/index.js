@@ -1,7 +1,7 @@
 import React from "react"
 import Layout from "../components/shared/layout"
 import { StaticQuery, graphql } from "gatsby"
-import { HomeComponentLeft, Hero, RecentArticles, RecentWikiEdits } from '../components/home'
+import { HomeComponentLeft, Hero, RecentArticles, RecentWikiEdits, RecentBlogs } from '../components/home'
 import { SubscribeForm } from '../components/subscribe'
 import { SolidBookResourceCard } from '../components/resources'
 
@@ -22,6 +22,9 @@ const IndexPage = ({ title, description }) => (
       <br/>
       <hr/>
       <br/>
+      <RecentBlogs/>
+      <br/>
+      <hr/>
       <RecentWikiEdits/>
       <br/>
       <SubscribeForm/>

@@ -12,7 +12,7 @@ export function getPostsFromQuery (posts) {
   if (posts) {
     return posts.edges
       .map(edge => edge.node)
-      .map(node => Object.assign({}, node.frontmatter, node.fields))
+      .map(node => Object.assign({}, node.frontmatter, node.fields, { excerpt: node.excerpt }))
   }
 
   return []
