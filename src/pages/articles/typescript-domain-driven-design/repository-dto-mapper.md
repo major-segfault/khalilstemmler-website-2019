@@ -489,7 +489,7 @@ Here's what our `VinylMap` might look like:
 
 ```typescript
 class VinylMap extends Mapper<Vinyl> {
-  public toDomain (raw: any): Vinyl {
+  public static toDomain (raw: any): Vinyl {
     const vinylOrError = Vinyl.create({
       albumName: AlbumName.create(raw.album_name).getValue(),
       artistName: ArtistName.create(raw.artist_name).getValue(),
@@ -498,14 +498,14 @@ class VinylMap extends Mapper<Vinyl> {
     return vinylOrError.isSuccess ? vinylOrError.getValue() : null;
   }
 
-  public toPersistence (vinyl: Vinyl): any {
+  public static toPersistence (vinyl: Vinyl): any {
     return {
       album_name: vinyl.albumName.value,
       artist_name: vinyl.artistName.value
     }
   }
 
-  public toDTO (vinyl: Vinyl): VinylDTO {
+  public static toDTO (vinyl: Vinyl): VinylDTO {
     return {
       albumName: vinyl.albumName.value,
       label: vinyl.Label.name.value,
