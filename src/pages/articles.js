@@ -16,11 +16,15 @@ import ArticlesFilter from '../components/shared/articles/components/ArticlesFil
 import ArticlesCategoriesSelection from '../components/shared/articles/components/ArticleCategoriesSelection';
 
 export class Articles extends React.Component {
+
+  static articlesPerPage = 6;
+
   constructor (props) {
     super(props);
 
     this.state = {
       filterText: '',
+      currentPage: 1
     }
 
     this.isCategoryPage = this.isCategoryPage.bind(this);
@@ -66,11 +70,20 @@ export class Articles extends React.Component {
   getArticles () {
     return this.filterArticles(
       this.getArticlesFromProps()
-    )  
+    )
   }
 
   isFilterActive () {
     return this.state.filterText !== "";
+  }
+
+  limitArticles (articles) {
+    const currentPage = this.state.currentPage;
+    const articlesPerPage = Articles.articlesPerPage;
+
+    const numArticlesToShow = currentPage * articlesPerPage;
+
+    return articles.slice(0, numArticlesToShow);
   }
 
   filterArticles (articles) {
@@ -174,7 +187,18 @@ export class Articles extends React.Component {
   }
   
   onFilterTextChanged (text) {
-    this.setState({ ...this.state, filterText: text })
+    this.setState({ 
+      ...this.state, 
+      filterText: text, 
+      currentPage: 1 
+    })
+  }
+
+  onLoadMore () {
+    this.setState({
+      ...this.state,
+      currentPage: this.state.currentPage + 1
+    })
   }
 
   render () {
@@ -211,7 +235,11 @@ export class Articles extends React.Component {
 
           <ArticlesContainer
             titleText={this.getArticlePageTitle()}
-            articles={articles}
+            articles={this.limitArticles(articles)}
+            onLoadMore={() => this.onLoadMore()}
+            numArticles={articles.length}
+            articlesPerPage={Articles.articlesPerPage}
+            currentPage={this.state.currentPage}
           />
 
       </Layout>
