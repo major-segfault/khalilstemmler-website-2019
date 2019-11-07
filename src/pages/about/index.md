@@ -138,6 +138,6 @@ If you're interested in the <a href="/uses">tech stacks and tools I use</a>, you
 
 ### What else?
 
-When I'm not coding or <a href="/books">reading excellent software books</a>, I write, longboard, and jog around town 🏃‍.
+When I'm not coding or reading excellent software books (which I really must compile a list for), I write, longboard, and jog around town 🏃‍.
 
 <h2>Stay in touch</h2>
