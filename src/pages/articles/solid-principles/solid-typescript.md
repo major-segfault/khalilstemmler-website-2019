@@ -12,7 +12,7 @@ tags:
 category: Software Design
 image: /img/blog/solid/solid.png
 published: true
-anchormessage: This article is part of Solid Book - The Software Design & Architecture Handbook. <a href="/resources/solid-nodejs-architecture">Get the book</a>.
+anchormessage: This article is part of Solid Book - The Software Design & Architecture Handbook. <a href="https://solidbook.io">Get the book</a>.
 ---
 
 <div class="solid-book-cta course-cta">
@@ -529,7 +529,7 @@ We just went through all of the SOLID principles.
 
 If you're using TypeScript, for you to really get the most out of your object-oriented software design efforts, I recommend re-reading this article a few times and referring back to it as you write TypeScript code, asking yourself "is this SOLID"?
 
-And if you're interested in having something you can download, I'm putting together an [ebook](/resources/solid-nodejs-architecture) (that's <u>free before its release</u>) on applying the SOLID principles in Node.js and TypeScript. 
+And if you're interested in having something you can download, I'm putting together an [ebook](https://solidbook.io) (that's <u>free before its release</u>) on applying the SOLID principles in Node.js and TypeScript. 
 
 Definitely grab that if you're interested in having something you can print out.
 

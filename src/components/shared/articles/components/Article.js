@@ -159,7 +159,7 @@ class Article extends React.Component {
         <p>View more in <Link to={`/articles/categories/${kebabCase(category)}`}>{category}</Link></p>
         
         <br/>
-        <a href="/resources/solid-nodejs-architecture">
+        <a href="https://solidbook.io">
           <img src="/img/resources/solid-book/book-banner.png"/>
         </a>
         <hr/>

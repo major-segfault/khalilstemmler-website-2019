@@ -262,7 +262,7 @@ Data changes originate from the **use cases** our application fulfils. You know,
 
 Take White Label again. We've identified the majority of the use cases today for the `Vinyl` entity (which we've determined is actually an Aggregate Root). 
 
-Some of the use cases _make data changes_ to the database, and some of them simply `READ` from the database.
+Some of the use cases _make data changes_ (command) to the database, and some of them simply `READ` (query) from the database.
 
 - `Catalog` Use cases on Vinyl in my personal catalog
   - `addVinyl`: add new existing vinyl
@@ -280,13 +280,13 @@ Some of the use cases _make data changes_ to the database, and some of them simp
 
 Great, we know the use cases for `Vinyl`. Now what?
 
-> We can design the aggregate such that it enables all of the use cases to be executed, while protecting any model invariants.
+> We can design the aggregate such that it enables all of the (command-like) use cases to be executed, while protecting any model invariants.
 
 Ahh. And therein lies the trickiness. 
 
 And therein also lies our <u>ability to determine aggregate boundaries</u>. **That's the goal** in aggregate design.
 
-We define the boundaries such a way that all of `Vinyl`'s use cases can be performed, and enough information is provided within the boundary to ensure that that no operation breaks any business rules.
+We define the boundaries such a way that all of `Vinyl`'s `COMMAND` use cases can be performed, and enough information is provided within the boundary to ensure that that no operation breaks any business rules.
 
 However, it turns out that that's not always the easiest thing to get right the very first time. 
 
@@ -369,7 +369,7 @@ That gives us another goal in aggregate design:
 - Provide enough info to enforce model invariants within a boundary
 - Execute use cases
 - Ensure decent database performance
-- (optional) **Provide enough info to transform a Domain Entity to a DTO**
+- (optional, not recommended though) **Provide enough info to transform a Domain Entity to a DTO**
 
 The reason why this is an **optional** goal stems from the CQS (Command-Query Segregation) Principle.
 

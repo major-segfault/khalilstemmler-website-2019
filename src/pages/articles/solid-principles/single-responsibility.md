@@ -12,7 +12,7 @@ tags:
 category: Software Design
 image: /img/blog/solid/solid.png
 published: true
-anchormessage: This article is part of Solid Book - The Software Design & Architecture Handbook. <a href="/resources/solid-nodejs-architecture">Get the book</a>.
+anchormessage: This article is part of Solid Book - The Software Design & Architecture Handbook. <a href="https://solidbook.io">Get the book</a>.
 ---
 
 <div class="solid-book-cta course-cta">

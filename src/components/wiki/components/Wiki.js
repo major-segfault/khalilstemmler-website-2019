@@ -53,7 +53,7 @@ class Wiki extends React.Component {
         <br/>
         <SubscribeForm/>
         <br/>
-        <a href="/resources/solid-nodejs-architecture">
+        <a href="https://solidbook.io">
           <img src="/img/resources/solid-book/book-banner.png"/>
         </a>
       </div>

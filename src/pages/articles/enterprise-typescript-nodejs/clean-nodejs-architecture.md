@@ -190,7 +190,7 @@ Look! The port fits the adapter ❤️.
 
 --- 
 
-<a href="/resources/solid-nodejs-architecture">
+<a href="https://solidbook.io">
   <img src="/img/resources/solid-book/book-banner.png"/>
 </a>
 

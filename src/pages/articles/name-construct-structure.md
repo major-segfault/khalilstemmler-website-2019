@@ -11,10 +11,10 @@ tags:
 category: Software Design
 image: /img/blog/name-construct-structure/banner.png
 published: true
-anchormessage: This article is from "Name, Construct & Structure". <a href="/resources/solid-nodejs-architecture">Get it while it's free</a>.
+anchormessage: This article is from "Name, Construct & Structure". <a href="https://solidbook.io">Get it while it's free</a>.
 ---
 
-_This article is part of a 32-page ebook titled "Name, Construct & Structure". It, as well as the [SOLID Book](/resources/solid-nodejs-architecture) are available free for a limited time before it becomes available only on Gumroad. Grab it [here]._
+_This article is part of a 32-page ebook titled "Name, Construct & Structure". It, as well as the [SOLID Book](https://solidbook.io) are available free for a limited time before it becomes available only on Gumroad. Grab it [here]._
 
 ---
 
@@ -138,7 +138,7 @@ In the next sections, we'll talk about how <u>understanding what construct to us
 
 ### Want the book?
 
-This article is part of a 32-page ebook titled "**Name, Construct & Structure**". It, as well as the **[SOLID Book](/resources/solid-nodejs-architecture)** are available free for a limited time before it becomes available only on Gumroad.
+This article is part of a 32-page ebook titled "**Name, Construct & Structure**". It, as well as the **[SOLID Book](https://solidbook.io)** are available free for a limited time before it becomes available only on Gumroad.
 
 Want it? [Get the free 32-page PDF](/resources/names-construct-structure) 🙂.
 
