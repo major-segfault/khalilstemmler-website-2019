@@ -478,7 +478,7 @@ export type UpvotePostResponse = Either<
 
 The main takeaways here are to:
 
-- Use Factories and Factory Methods to prevent from repeating validation logic. Encapsulate it in one place. When the creation rules change, you only need to update code in one place. See this article on [Value Objects](/articles/typescript-value-object/) for how to implement this.
+- Use Factories and [Factory Methods](/blogs/typescript/static-factory-method/) to prevent from repeating validation logic. Encapsulate it in one place. When the creation rules change, you only need to update code in one place. See this article on [Value Objects](/articles/typescript-value-object/) for how to implement this.
 - Make it impossible for you to create domain objects without going through the factory. Use private constructors to prevent the use of the `new` keyword.
 - Wrap primitives with their own domain specific classes in order to make the language more expressive, encode business requirements, and protect their internal values from change operations that don't make sense to the domain.
 - Prefer update methods over public setters to encapsulate _change_ rules within the entity itself. Make it impossible to change things when they shouldn't be changed. 

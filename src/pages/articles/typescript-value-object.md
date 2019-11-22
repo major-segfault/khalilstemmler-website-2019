@@ -65,20 +65,24 @@ It's pretty much like comparing two strings, right?
 
 This is easy. 
 
-Our `User` could look like this: 
+Our `User` entity could look like this: 
+
+<div class="filename">domain/user.ts</div>
 
 ```typescript
 
-interface IUser {
-  readonly name: string
+interface UserProps {
+  name: string
 }
 
-class User extends Entity<IUser> {
-  public readonly name: string;
+class User extends Entity<UserProps> {
+  
+  get name (): string {
+    return this.props.name;
+  }
 
-  constructor (props: IUser) {
+  constructor (props: UserProps) {
     super(props);
-    this.name = props.name;
   }
 }
 ```
@@ -88,6 +92,8 @@ This is OK, but it could be better. Lemme ask a question:
 > What if we wanted to limit the length of a user's name. Let's say that it can be no longer than 100 characters, and it must be at least 2 characters.
 
 A naive approach would be to write some validation logic before we create an instance of this User, maybe in a service.
+
+<div class="filename">services/createUserService.ts</div>
 
 ```typescript
 class CreateUserService {
@@ -102,6 +108,8 @@ class CreateUserService {
 ```
 
 This isn't ideal. What if we wanted to handle Editing a user's name?
+
+<div class="filename">services/editUserService.ts</div>
 
 ```typescript
 class EditUserService {
@@ -123,38 +131,52 @@ This is actually how a lot of projects start to spin out of scope. We end up put
 
 We call this an [Anemic Domain Model](/wiki/anemic-domain-model).
 
-We introduce value object classes to encapsulate where validation should occur and to satisfy the **invariants** (validation & domain rules) of our models.
+We introduce value object classes to strictly represent a type and encapsulate the validation rules of that type.
 
 ### Value Objects
 
-We had this before, a basic class for our `User` entity.
+We had this before, a basic class for our `User` entity wiith a `string`-ly typed `name`  property.
+
+<div class="filename">domain/user.ts</div>
 
 ```typescript
-interface IUser {
-  readonly name: string
+interface UserProps {
+  name: string
 }
 
-class User extends Entity<IUser> {
-  public readonly name: string;
+class User extends Entity<UserProps> {
 
-  constructor (props: IUser) {
+  get name (): string {
+    return this.props.name;
+  }
+
+  constructor (props: UserProps) {
     super(props);
-    this.name = props.name;
   }
 }
 ```
 
 If we were to create a class for the `name` property, we could co-locate all of the validation logic for a `name` in that class itself. 
 
-We will also make the `constuctor` private, and using a `static factory method` to execute the preconditions that must be satisfied in order to create a valid `name` using the `constructor`.
+The upper bound (max length), the lower bound (min length), in addition to any algorithm that we wanted to implement in order to strip out whitespace, remove bad characters, etc- it could all go in here.
+
+Using a [static factory method](/blogs/typescript/static-factory-method/) and a [private constructor](/blogs/typescript/when-to-use-a-private-constructor/), we can ensure that the preconditions that must be satisfied in order to create a valid `name`.
+
+<div class="filename">domain/name.ts</div>
 
 ```typescript
-interface IName {
+interface NameProps {
   value: string
 }
 
-class Name extends ValueObject<IName> {
-  private constuctor (props: IName) {
+class Name extends ValueObject<NameProps> {
+
+  get value (): string {
+    return this.props.value;
+  }
+  
+  // Can't use the `new` keyword from outside the scope of the class.
+  private constuctor (props: NameProps) {
     super(props);
   }
 
@@ -169,19 +191,22 @@ class Name extends ValueObject<IName> {
 
 ```
 
-And then change the `User` class to require a `IName` instead of a string. 
+Then, in the `User` class, we'll update the `name` attribute in `UserProps` to be of type `Name` instead of `string`. 
 
-We'll also utilize a `static factory method` here as well.
+<div class="filename">domain/user.ts</div>
 
 ```typescript
-interface IUser {
-  readonly name: Name;
+interface UserProps {
+  name: Name;
 }
 
-class User extends Entity<IUser> {
-  public readonly name: Name;
+class User extends Entity<UserProps> {
 
-  private constructor (props: IUser) {
+  get name (): Name {
+    return this.props.name;
+  }
+
+  private constructor (props: UserProps) {
     super(props);
     this.name = props.name;
   }
@@ -196,9 +221,13 @@ class User extends Entity<IUser> {
 }
 ```
 
+We apply the [static factory method](/blogs/typescript/static-factory-method/) here as well.
+
 ## Value Object class
 
 Here's an example of a Value Object class.
+
+<div class="filename">shared/domain/valueObject.ts</div>
 
 ```typescript
 
