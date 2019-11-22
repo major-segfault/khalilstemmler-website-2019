@@ -20,7 +20,7 @@ const MenuList = props => {
           )
         } else if (item.external) {
           return (
-            <a key={index} href={item.url}>
+            <a target="blank" key={index} href={item.url}>
               {item.name}
             </a>
           )

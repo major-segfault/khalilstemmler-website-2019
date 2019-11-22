@@ -18,7 +18,7 @@ Have you ever heard of the "clean architecture"?
 
 Maybe you've heard it by a different name...
 
-[Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), the [Onion Architecture](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/), [Ports & Adapters](http://www.dossier-andreas.net/software_architecture/ports_and_adapters.html), [Hexigonal Architecture](http://alistair.cockburn.us/Hexagonal+architecture), the Layered Architecture, DCI (Data, Context and Interaction), etc.
+[Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), the [Onion Architecture](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/), [Ports & Adapters](http://www.dossier-andreas.net/software_architecture/ports_and_adapters.html), [Hexagonal Architecture](http://alistair.cockburn.us/Hexagonal+architecture), the Layered Architecture, DCI (Data, Context and Interaction), etc.
 
 They're all a little bit different in implementation, but for our understanding: they all mean the same thing.
 

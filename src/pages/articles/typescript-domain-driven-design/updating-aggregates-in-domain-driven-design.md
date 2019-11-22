@@ -425,7 +425,7 @@ export type UpdateUserResult = Either<
 >
 ```
 
-<p class="special-quote"><b>Error handling articles:</b> No idea what I'm doing right now? First read "<a href="/articles/enterprise-typescript-nodejs/handling-errors-result-class/">Flexible Error Handling w/ the Result Class</a>" and then read "<a href="/articles/enterprise-typescript-nodejs/functional-error-handling/">Functional Error Handling with Express.js and DDD</a>".</p>
+<p class="special-quote"><b>Error handling articles:</b> No idea what I'm doing? First read "<a href="/articles/enterprise-typescript-nodejs/handling-errors-result-class/">Flexible Error Handling w/ the Result Class</a>" and then read "<a href="/articles/enterprise-typescript-nodejs/functional-error-handling/">Functional Error Handling with Express.js and DDD</a>".</p>
 
 Then let's update the use case with the return type, represent the not found error, and represent the  `void` success state
 
@@ -620,7 +620,7 @@ export class User extends AggregateRoot<UserProps> {
 }
 ```
 
-Simple enough, right? 
+Simple enough.
 
 Here's where it gets interesting...
 
@@ -630,7 +630,7 @@ Lets say we wanted to update `phone` AND `address` in single transaction.
 
 If `phone` was valid but `address` was **not**, should we let the transaction <u>partially update</u> the `user` aggregate or should the entire transaction fail?
 
-It should fail, right?
+It should fail, correct?
 
 Things have the potential to get messy, code can get hard to debug, and things can be challenging to reason about if we were to allow partial transactions. A request to `UPDATE` the `user` has to be <u>fully correct</u> for it to succeed.
 

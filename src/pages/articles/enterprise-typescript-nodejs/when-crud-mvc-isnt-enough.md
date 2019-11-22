@@ -21,7 +21,7 @@ It's _the most popular and well-understood architecture_ for creating applicatio
 
 For a lot of developers, myself included, MVC is the _first_ type of architecture we learn about, and it's our introduction to full-stack web development.
 
-As a founder @ **Univjobs**, an early-stage startup, I've realized that MVC is **amazing** because it will enable you get things done _fast_ as hell.
+As ~~a founder~~ ex co-founder @ **Univjobs**, ~~an early-stage startup~~ a very, very dead startup, I've realized that MVC is **amazing** because it will enable you get things done _fast_ as hell.
 
 And getting things done fast in order to validate them quickly is one of the most important things about engineering in a startup.
 
