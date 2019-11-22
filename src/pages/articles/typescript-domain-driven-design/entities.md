@@ -425,12 +425,14 @@ export class UserMap extends Mapper<User> {
   }
 
   public static toDomain (raw: any): User {
-    const nameOrResult = UserName.create
+    const nameOrResult = UserName.create(raw.user_name);
     const emailOrResult = UserEmail.create(raw.user_email);
+    const passwordOrResult = UserPassword.create(raw.user_password);
 
     return User.create({
-      name: UserName.create(raw.user_name).getValue(),
-      email: UserPassword.create(raw.user_password).getValue(),
+      name: nameOrResult.getValue(),
+      password: passwordOrResult.getValue(),
+      email: emailOrResult.getValue()
       active: raw.is_active,
     }, new UniqueEntityID(raw.user_id)).getValue()
   }

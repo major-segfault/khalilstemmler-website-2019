@@ -462,6 +462,8 @@ export class UpdateUser implements UseCase<UpdateUserDTO, Promise<UpdateUserResu
 
 Fantastic. We're all set up with to write some update logic now. 
 
+<p class="special-quote">Do you know how the Repository pattern works? Do you know how to convert an ORM model (like Sequelize or TypeORM) to a domain object (like an Aggregate Root, Entity or Value Object)? If not, check out "<a href="/articles/typescript-domain-driven-design/repository-dto-mapper/">Implementing DTOs, Mappers & the Repository Pattern using the Sequelize ORM [with Examples] - DDD w/ TypeScript</a>".</p>
+
 ### Handling update logic 
 
 In this particular scenario, we have a DTO with several keys that we'd like to update: `phone`, `email`, `address`.
