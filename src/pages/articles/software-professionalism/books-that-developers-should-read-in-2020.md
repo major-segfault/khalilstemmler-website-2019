@@ -1,6 +1,6 @@
 ---
 templateKey: article
-title: "Books that Junior Developers should read in 2020 [List]"
+title: "Books that Junior Developers Should Read in 2020 [List]"
 date: '2019-11-22T10:04:10-05:00'
 updated: '2019-11-22T10:04:10-05:00'
 description: >-
