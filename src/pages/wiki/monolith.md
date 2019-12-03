@@ -21,7 +21,7 @@ If what we ship to our server is a single executable file or script that runs ou
 
 <p class="caption">A monolithic application containing modules from A to F.</p>
 
-If for some reason, our application relies on another service that contains critical features or business logic for our core domain, it's no longer a monolith, and we've adopted microservices.
+If for some reason, our application relies on another service that contains critical features or business logic for our core domain, it's no longer a monolith. It may be a _distributed monolith_.
 
 <div style="text-align: center;">
   <img style="max-width: 300px;" src="/img/wiki/monolith/monolith-img-2.svg" />
