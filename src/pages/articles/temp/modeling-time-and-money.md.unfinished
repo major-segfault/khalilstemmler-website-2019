@@ -1,0 +1,138 @@
+---
+templateKey: article
+title: "Explicitly Modeling Time and Money as Domain Concepts | Enterprise Node.js + TypeScript"
+date: '2019-11-29T10:04:10-05:00'
+updated: '2019-11-29T10:04:10-05:00'
+description: >-
+  
+tags:
+  - Node.js
+  - TypeScript
+  - Enterprise software
+  - Domain Modeling
+category: Enterprise Node + TypeScript
+image: /img/blog/enterprise-node/enterprise-node.png
+published: true
+---
+
+- I'm working on building an app my friend Eric over at FoundersBeta. It's a live job fair that runs once a month for people interested in working at startups to connect with recruiters and founders from startups.
+
+- It wasn't long into building the `Event` class that I realized I needed to model two things that are often overlooked: `Time` and `Money`.
+
+## Money
+
+- the main problem with dealing with Money is loss of precision and ending up with values that can never equate to real monetary values.
+- For example, if we had $0.1 dollars and $0.2 dollars, that's 10 and 20 cents, what happens if we try to multiply them?
+
+```typescript
+const amount = 0.1 * 0.2;
+console.log(amount); // 0.020000000000000004
+```
+
+We obviously just wanted to end up with 0.2, but we got this weird super long number.
+
+We can use the `toFixed()` to fix this, but... etc.
+
+---
+
+Each event costs money for a job seeker, so instead of using the `number` primitive, is there a way that we can be more precise with this?
+
+```typescript
+interface EventPricesProps {
+  seekerPrice: number;
+  companyPrice: number;
+}
+```
+
+We can give `Money` it's own type, since it's important.
+
+```typescript
+interface EventPricesProps {
+  seekerPrice: Money;
+  companyPrice: Money;
+}
+```
+
+Let's talk about this:
+
+```typescript
+import { ValueObject } from "../../../../shared/domain/ValueObject";
+import { Result } from "../../../../shared/core/Result";
+import { Guard } from "../../../../shared/core/Guard";
+
+const currrencies = <const> ['USD', 'CAD'];
+type Currency = typeof currrencies[number];
+
+interface MoneyProps {
+  dollars: number;
+  cents: number;
+  currency: Currency;
+}
+
+export class Money extends ValueObject<MoneyProps> {
+
+  private static DEFAULT_CURRENCY: Currency = "CAD";
+
+  get dollars (): number {
+    return this.props.dollars;
+  }
+
+  get cents (): number {
+    return this.props.cents;
+  }
+
+  get value (): number {
+    return Number(`${this.dollars}.${this.cents}`);
+  }
+
+  private constructor (props: MoneyProps) {
+    super(props);
+  }
+
+  public static create (props: MoneyProps): Result<Money> {
+    let guardResult = Guard.againstNullOrUndefinedBulk([
+      { argument: props.dollars, argumentName: 'dollars' },
+      { argument: props.cents, argumentName: 'cents' }
+    ]);
+
+    if (!guardResult.succeeded) {
+      return Result.fail<Money>(guardResult.message)
+    }
+
+    if (!!props.currency === true) {
+      guardResult = Guard.isOneOf(props.currency, currrencies as any, 'currency')
+      if (!guardResult.succeeded) {
+        return Result.fail<Money>(guardResult.message)
+      }
+    } else {
+      props.currency = this.DEFAULT_CURRENCY;
+    }
+
+    return Result.ok<Money>(new Money(props))    
+  }
+}
+```
+
+Other approaches:
+
+- Model money entirely as cents (this is what Stripe does with their API), and by doing this- they can stick to just doing calculations on integers.
+
+> ie: 100 cents is 1 dollar.
+
+## Time
+
+Time is another thing that's really easy to screw up. Time is especially important to our domain we will need to ensure that we run our events at the correct date, time, and timezone- and we don't want to mess around with JavaScript's messy API for dealing with dates and timezones.
+
+### How can we screw it up?
+
+When I got my work laptop in California, it set the internal time to -3mt (doublecheck this).
+
+But when I got back to Toronto, a bunch of my apps were still set to that internal system time.
+
+Let's not even mess with that.
+
+Instead of building dates with the `Date` object and using that API, let's create times with `EventDateTime` created by `day, month, year,minute, hour, timezone`.
+
+TODO:
+
+Another example of how this can get screwed up: Let's say you're writing code based on your current timezone and then you deploy it and it's running on a server on AWS in Virgina. Sup now?

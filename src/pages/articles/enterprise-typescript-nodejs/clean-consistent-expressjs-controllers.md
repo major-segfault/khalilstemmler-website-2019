@@ -46,83 +46,104 @@ For example, every controller should be able to:
 
 To encapsulate all of this functionality, we can use an `abstract` class.
 
+<div class="filename">shared/infra/http/models/BaseController.ts</div>
+
 ```typescript
 import * as express from 'express'
 
 export abstract class BaseController {
-  // or even private
-  protected req: express.Request;
-  protected res: express.Response;
 
-  protected abstract executeImpl (): Promise<void | any>;
+  /**
+   * This is the implementation that we will leave to the
+   * subclasses to figure out. 
+   */
 
-  public execute (req: express.Request, res: express.Response): void {
-    this.req = req;
-    this.res = res;
+  protected abstract executeImpl (
+    req: express.Request, res: express.Response
+  ): Promise<void | any>;
+
+  /**
+   * This is what we will call on the route handler.
+   * We also make sure to catch any uncaught errors in the
+   * implementation.
+   */
+
+  public async execute (
+    req: express.Request, res: express.Response
+  ): Promise<void> {
 
     try {
-      await this.executeImpl();
+      await this.executeImpl(req, res);
     } catch (err) {
-      console.log(`[BaseController]: Error caught by controller`);
+      console.log(`[BaseController]: Uncaught controller error`);
       console.log(err);
+      this.fail(res, 'An unexpected error occurred')
     }
   }
 
-  protected jsonResponse (code: number, message: string) {
-    return this.res.status(code).json({ message });
+  public static jsonResponse (
+    res: express.Response, code: number, message: string
+  ) {
+    return res.status(code).json({ message })
   }
 
-  protected ok<T> (dto?: T) {
+  public ok<T> (res: express.Response, dto?: T) {
     if (!!dto) {
-      return this.res.status(200).json(dto);
+      res.type('application/json');
+      return res.status(200).json(dto);
     } else {
-      return this.res.sendStatus(200);
+      return res.sendStatus(200);
     }
   }
 
-  protected created () {
-    return this.res.sendStatus(201);
+  public created (res: express.Response) {
+    return res.sendStatus(201);
   }
 
-  protected clientError (message?: string) {
-    return this.jsonResponse(400, message ? message : 'Unauthorized');
+  public clientError (res: express.Response, message?: string) {
+    return BaseController.jsonResponse(res, 400, message ? message : 'Unauthorized');
   }
 
-  protected unauthorized (message?: string) {
-    return this.jsonResponse(401, message ? message : 'Unauthorized');
+  public unauthorized (res: express.Response, message?: string) {
+    return BaseController.jsonResponse(res, 401, message ? message : 'Unauthorized');
   }
 
-  protected paymentRequired (message?: string) {
-    return this.jsonResponse(402, message ? message : 'Payment required');
+  public paymentRequired (res: express.Response, message?: string) {
+    return BaseController.jsonResponse(res, 402, message ? message : 'Payment required');
   }
 
-  protected forbidden (message?: string) {
-    return this.jsonResponse(403, message ? message : 'Forbidden');
+  public forbidden (res: express.Response, message?: string) {
+    return BaseController.jsonResponse(res, 403, message ? message : 'Forbidden');
   }
 
-  protected notFound (message?: string) {
-    return this.jsonResponse(404, message ? message : 'Not found');
+  public notFound (res: express.Response, message?: string) {
+    return BaseController.jsonResponse(res, 404, message ? message : 'Not found');
   }
 
-  protected conflict (message?: string) {
-    return this.jsonResponse(409, message ? message : 'Conflict');
+  public conflict (res: express.Response, message?: string) {
+    return BaseController.jsonResponse(res, 409, message ? message : 'Conflict');
   }
 
-  protected tooMany (message?: string) {
-    return this.jsonResponse(429, message ? message : 'Too many requests');
+  public tooMany (res: express.Response, message?: string) {
+    return BaseController.jsonResponse(res, 429, message ? message : 'Too many requests');
   }
 
-  protected fail (error: Error | string) {
-    return this.res.status(500).json({
+  public todo (res: express.Response) {
+    return BaseController.jsonResponse(res, 400, 'TODO');
+  }
+
+  public fail (res: express.Response, error: Error | string) {
+    console.log(error);
+    return res.status(500).json({
       message: error.toString()
     })
   }
 }
 ```
 
-At this point, you may be asking why we have an `executeImpl()` in addition to an `execute(req, res)` method.
+At this point, you may be asking why we have an `executeImpl(req, res)` in addition to an `execute(req, res)` method.
 
-The idea is that the `execute(req, res)` **public** method exists in order to actually _hook up_ the Express handler to a Router, while the `executeImpl()` method is responsible for running the controller logic.
+The idea is that the `execute(req, res)` **public** method exists in order to actually _hook up_ the Express handler to a Router, while the `executeImpl(res, res)` method is responsible for running the controller logic.
 
 This is done in order to **encapsulate the request and response objects** to the controller's **state** and remove the need for us to pass 'em around manually.
 
@@ -134,9 +155,13 @@ Let's take the basic example of creating a `User` that requires a valid `passwor
 
 Starting a simple controller to create a user might begin looking like this.
 
+<div class="filename">users/useCases/createUser/CreateUserController.ts</div>
+
 ```typescript
-class CreateUserController extends BaseController {
-  protected async executeImpl (): Promise<void | any> {
+import * as express from 'express'
+
+export class CreateUserController extends BaseController {
+  protected async executeImpl (req: express.Request, res: express.Response): Promise<void | any> {
     try {
       // ... Handle request by creating objects
  
@@ -163,7 +188,7 @@ Observe that we've implemented it in this `CreateUserController`. If you'll reca
 
 ```typescript
 // Abstract method from the CreateUserController 
-protected abstract executeImpl (): Promise<void | any>;
+protected abstract executeImpl (req: express.Request, res: express.Response): Promise<void | any>;
 ```
 
 This is where we will define the controller logic. We'll start by validating the request payload.
@@ -172,9 +197,13 @@ This is where we will define the controller logic. We'll start by validating the
 
 Let's continue by utilizing the [Value Objects](/articles/typescript-value-object/) to validate that the `username`, `password` and `email` coming in hot off the wire from the internet are valid.
 
+<div class="filename">users/useCases/createUser/CreateUserController.ts</div>
+
 ```typescript
-class CreateUserController extends BaseController {
-  protected executeImpl (): void {
+import * as express from 'express'
+
+export class CreateUserController extends BaseController {
+  protected executeImpl (req: express.Request, res: express.Response): void {
     try {
       const { username, password, email } = req.body;
       const usernameOrError: Result<Username> = Username.create(username);
@@ -187,13 +216,13 @@ class CreateUserController extends BaseController {
 
       if (result.isFailure) {
         // Send back a 400 client error
-        return this.clientError(result.error);
+        return this.clientError(res, result.error);
       }
 
       // ... continue
 
     } catch (err) {
-      return this.fail(err.toString())
+      return this.fail(res, err.toString())
     }
   }
 }
@@ -221,8 +250,12 @@ In order to finish off this API request, we'll want to persist the `User` to per
 
 To do that, we'll ensure that we utilize [Depdendency Inversion](/wiki/dependency-inversion/) to specify that this class depends on an `IUserRepo`.
 
+<div class="filename">users/useCases/createUser/CreateUserController.ts</div>
+
 ```typescript
-class CreateUserController extends BaseController {
+import * as express from 'express'
+
+export class CreateUserController extends BaseController {
   private userRepo: IUserRepo;
 
   constructor (userRepo: IUserRepo) {
@@ -230,7 +263,7 @@ class CreateUserController extends BaseController {
     this.userRepo = userRepo;
   }
 
-  protected async executeImpl (): Promise<void | any> {
+  protected async executeImpl (req: express.Request, res: express.Response): Promise<void | any> {
     try {
       const { username, password, email } = this.req.body;
       const usernameOrError: Result<Username> = Username.create(username);
@@ -243,7 +276,7 @@ class CreateUserController extends BaseController {
 
       if (result.isFailure) {
         // Send back a 400 client error
-        return this.clientError(result.error);
+        return this.clientError(res, result.error);
       }
 
       // ... continue
@@ -255,7 +288,7 @@ class CreateUserController extends BaseController {
 
       if (userOrError.isFailure) {
         // Send back a 400 client error
-        return this.clientError(result.error);
+        return this.clientError(res, result.error);
       }
 
       const user: User = userOrError.getValue();
@@ -264,10 +297,10 @@ class CreateUserController extends BaseController {
       await this.userRepo.createUser(user);
 
       // Return a 200
-      return this.ok<any>();
+      return this.ok<any>(res);
 
     } catch (err) {
-      return this.fail(err.toString())
+      return this.fail(res, err.toString())
     }
   }
 }
@@ -277,16 +310,30 @@ That's it for the controller!
 
 ### Hooking it up to an Express.js route
 
-If we wanted to hook this up to our app, we could create a separate router, hook up any middleware we need to (two are shown here for example) and then execute the controller like so:
+To [export features from a module without needing a DI container](/articles/software-design-architecture/coding-without-di-container/), I like to do something like this:
+
+<div class="filename">users/useCases/createUser/index.ts</div>
 
 ```typescript
+import { CreateUserController } from './CreateUserController'
 import { UserRepo } from '../repos/UserRepo';
 import { models } from '../infra/sequelize';
-import { CreateUserController } from '../http/controllers'
-import * as express from 'express'
-import { Router } from 'express'
 
 const userRepo = new UserRepo(models);
+const createUserController = new CreateUserController(userRepo);
+
+// Export the feature 
+export { createUserController };
+
+```
+
+And to hook it up, we could create a separate router, add any middleware we need to (two are shown here for example) and then execute the controller like so:
+
+```typescript
+import { createUserController } from '../useCases/createUser'
+
+import * as express from 'express'
+import { Router } from 'express'
 const userRouter: Router = Router();
 
 userRouter.post('/new', 
@@ -294,7 +341,7 @@ userRouter.post('/new',
   middleware.rateLimit,
   // + any other middleware 
   ...
-  (req, res) => new CreateUserController(userRepo).execute(req, res)
+  (req, res) => createUserController.execute(req, res)
 );
 
 export { userRouter }
@@ -325,3 +372,7 @@ If you're still considering whether you want to use TypeScript, check out [my de
 **Update: May 14th, 2019**
 
 Thanks to [@patroza](https://github.com/patroza) for suggesting that we maintain the request and response objects from within the base class in a stateful/truly object-oriented manner, rather than passing them around functionally. This approach encapsulates responsibility much better.
+
+**Update December 2nd, 2019**
+
+After some battle-testing on this approach, the community and I discovered that making the response on the base class stateful isn't a good idea. If several requests are coming enter the same controller, we'd overwrite responses. The functional approach of passing req and response through has 0 side effects and seems to eliminate this issue. Thanks Ryan, Sam, and Matt!

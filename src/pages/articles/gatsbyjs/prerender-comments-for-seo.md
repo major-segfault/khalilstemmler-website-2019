@@ -592,7 +592,7 @@ Comments.propTypes = {
 }
 ```
 
-The idea is that the comments passed _to_ this component throuugh `props` are <u>prerendered comments</u> while the comments that we retrieve and save to state by calling `getCommentsFromAPI()` within `componentDidMount()` are the <u>live, real-time comments</u>.
+The idea is that the comments passed _to_ this component through `props` are <u>prerendered comments</u> while the comments that we retrieve and save to state by calling `getCommentsFromAPI()` within `componentDidMount()` are the <u>live, real-time comments</u>.
 
 We can get the correct comments in context by testing to see if `window` is defined or not.
 

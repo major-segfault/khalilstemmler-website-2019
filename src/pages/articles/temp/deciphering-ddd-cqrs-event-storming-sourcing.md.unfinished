@@ -1,0 +1,91 @@
+---
+templateKey: article
+title: "An Intro to Event-based Architectures with Event Storming, DDD, CQRS & Event Sourcing"
+date: '2019-12-02T10:04:10-05:00'
+updated: '2019-12-02T10:04:10-05:00'
+description: >-
+  There's a lot of techncially complex jargon involved in learning about event-based architectures, and rightfully so- they solve really challenging problems. Event-based architectures are really good at enabling us to codify domain concepts with Domain-Driven Design and they enable us to scale large enterprise systems with events and  eventual consistency.
+tags:
+  - DDD
+  - Event-Based Architectures
+  - Event Storming
+  - CQRS 
+  - Event Sourcing
+category: Enterprise Node + TypeScript
+image: /img/blog/enterprise-node/enterprise-node.png
+published: true
+---
+ 
+<p class="special-quote">This article is a draft. If you have any feedback you can provide, I'd really appreciate hearing it.</p>
+
+## Introduction
+
+I first heard about Domain-Driven Design earlier this year when I needed to figure out a way to organize business logic in my very business logic-heavy Node.js application.
+
+When I discovered DDD, I also came across the terms **Event Storming**, **CQRS** and **Event Sourcing**.
+
+I completely ignored all of those extra terms for a while, but it wasn't until I ran into some issues [designing aggregates in DDD](/articles/typescript-domain-driven-design/aggregate-design-persistence/) that I realized I should probably look into the rest of this stuff.
+
+I discovered that [Command Query Response Separation (or CQS at the method-level)](/articles/oop-design-principles/command-query-segregation/) makes it easier to focus on designing our domain models by keeping the **write models** separate from the **read models**. It's also this principle that enables us to further optimize a system by **caching our read models** and _only invalidating them when the corresponding write model changes_.
+
+Then I wanted to figure out a way to [decouple domain logic](/articles/typescript-domain-driven-design/chain-business-logic-domain-events/) and I discovered [Domain Events](/articles/typescript-domain-driven-design/chain-business-logic-domain-events/). It wasn't long before  realized that domain events + event queues are the way that huge enterprise companies with several different backend services asynchronously communicate with each other. 
+
+Just think about all of the systems that are probably at play when you try to register for a business, book a hotel, or purchase a christmas gift on Amazon and track its progress all the way to your house.
+
+This phenomenon, _a business operation that uses events to span database transactions across multiple systems_, is called a **saga**, and it's at the heart of the problem we're solving with event-based architectures.
+
+The ultimate realization I think, at least from what I've seen, is that event-based systems depict the _definitive architecture_ for large scale enterprise companies. 
+
+And I don't say that lightly.
+
+> Event-based architectures are exceptionally good at **describing the domain** because every real-life system is a combination of commands, views, and events.
+
+In this article, I'd like to provide a high-level overview of the major topics involved in the discovery and development of  event-based systems.
+
+- Event Storming (understanding the problem)
+- DDD (codifying the problem and building the language)
+- CQRS (technical detail in order to improve performance and ability to reason about DDD systems)
+- Event Sourcing (technical detail to achieve highest levels of performance and eventual consistency)
+
+## Event Storming
+
+Normally, when I'd start building an application, I'd work by first:
+
+- Identifying the actors
+- Identifying the things that they can do (queries, commands)
+
+This isn't a bad approach, but it's also a very software developer-y approach.
+
+What happens when you're working with non-technical people? How do you ask the right questions? How can you ensure that everyone is on the same page?
+
+
+
+
+
+- Event storming
+  - Command, View, Process
+
+- Domain-Driven Design
+  - Bounded contexts and subdomains
+
+- CQRS
+  - View models and write models
+  - Simplified code paths
+  - Allows us to focus on implementing true domain model rules.
+
+- Event sourcing
+  - Asynchronous systems
+  - CAP Theorem & Eventual Consistency
+    - Event queues & propogating changes to other bounded contexts
+  - Audit trail of everything that's ever happened.
+
+> You might not need to use this pattern
+
+This pattern is only completely made necessary when we've applied the database per service pattern. So in order to perform a use case that spans multiple services, it's impossible for us to do that because we need to go across several databases.
+
+> Even if you don't use the database per service pattern, you still might want it
+
+You still might want to use some sort of event based architecture because it's a great way to decouple 
+
+Ex: Your application is a monolith application.
+
