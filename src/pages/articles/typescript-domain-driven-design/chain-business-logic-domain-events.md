@@ -107,7 +107,7 @@ Alright, what's wrong with this?
 
 Lots. But the main things are:
 
-- The `UsersService` knows too much about things that aren't related to `Users`. Sending emails and slack messages most likely should belong to the `Notifications` subdomain, while hooking up marketing campaigns using a tool like Mailchimp would make more sense to belong to a `Marketing` subdoman. Currently, we've <u>coupled</u> all of the unrelated side-effects of `createUser` to the `UsersService`. Think about how challenging it will be in order to isolate and _test_ this class now.
+- The `UsersService` knows too much about things that aren't related to `Users`. Sending emails and slack messages most likely should belong to the `Notifications` subdomain, while hooking up marketing campaigns using a tool like Mailchimp would make more sense to belong to a `Marketing` subdomain. Currently, we've <u>coupled</u> all of the unrelated side-effects of `createUser` to the `UsersService`. Think about how challenging it will be in order to isolate and _test_ this class now.
 
 We can fix this.
 
