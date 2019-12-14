@@ -1,10 +1,10 @@
 ---
 templateKey: blog-post
 title: "How Apollo REST Data Source Deduplicates and Caches API calls [Deep Dive]"
-date: '2019-12-13T10:04:10-05:00'
-updated: '2019-12-131T10:04:10-05:00'
+date: '2019-12-14T10:04:10-05:00'
+updated: '2019-12-141T10:04:10-05:00'
 description: >-
-  Apollo's REST Data Source actually does a lot more than you'd think behind the scenes, and that's why it's recommended instead of using a wrapped HTTP library like Axios or Fetch in order to hook up data to your resolvers.
+  Apollo's REST Data Source does a lot more than you'd think behind the scenes, and that's why it's recommended instead of using a wrapped HTTP library like Axios or Fetch in order to hook up data to your resolvers.
 tags:
   - Apollo Server
   - GraphQL
@@ -20,13 +20,21 @@ But alas, it's something that needs to be done.
 
 And that's what I think Apollo has done really well with their tooling. They've listened to the community and figured out the common tasks in hooking up a GraphQL server in production that aren't so fun (but totally necessary), and done a lot of that hard stuff for us so that we can _start out with an optimized GraphQL server_.
 
+Here's what we'll learn by the end of this article:
+
+- Potential ways to resolve data for a GraphQL endpoint using RESTful APIs.
+- Why Apollo's REST Data Source library is a better choice than a wrapped HTTP client library.
+- How Request Deduplication works in REST Data Source.
+- How Resource Caching works in REST Data Source.
+- How you can use the [apollo-server-caching](https://www.npmjs.com/package/apollo-server-caching) library to implement your own caching logic.
+
 ---
 
 ## Resolving data from a RESTful API
 
 If you're thinking about running a Apollo GraphQL server, a common setup is to resolve data from an external REST API.
 
-Going that route, you might have heard of the [Apollo REST Data Source](https://www.apollographql.com/docs/apollo-server/data/data-sources/) library. 
+Going that route, you might have heard of the [Apollo REST Data Source](https://www.apollographql.com/docs/apollo-server/data/data-sources/?utm_source=khalil&utm_medium=article&utm_campaign=how_datasources_work) library. 
 
 Using it, you can write custom data-fetching methods in order to resolve data from your external RESTful services. The image below depicts a potential architecture.
 
@@ -34,7 +42,7 @@ Using it, you can write custom data-fetching methods in order to resolve data fr
 
 <p class="caption">Example architecture of a client application connected to a GraphQL server resolving data from 4 RESTful API services.</p>
 
-Going through the [Apollo full-stack tutorial](https://www.apollographql.com/docs/tutorial/introduction), the Apollo Docs recommend that we use the `RESTDataSource` library when trying to fetch data from an external REST API.
+Going through the [Apollo full-stack tutorial](https://www.apollographql.com/docs/tutorial/introduction?utm_source=khalil&utm_medium=article&utm_campaign=how_datasources_work), the Apollo Docs recommend that we use the `RESTDataSource` library when trying to fetch data from an external REST API.
 
 We can get this to work in the following 3 steps:
 
@@ -107,7 +115,7 @@ export class VinylAPI extends RESTDataSource {
 
 You could, but you'd be missing out on some stuff.
 
-Today I learned that `RESTDataSource` actually comes with **two awesome performance optimizations** out of the box:
+Today I learned that `RESTDataSource` comes with **two awesome performance optimizations** out of the box:
 
 > Request Deduplication and Resource Caching.
 
@@ -115,9 +123,11 @@ Today I learned that `RESTDataSource` actually comes with **two awesome performa
 
 Request deduplication prevents double-invoking HTTP calls in rapid succession.
 
-That's a common enough problem if your resolvers rely on the same API call to resolve some information from an external service.
+That's a common enough problem if your some types in your resolvers rely on the same underlying API call in order to resolve fields.
 
-Deduplicating requests puts less stress on your service endpoints.
+This chatty, rapid-fire behaviour is the type of thing that [Facebook's DataLoader](https://www.apollographql.com/docs/apollo-server/data/data-sources/#what-about-dataloader) does _really well_ with loading data from an ORM or an in-memory datastore, but isn't as effective when dealing with RESTful API calls that go out onto the network and stress your service endpoints.
+
+Deduplicating <u>the API requests themselves</u> fixes that.
 
 ### How Request Deduplication works in REST Data Source
 
@@ -327,7 +337,7 @@ export class HTTPCache {
 
 <p class="special-quote">You can read this file and peruse around the rest of the codebase for the Apollo REST Data Source library <a href="https://github.com/apollographql/apollo-server/blob/master/packages/apollo-datasource-rest/src/HTTPCache.ts">here on GitHub</a>.</p>
 
-Out of the box, this thing does a _LOT_. But if you want to roll your own cache, or if you need to [hook several GraphQL endpoints up to Redis or Memcached](https://www.apollographql.com/docs/apollo-server/data/data-sources/#using-memcachedredis-as-a-cache-storage-backend) for a single source of truth, that's totally possible as well.
+Out of the box, this thing does a _LOT_. But if you want to roll your own cache, or if you need to [hook several GraphQL endpoints up to Redis or Memcached](https://www.apollographql.com/docs/apollo-server/data/data-sources/?utm_source=khalil&utm_medium=article&utm_campaign=how_datasources_work#using-memcachedredis-as-a-cache-storage-backend) for a single source of truth, that's totally possible as well.
 
 ### Making your own cache
 
@@ -350,3 +360,5 @@ export interface KeyValueCache {
 - Request Deduplication prevents multiple requests to the same resource from getting invoked using memoization.
 - The Resource Cache prevents multiple requests to the same resource from getting sent out onto the wire.
 - You can implement your own Resource Cache using the [apollo-server-caching](https://www.npmjs.com/package/apollo-server-caching) library.
+
+Thanks to [Trevor Sheer](https://twitter.com/TrevorJScheer) for helping me understand the responsibility division between `RESTDataSource` and `HTTPCache`.
