@@ -339,8 +339,6 @@ Here are some constraint (invariant) examples:
 
 It's important that the language we choose is able to reduce all the possible ways to create a valid domain object to **one** way.
 
-Consider
-
 We can use the **factory pattern** for this.
 
 Here's a purely functional approach:
