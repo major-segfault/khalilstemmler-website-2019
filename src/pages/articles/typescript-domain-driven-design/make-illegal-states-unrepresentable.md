@@ -39,15 +39,15 @@ export class UserService {
     const isLastNameValid = TextUtils.greaterThan(1, lastName) 
       && TextUtils.lessThan(71, lastName);
 
-    if (isEmailValid) {
+    if (!isEmailValid) {
       throw new Error("Email isn't valid");
     }
 
-    if (isFirstNameValid) {
+    if (!isFirstNameValid) {
       throw new Error("First name isn't valid");
     }
 
-    if (isLastNameValid) {
+    if (!isLastNameValid) {
       throw new Error("Last name isn't valid");
     }
 
