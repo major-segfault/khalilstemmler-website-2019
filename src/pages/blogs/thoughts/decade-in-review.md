@@ -185,6 +185,8 @@ It was one of the longest and coldest Winters I've ever experienced. It felt lik
 
 I was a Technical Analyst at IBM and accompanied by two of my brock buds, Imran and Sulman. Lots of fun times being thrown into the deep end, resolving customer service requests on technologies that we practically knew nothing about. To this day, I still can't tell you what a _star schema_ is.
 
+<p class="special-quote"><b>Quip of the decade</b>: Once, I forgot to pack a lunch and decided that I would just spend my lunch break reading my copy of Kim Gordon's autobiography that I brought from home. I entered the elevevator with Sulman, Imran, and our team lead, Cam. Cam asked me where my lunch was, and I told him I forgot it. A couple seconds of silence passed. Before the doors to the elevator opened, Sulman murmured the words, "Readers digest". Two more seconds passed. Then, we all bursted out with uncontrollable laughter.</p>
+
 ### Freak punk shows
 
 Ottawa and Montreal have thriving art scenes. One particular night after work, I walked across town in the blistering cold looking The Gabba Hey, an underground punk venue located in an industrial district of Ottawa.
@@ -195,7 +197,11 @@ Pretention aside, before any bands played that night, we were shown a documentar
 
 Mr. Node was a mental mummy businessman that performed with toilet paper wrapped around his head and had about as much to say as [Jello Biafra](https://en.wikipedia.org/wiki/Jello_Biafra), although in a less witty and cutting way.
 
-I don't know. Something happened here witnessing this. I've never seen anything like this before in music. They were probably more _performance art_ than music, but that event- because art had been so important to me for such a long time, something shifted in my head. I'm not sure how to explain it. Weird that I'd even mention it on a decade retrospective, but it's an unexplainably important event for me.
+<img class="centered-image" src="/img/blog/thoughts/decade-in-review/thee-nodes.jpg"/>
+
+<p class="caption">Mr. Node himself alongside Marc The Narc performing at a house show. You can feel the heat and congestion from just looking at this photograph.</p>
+
+I don't know. Something happened here witnessing this. I've never seen music performed so passionately. It was probably more _performance art_ than music. Art had been so important to me for such a long time, and on that day, something shifted in my head. I'm not sure how to explain it. Weird that I'd even mention it on a decade retrospective, but it's unexplainably important to me for some reason.
 
 <p class="special-quote"><b>Further reading</b>: I find these guys fascinating. If you're interested, check out this Vice article titled "<a href="https://www.vice.com/en_au/article/6a9m86/thee-nodes-went-to-the-future-and-came-back-insane">Thee Nodes Went to the Future and Came Back Insane</a>". If you're still intrigued, I just learned that the original documentary "<a href="https://www.youtube.com/watch?v=_T6Ti2S_fLY">Who Are You Mr. Node?</a>" is finally on YouTube.</p>
 
