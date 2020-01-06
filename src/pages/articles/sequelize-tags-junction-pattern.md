@@ -159,7 +159,7 @@ Finally, add the association on `Post`.
 
 ```typescript
 Post.associate = (models) => {
-  Post.belongsToMany(models.Genre, { as: 'GenresForPost', through: models.TagPostGenre, foreignKey: 'genre_id'});
+  Post.belongsToMany(models.Genre, { as: 'GenresForPost', through: models.TagPostGenre, foreignKey: 'post_id'});
 }
 ```
 
