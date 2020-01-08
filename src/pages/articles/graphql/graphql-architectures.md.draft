@@ -1,0 +1,14 @@
+<!-- ---
+templateKey: article
+title: "GraphQL Architectures | GraphQL in Modern Web Applications"
+date: '2019-11-19T17:04:10-05:00'
+updated: '2019-11-19T17:04:10-05:00'
+description: >-
+  GraphQL is the latest API style on the block. It's a modern way for us to pull data out of your system (queries) and make changes to your system (mutations). I'm finally committing to learning everything GraphQL in 2020. In this article, I'll break down my personal learning roadmap.
+tags:
+  - GatsbyJS
+  - SEO
+category: GraphQL
+image: /img/blog/graphql/graphql-banner.png
+published: true
+--- -->

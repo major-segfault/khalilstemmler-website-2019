@@ -1,0 +1,101 @@
+---
+templateKey: article
+title: "GraphQL is the Best API Style for Complex Front-end Interfaces"
+date: '2020-11-19T17:04:10-05:00'
+updated: '2020-11-19T17:04:10-05:00'
+description: >-
+  
+tags:
+  - GraphQL
+  - API
+category: GraphQL
+image: /img/blog/graphql/graphql-banner.png
+published: true
+---
+
+"GraphQL, is that like a _graph_ database?" 
+
+Well, GraphQL is very graph-y in nature, but it's _not_ database-y at all. 
+
+Fundamentally, **GraphQL is an API style**.
+
+## GraphQL is an API style
+
+APIs are the way that we communicate between different parts of our applications.
+
+We're most used to thinking about APIs as the mechanism that we use for either a front-end application to connect to a back-end one, or two back-end services to connect to each other.
+
+GraphQL, just like REST, SOAP, and RPC, are API styles. 
+
+The interesting part is that all APIs can be thought of as a spectrum from customizable to optimizable.
+
+## APIs are a spectrum from customizable to optimizable
+
+
+
+![](/img/blog/graphql/api-styles/spectrum.svg)
+
+<p class="caption">The spectrum of API Styles. From Marc-André Giroux's "Caching & GraphQL: Setting the Story Straight" talk at GraphQL Summit 2019.</p>
+
+
+
+
+ just like [Field Filtering](https://www.moesif.com/blog/technical/api-design/REST-API-Design-Filtering-Sorting-and-Pagination/), [RPC](https://en.wikipedia.org/wiki/Remote_procedure_call), [Response Partials](https://dev.to/andersonjoseph/what-they-want-is-what-they-get-the-partial-response-strategy-5a0m), 
+
+
+
+- Talking point: GraphQL is simply an API style.
+  - APIs are the way that we communicate between different parts of our applications. The GraphQL spec itself, is simply an API style. It sets forth a standard for how those
+
+- Talking point: API styles can be thought of as a spectrum from Customizable to Optimizable.
+
+- Talking point: GraphQL sits closest to the Customization end.
+
+- Talking point: GraphQL can still be optimized.
+  - This is what a lot of the Apollo platform takes care of for you.
+    - _How_
+
+- Talking point: Communication is simplified.
+  - The query language
+    - the language has already been defined to 
+    - whereas with REST, we spend a lot of time thinking about what the correct METHOD + URL style would be in order to build something, and not every person does this the same way. You still end up with scenarios where someone d
+      - When should you use PATCH, PUT, or POST?
+    - Steve Jobs / Jason Lengstorf effect: Screw it, let me simplify my life. I'm just going to wear a black shirt and jeans.
+    - GraphQL is like Jason Lengstorf, you just say "screw it, I'm not going to force myself to make these decisions every day, I'm just going to wear a black tee and jeans".
+      - Actually, I've been doing that for years as well.
+
+- Talking point: For complex front-end interfaces, the dexterity that you can achieve from being able to ask for what you want declaratively can help front-end developers get a lot more done, faster, and cleaner.
+  - reasons why this is good:
+    - the exact data requirements are encoded in the front-end queries
+    - modern tooling like Apollo Client actually handles all of the fetching logic for you
+    - less code to maintain
+
+ even when you need to cross boundaries to talk to several services- you can use Apollo Federation.
+  - Instead of hard-coding the URLs of your _Customer Service_, your _Users Service_, your _Product Service_, and more services, using Federation, we can customize a GraphQL endpoint to act as a Gateway to connect to all of these services, and access them in a single graph.
+
+
+--- 
+
+Goal: To inform people what GraphQL is and what it's not. And to inform them where it belongs in the stack since it's an API style.
+
+
+
+
+
+- And API-style is a _communication_ style. It's the way that we communicate the work that needs to get done. That work that needs to get done doesn't disappear, but GraphQL makes it easier for us to communicate more complex data requirements, which is to be expected with the growing complexity of user interfaces of 2020.
+
+- You have to decide which tradeoff you want to make (productivity or performance).
+  - GraphQL is a productivity booster
+    - Introspection
+    - Declaratively asking for the data you want.
+    - Removes the need for multiple endpoints and unblocks the front end teams from waiting for them to deploy several more RESTful endpoints.
+  - GraphQL is not as performant as REST or RPC
+    - If you have a relatively simple front-end interface or you're not even going to have a front-end interface (server-to-server communication), you could consider skipping GraphQL. 
+    
+The work doesn't disappear, but who we offload the work to
+
+Important considerations are:
+- to keep copde
+
+"Caching & GraphQL: Setting the Story Straight (MARC-ANDRÉ GIROUX Senior Platform Engineer at GitHub)" from GraphQL Summit 2019
+https://www.youtube.com/watch?v=CV3puKM_G14

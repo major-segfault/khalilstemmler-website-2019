@@ -136,7 +136,7 @@ class Vinyl {
     this.artist = artist;
     this.genres = genres;
 
-	  Vinyl.NUM_VINYL_CREATED++;        // increment number of vinyl created
+	Vinyl.NUM_VINYL_CREATED++;        // increment number of vinyl created
     console.log(Vinyl.NUM_VINYL_CREATED)  
   } 
 
@@ -146,13 +146,13 @@ class Vinyl {
 }
 
 let goo = new Vinyl ('Goo', 'Sonic Youth', ['rock']);
-// prints out 0
+// prints out 1
 
 let daydream = new Vinyl ('Daydream Nation', 'Sonic Youth', ['rock']);
-// prints out 1
+// prints out 2
 ```
 
-Because the properties can only be accessed through the class itself, we can't do:
+Because the properties can only be accessed through the class by referring to the _class name_ itself, we **can't access static properties** through an _instance_ like so:
 
 ```typescript
 let goo = new Vinyl ('Goo', 'Sonic Youth', ['rock']);
@@ -162,15 +162,52 @@ goo.NUM_VINYL_CREATED       // Error
 
 You might have heard of a term called **Class Members**. An attribute or a method is a _class member_ because they can ONLY be accessed through the class itself; therefore, they're members of the class.
 
+```typescript
+class Vinyl {
+
+  /**
+   * Example "Class Member" (sometimes known as 
+   * "Static Class Member") variable.
+   * 
+   * Can only be accessed through mentioning the class name
+   * itself:
+   * 
+   * Example: const vinylCreatedToDate = Vinyl.NUM_VINYL_CREATED;
+   */
+
+  public static NUM_VINYL_CREATED: number = 0; 
+
+  /**
+   * Example "Instance Member" variable.
+   * 
+   * Can only be accessed through an instance/object created from 
+   * this class.
+   * 
+   * Example: 
+   *  
+   *  const blueAlbum = new Vinyl("Blue Album");
+   *  console.log(blueAlbum.title); // "Blue Album"
+   */
+
+  public title: string;
+
+  constructor (title: string) {
+    this.title = title;
+  }
+}
+```
+
+<p class="caption">The different types of <i>member variables</i> that can appear on a class.</p>
+
 That's great and all, but _when would you want to use static properties?_
 
 ## How to know when to use static properties
 
-Before you add that attribute or method, as yourself:
+Before you add that attribute or method, ask yourself:
 
-> Will this property ever need to be used by another class, without having an instance of _this_ class?
+> Will this property ever need to be used by another class, without first needing to create an object of it?
 
-In other words, should I need to call it on an **object** created by this class? If yes, then continue normally. 
+In other words, should I need to call it on an **object** created by this class or not? If yes, then continue normally. 
 
 If no, then you might want to make a `static` member.
 
@@ -228,7 +265,7 @@ class Vinyl {
   public addGenre (genre: Genre): void {
     // Notice that in order to reference the value, we have go through the class
     // itself (Vinyl), not through an instance of the class (this).
-    const maxLengthExceeded = this.genres.length < Vinyl.MAX_GENRES_PER_VINYL;
+    const maxLengthExceeded = this.genres.length >= Vinyl.MAX_GENRES_PER_VINYL;
     const alreadyAdded = this.genres.filter((g) => g === genre).length !== 0;
 
     if (!maxLengthExceeded && !alreadyAdded) {
