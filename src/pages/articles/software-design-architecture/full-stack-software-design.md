@@ -135,7 +135,7 @@ Now that we're writing readable code that's easy to maintain, it would be a good
 
 In Uncle Bob's book, "[Clean Architecture](https://www.amazon.ca/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=asc_df_0132350882/?tag=googleshopc0c-20&linkCode=df0&hvadid=292982483438&hvpos=1o2&hvnetw=g&hvrand=13521899336201370454&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9000834&hvtargid=pla-435472505264&psc=1)", he brings attention to the fact that:
 
-- Object-Oriented Programming is the tool best suited for defining how we cross architectural boundaries with polymorhpism and plugins
+- Object-Oriented Programming is the tool best suited for defining how we cross architectural boundaries with polymorphism and plugins
 - Functional programming is the tool we use to push data to the boundaries of our applications
 - and Structured programming is the tool we use to write algorithms
 
