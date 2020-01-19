@@ -1,6 +1,6 @@
 ---
 templateKey: article
-title: "How I Write Testable Code | A Simple Methodology"
+title: "How I Write Testable Code | Khalil's Simple Methodology"
 date: '2020-01-19T11:11:10-40:00'
 updated: '2020-01-19T11:11:10-40:00'
 description: >-
@@ -17,7 +17,7 @@ published: true
 
 Understanding how to write testable code is one of the biggest frustrations I had when I finished school and started working at my first real-world job.
 
-Today, while working on a chapter in [solidbook.io](https://solidbook.io), breaking down some code and picking apart everything wrong with it, I realized that several principles govern how I write code to be testable.
+Today, while working on a chapter in [solidbook.io](https://solidbook.io), breaking down some code and picking apart everything wrong with it, I realized that several principles govern how I write code to be testable. 
 
 In this article, I want to present you with a straightforward methodology you can apply to both front-end and back-end code for how to write testable code. 
 
