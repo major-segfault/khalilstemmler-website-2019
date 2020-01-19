@@ -94,12 +94,16 @@ const Menu = () => {
   )
 }
 
-const FooterBanner = () => (
-  <div className="footer--banner flex align-center justify-center wrap">© khalilstemmler • 2019 • Built with 
-    <img src={GatsbyLogo}/> • Open sourced on 
-    <img src={GithubLogo}/> • Deployed on 
-    <img src={NetlifyLogo}/></div>
-)
+const FooterBanner = () => {
+  const currentYear = new Date().getFullYear()
+  
+  return (
+    <div className="footer--banner flex align-center justify-center wrap">© khalilstemmler • {currentYear} • Built with 
+      <img src={GatsbyLogo}/> • Open sourced on 
+      <img src={GithubLogo}/> • Deployed on 
+      <img src={NetlifyLogo}/></div>
+  )
+}
 
 const Footer = () => (
   <>
