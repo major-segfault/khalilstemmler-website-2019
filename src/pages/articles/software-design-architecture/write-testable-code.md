@@ -150,7 +150,7 @@ If **yes**, consider the following restrictions. You may depend on the class onl
 - The dependency is from the same layer or an inner layer (see [The Dependency Rule](https://khalilstemmler.com/wiki/dependency-rule/)).
 - It is a [stable dependency](https://khalilstemmler.com/wiki/stable-dependency-principle/).
 
-> If any of those rules aren't satisfied, don't import the dependency.
+> If at _least one_ of these conditions passes, import the dependency- otherwise, don't.
 
 Importing the dependency introduces the possibility that it will be hard to test that component in the future.
 
@@ -166,7 +166,7 @@ Take this React component (pre-hooks) involving a _container component_ (inner l
 
 <div class="filename">containers/ProfileContainer.tsx</div>
 
-```typescript
+```tsx{2,23,28}
 import * as React from 'react'
 import { ProfileService } from './services'; // hard source-code dependency
 import { IProfileData } from './models'      // stable dependency
@@ -223,7 +223,7 @@ First, we create the abstraction and then ensure that `ProfileService` implement
 
 <div class="filename">services/index.tsx</div>
 
-```typescript
+```typescript{4-6,9}
 import { IProfileData } from "../models";
 
 // Create an abstraction
@@ -234,7 +234,7 @@ export interface IProfileService {
 // Implement the abstraction
 export class ProfileService implements IProfileService {
   async getProfile(): Promise<IProfileData> {
-    return null;
+    ...
   }
 }
 ```
@@ -245,9 +245,12 @@ Then we update `ProfileContainer` to rely on the abstraction instead.
 
 <div class="filename">containers/ProfileContainer.tsx</div>
 
-```typescript
+```tsx{4,26,31}
 import * as React from 'react'
-import { ProfileService, IProfileService } from './services'; // import interface
+import { 
+  ProfileService, 
+  IProfileService 
+} from './services'; // import interface
 import { IProfileData } from './models' 
 
 interface ProfileContainerProps {}
@@ -298,7 +301,7 @@ Now we can create HOCs that use whatever kind of `IProfileService` we wish. It c
 
 <p class="filename">hocs/withProfileService.tsx</p>
 
-```typescript
+```tsx{2,8,12,18}
 import React from "react";
 import { ProfileService } from "../services";
 
@@ -332,7 +335,7 @@ Or it could be a mock one that uses an in-memory profile service as well.
 
 <div class="filename">hocs/withMockProfileService.tsx</div>
 
-```typescript
+```tsx{2,8,12,18}
 import * as React from "react";
 import { MockProfileService } from "../services";
 
@@ -367,7 +370,7 @@ For our `ProfileContainer` to utilize the `IProfileService` from an HOC, it has 
 
 <div class="filename">containers/ProfileContainer.tsx</div>
 
-```typescript
+```tsx{2,6,26}
 import * as React from "react";
 import { IProfileService } from "./services";
 import { IProfileData } from "./models";
@@ -413,7 +416,7 @@ export class ProfileContainer extends React.Component<
 
 Finally, we can compose our `ProfileContainer` with whichever HOC we want- the one containing the real service, or the one containing the fake service for testing.
 
-```typescript
+```tsx{3,4,8,10,16}
 import * as React from "react";
 import { render } from "react-dom";
 import withProfileService from "./hocs/withProfileService";
