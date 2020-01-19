@@ -121,7 +121,9 @@ That being said, the best resources for to sift through are these books:
 Also, if you want to learn how to write cleaner code overall, check out “Clean Code” by Robert C. Martin (Uncle Bob). It’s a great read.
 
 ## Bad names
-If you want to see an entire list of ways to d​ o evil and keep your job forever, ​check out this repo: [h​ttps://github.com/Droogans/unmaintainable-code](h​ttps://github.com/Droogans/unmaintainable-code).
+If you want to see an entire list of ways to d​o evil and keep your job forever, ​check out this repo: h​ttps://github.com/Droogans/unmaintainable-code.
+
+
 
 
 ## Look out for too many helper/utility/service classes
